@@ -6,7 +6,9 @@ const mainCore = {
     return `Update version: ${this.softwareVersion}`;
   },
   updateRobot(updateVersion) {
-    return `${this.name} updated to ${this.updateVersion}`;
+    this.softwareVersion = updateVersion;
+
+    return `${this.name} updated to ${updateVersion}`;
   },
 };
 
@@ -15,9 +17,9 @@ const navigationCore = {
     return `x=${this.coords.x} y=${this.coords.y}`;
   },
 
-  setTargetCoords() {
-    x = this.coords.x;
-    y = this.coords.y;
+  setTargetCoords(x, y) {
+    this.target.coords.x = x;
+    this.target.coords.y = y;
   },
 };
 
@@ -40,7 +42,7 @@ const movementCore = {
 
   moveLeft(step = 1) {
     if (step > 0) {
-      this.coords.y -= step;
+      this.coords.x -= step;
     }
 
     return this;
@@ -72,5 +74,8 @@ const kerbin = {
 };
 
 // Use Object.setPrototypeOf
-Object.setPrototypeOf(mainCore, kerbin);
+Object.setPrototypeOf(kerbin, movementCore);
 Object.setPrototypeOf(movementCore, navigationCore);
+Object.setPrototypeOf(navigationCore, mainCore);
+
+// Works as expected
