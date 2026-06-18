@@ -15,6 +15,7 @@ const yuliia = new User('Yuliia');
 yuliia.test(); // 111
 
 // #1, but `test` is different
+// bad idea
 User.prototype.test = function() {
   console.log(222);
 };
