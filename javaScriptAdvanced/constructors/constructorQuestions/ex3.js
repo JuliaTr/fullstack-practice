@@ -19,6 +19,6 @@ User.prototype = {
 };
 
 const yuliia = new User('Yuliia');
-// yuliia -> User.prototype #1
+// yuliia -> User.prototype #2
 
 yuliia.test() // 222
