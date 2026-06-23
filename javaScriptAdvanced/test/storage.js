@@ -1,24 +1,31 @@
 // Create the makeStorage function
 
 function makeStorage() {
-  const storage = {};
+  const data = {};
 
   const updateStorage = {
+    // `setValue` has access to `data` through a closure;
+    // property is stored in `data`, not in `updateStorage`;
+    // remains intact; still a function
     setValue(key, value) {
-      return storage[key] = value;
+      return data[key] = value;
     },
 
+    // remains intact; still a function
     getValue(key) {
-      return storage[key];
+      return data[key];
     },
   };
 
   return updateStorage;
 }
 
+// `storage` refers to `updateStorage`
 const storage = makeStorage();
 
 storage.setValue('name', 'Peter');
+// we're reaaly calling `storage.setValue('name', 'Peter')`
+
 storage.setValue('age', 30);
 
 console.log(storage.getValue('name')); // Peter
@@ -41,3 +48,38 @@ console.log(storage.getValue('x')); // 10
 console.log(storage.getValue('setValue')); // 'hello'
 
 // Works as expected
+
+/*
+storage (private data)
+├── name: "Peter"
+├── age: 31
+├── getValue: 42
+└── setValue: "hello"
+
+updateStorage (public API)
+├── getValue()  ← still a function
+└── setValue()  ← still a function
+*/
+
+
+
+
+// Experiments:
+// Doesn't work; properties and methods are in the same object
+function makeStorage() {
+  const storage = {};
+
+  // keys with the same name as methods overwrite methods
+  storage.setValue = (key, value) => storage[key] = value;
+  storage.getValue = (key) => storage[key];
+
+  return storage;
+}
+
+/*
+storage
+├── getValue: 42        ← method destroyed
+├── setValue: "hello"   ← method destroyed
+├── name: "Peter"
+└── age: 31
+*/
