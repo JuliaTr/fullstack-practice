@@ -8,7 +8,9 @@ function makeStorage() {
     // property is stored in `data`, not in `updateStorage`;
     // remains intact; still a function
     setValue(key, value) {
-      return data[key] = value;
+      data[key] = value;
+
+      return data;
     },
 
     // remains intact; still a function
