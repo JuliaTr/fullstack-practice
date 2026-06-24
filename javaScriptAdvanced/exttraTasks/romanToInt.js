@@ -79,22 +79,9 @@ function romanToInt(romanNum) {
   return yearNum;
 }
 
-console.log(romanToInt('III')); // === 3 true
-console.log(romanToInt('XIX')); // === 19 true
-console.log(romanToInt('XXIII')); // === 23 true
+console.log(romanToInt('III')); // === 3
+console.log(romanToInt('XIX')); // === 19
+console.log(romanToInt('XXIII')); // === 23
 console.log(romanToInt('XLI')); // === 41 
-console.log(romanToInt('C')); // === 100 true
-
-
-
-// Experiments:
-// for (let i = 0; i < symbols.length; i++) {
-  // const currentValue = SYMBOL_VALUE[symbols[i]];
-  // const nextValue = SYMBOL_VALUE[symbols[i + 1]];
-
-  // if (currentValue < nextValue) {
-  //   int += Math.abs(currentValue - nextValue);
-  // } else {
-  //   int += currentValue;
-  // }
-// }
+console.log(romanToInt('C')); // === 100
+// Works as expected
