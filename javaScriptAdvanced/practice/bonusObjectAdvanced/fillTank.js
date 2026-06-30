@@ -25,27 +25,29 @@ To round the price, use `Math.round(value * 100) / 100`
 
 const MIN_AMOUNT_GALLONS = 2;
 
+function calculateSum(toFill, fuelPrice) {
+  return Math.round((toFill * fuelPrice) * 100) / 100;
+}
+
 function fillTank(customer, fuelPrice, amount) {
   let toFill = amount;
+  const customerWallet = customer.money;
 
-  if (customer.money === 0) {
-    console.log('print1')
+  if (customerWallet === 0) {
     return customer;
   }
 
   // Decline if the ordered amount is less than 2 gallons
   if (toFill < MIN_AMOUNT_GALLONS) {
-    console.log('print2')
     return customer;
   }
 
-  let amountToPay = Math.round((toFill * fuelPrice) * 100) / 100;
+  let amountToPay = calculateSum(toFill, fuelPrice);
   
   // Decline if the customer can buy less than 2 liters to fuel
   const amountToPayFor2Liters = fuelPrice * MIN_AMOUNT_GALLONS;
 
-  if (customer.money < amountToPayFor2Liters) {
-    console.log('print3')
+  if (customerWallet < amountToPayFor2Liters) {
     return customer;
   }
   
@@ -55,15 +57,12 @@ function fillTank(customer, fuelPrice, amount) {
   const capacity = tankCapacity - customerFuelRemains;
   
   if (capacity < MIN_AMOUNT_GALLONS) {
-    console.log('print4')
     return customer;
   }
 
   // Pour not more than client can buy
-  if (amountToPay > customer.money) {
-    console.log('print5');
-
-    const canBuyLiters = (customer.money * toFill) / amountToPay;
+  if (amountToPay > customerWallet) {
+    const canBuyLiters = (customerWallet * toFill) / amountToPay;
 
     customer.vehicle.fuelRemains = customerFuelRemains + canBuyLiters;
     customer.money = 0;
@@ -73,13 +72,10 @@ function fillTank(customer, fuelPrice, amount) {
 
   // If amount isn't defined
   if (toFill === undefined) {
-    console.log('print6');
-
     toFill = capacity;
-
     customer.vehicle.fuelRemains = customerFuelRemains + capacity;
-    amountToPay = Math.round((toFill * fuelPrice) * 100) / 100;
-    customer.money = customer.money - amountToPay;
+    amountToPay = calculateSum(toFill, fuelPrice);
+    customer.money = customerWallet - amountToPay;
 
     return customer;
   }
@@ -89,21 +85,18 @@ function fillTank(customer, fuelPrice, amount) {
   const totalFuelRemains = toFill + customerFuelRemains;
   
   if (totalFuelRemains <= capacity) {
-    console.log('print7');
     customer.vehicle.fuelRemains = totalFuelRemains;
   }
   
   // Fill the tank fully if the customer wants to buy more 
   // fuel than his vehicle can accommodate
   if (toFill > capacity) {
-    console.log('print8');
-
     toFill = capacity;
     customer.vehicle.fuelRemains = tankCapacity;
   }
   
-  amountToPay = Math.round((toFill * fuelPrice) * 100) / 100;
-  customer.money = customer.money - amountToPay;
+  amountToPay = calculateSum(toFill, fuelPrice);
+  customer.money = customerWallet - amountToPay;
 
   return customer;
 }
@@ -232,6 +225,7 @@ console.log(fillTank(customer, 8, 23));
 };
 */
 
+// Works as expected
 
 
 // Experiment:
