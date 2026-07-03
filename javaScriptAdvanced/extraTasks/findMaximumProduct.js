@@ -21,12 +21,22 @@ Notes:
 []
 */
 
-// console.log(30 * -1);
+function findMaximumProduct(nums, size) {
+  if (size === 0) {
+    return 1;
+  }
 
-// console.log(findMaximumProduct([10, 3, -1, -27] , 3)); 
-// // -30
-// // Since the size = 3, then the subsequence of size 3
-// // whose gives product of maxima is 10 * 3 * -1 = -30;
+  const sorted = nums.sort((a, b) => b - a);
+  const sliced = sorted.slice(0, size);
+  const product = sliced.reduce((prod, num) => prod * num, 1);
+  
+  return product;
+}
+
+console.log(findMaximumProduct([10, 3, -1, -27] , 3)); 
+// -30
+// Since the size = 3, then the subsequence of size 3
+// whose gives product of maxima is 10 * 3 * -1 = -30;
 
 console.log(findMaximumProduct([10, 8, 3, 2, 1, 4, 10], 5));
 // 9600
@@ -47,15 +57,18 @@ console.log(findMaximumProduct([4, -1, 9, 14, 18, -8, -2], 7));
 console.log(findMaximumProduct([6, 2, 1, 1, 1, -1, -2, 10, 12], 100));
 // 2880
 
+// Works as expected
 
-// Experiment 2:
+
+
+// Experient 2:
 function calculateMaxProductPairs(nums, firstNum, 
   productCompare, sequence) {
   let secondNum = nums[0];
   let compare = productCompare;
   let i = 0;
 
-  while (i < nums.length) {
+  while (i < nmums.length) {
     let currentNum = nums[i];
     let calculatedProduct = firstNum * currentNum;
 
@@ -95,9 +108,6 @@ function findMaximumProduct(nums, size) {
     calculatedProductCompare = calculateMaxProductPairs(updatedNums, 
       firstNumber, calculatedProductCompare, sequence)
     firstNumber = calculatedProductCompare;
-
-    // console.log(sequence)
-    // console.log(calculatedProductCompare)
 
     i++;
   }
