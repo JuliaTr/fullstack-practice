@@ -31,22 +31,30 @@ result:
 Function returns the result.
 */
 
+function getValue(key) {
+  return Number(key.slice(1));
+}
+
+function getNumber(results, resultsIdx, side) {
+  return Number(results[resultsIdx].split('-')[side]);
+}
+
 function totalWinning(ticket, results) {
   const result = [];
+  const left = 0;
+  const right = 1;
 
-  if (results[0][0] > results[0][2]) {
-    result.push(Number(ticket.Home.slice(1)));
+  if (getNumber(results, 0, left) > getNumber(results, 0, right)) {
+    result.push(getValue(ticket.Home));
   }
 
-  if (results[1][0] < results[1][2]) {
-    result.push(Number(ticket.Away.slice(1)));
+  if (getNumber(results, 1, left) < getNumber(results, 1, right)) {
+    result.push(getValue(ticket.Away));
   }
 
-  if (results[2][0] === results[2][2]) {
-    result.push(Number(ticket.Draw.slice(1)));
+  if (getNumber(results, 2, left) === getNumber(results, 2, right)) {
+    result.push(getValue(ticket.Draw));
   }
-
-  console.log(result);
 
   const total = result.reduce((sum, num) => sum + num, 0);
   const currency = ticket.Home[0];
@@ -75,6 +83,30 @@ ticket = {
 results = ['2-4', '0-1', '3-3'];
 console.log(totalWinning (ticket, results)); // '£60'
 // first bet lost, second bet won, third bet won
+
+
+// should return '£0' if there is no winning
+ticket = {
+  Home: '£90',
+  Away: '£325',
+  Draw: '£65'
+};
+
+results = ['2-5', '4-4', '5-0'];
+console.log(totalWinning(ticket, results)) // '£0'
+
+
+// should work if results contain two-digit numbers`, () => {
+ticket = {
+  Home: '£22',
+  Away: '£44',
+  Draw: '£88'
+};
+
+results = ['12-8', '6-10', '10-11'];
+console.log(totalWinning(ticket, results)); // '£66'
+
+// Works as expected
 
 
 
