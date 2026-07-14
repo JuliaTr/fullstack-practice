@@ -60,3 +60,37 @@ console.log(firstObject instanceof Singleton) // true
 
 // Its prototype is `Singleton.prototype`
 console.log(secondObject instanceof Singleton) // true
+
+
+
+
+// Exploration:
+// Makes explicit for consumers to obtain the singleton 
+// through `singleton.getInstance()` rather than repeatedly 
+// calling `new`.
+class Singleton {
+  static #instance;
+
+  static getInstance() {
+    if (!this.#instance) {
+      this.#instance = new Singleton(true);
+    }
+
+    return this.#instance;
+  }
+
+  constructor(internal = false) {
+    if (!internal) {
+      throw new Error("Use Singleron.getInstance()");
+    }
+  }
+}
+
+// Output: Error: Use Singleron.getInstance()
+
+const firstObject = new Singleton();
+const secondObject = new Singleton();
+
+console.log(firstObject === secondObject) // true
+console.log(firstObject instanceof Singleton) // true
+console.log(secondObject instanceof Singleton) // true
