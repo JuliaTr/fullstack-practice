@@ -83,35 +83,41 @@ function isValidHexColor(hexColor) {
   return true;
 }
 
-function convertLetterToNumber(char) {
-  return ALPHA[char.toUpperCase()]
-}
-
-function calculatePairValue(pair, pairToNumber) {
-  console.log(pair)
-  console.log(pairToNumber)
-
-  let firstChar = Number(pair[0]);
-  let secondChar = Number(pair[1]);
-
-  if (!pairToNumber) {
-    firstChar = convertLetterToNumber(pair[0]);
-    secondChar = convertLetterToNumber(pair[1]);
-  }
-
-  let first = firstChar * HEX_DECIMAL_SYSTEM;
-  return first + secondChar;
-}
-
 function prependZero(hexColor, hexColorLength) {
   let inputColor = hexColor;
   let conditionStop = MAX_LENGTH - hexColorLength;
-
+  
   for (let i = 0; i < conditionStop; i++) {
     inputColor = '0' + inputColor;
   }
-
+  
   return inputColor;
+}
+
+function convertLetterToNumber(char) {
+  return ALPHA[char.toUpperCase()];
+}
+
+function calculateColor(pair) {
+  let color = 0;
+
+  for (let idx = 0; idx < pair.length; idx++) {
+    let number = Number(pair[idx]);
+
+    if (isNaN(number)) {
+      number = convertLetterToNumber(pair[idx]);
+    }
+
+    if (idx === 0) {
+      color += number * HEX_DECIMAL_SYSTEM;
+    }
+
+    if (idx == 1) {
+      color += number;
+    }
+  }
+
+  return color;
 }
 
 // Convert hex to rgb
@@ -127,18 +133,13 @@ function convertHexToRgb(hexColor) {
 
   for (let i = 0; i < inputColor.length - 1; i += 2) {
     const pair = inputColor.slice(i, i + 2);
-    const pairToNumber = Number(pair);
+    let calculatedColor = Number(pair);
 
-    // console.log(pair)
-    // console.log(pairToNumber)
-
-    if (pairToNumber <= MAX_NUMBER) {
-      hexColorToRgb.push(pairToNumber);
-      continue;
+    if (calculatedColor > MAX_NUMBER || isNaN(calculatedColor)) {
+      calculatedColor = calculateColor(pair);
     }
 
-    let finalNumber = calculatePairValue(pair, pairToNumber);
-    hexColorToRgb.push(finalNumber);
+    hexColorToRgb.push(calculatedColor);
   }
 
   return hexColorToRgb;
@@ -155,11 +156,11 @@ function getComplementaryColor(hexColor) {
   return hexColorToRgb;
 }
 
-// console.log(getComplementaryColor('01fD08'));
-// // '#FE02F7'
+console.log(getComplementaryColor('01fD08'));
+// '#FE02F7'
 
-// console.log(getComplementaryColor('')); // '#FFFFFF' 
-// // '' becomes '000000'
+console.log(getComplementaryColor('')); // '#FFFFFF' 
+// '' becomes '000000'
 
 console.log(getComplementaryColor('a23')); // '#FFF5DC' 
 // 'a23' becomes '000a23'
