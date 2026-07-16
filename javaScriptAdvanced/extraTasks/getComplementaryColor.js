@@ -40,6 +40,8 @@ A(10), B(11), C(12), D(13), E(14), F(15)
 fD = (15 * 16) + (13 * 1) = 253
 08 = 8
 
+'000000' - is black
+
 'FFFFFF' -> rgb (white)
 FF = (15 * 16) + (15 * 1) = 255
 FF = (15 * 16) + (15 * 1) = 255
@@ -60,7 +62,8 @@ const ALPHA = {
   D: 13,
   E: 14,
   F: 15,
-}
+};
+const WHITE_RGB = [255, 255, 255];
 
 // Check if input valid. If invalid throws an error
 function isValidHexColor(hexColor) {
@@ -145,6 +148,20 @@ function convertHexToRgb(hexColor) {
   return hexColorToRgb;
 }
 
+// Calculate complimentary color
+function calculateComplementaryColor(hexColorToRgb) {
+  const colors = [];
+  let idx = 0;
+
+  for (const color of WHITE_RGB) {
+    const calculatedColor = color - hexColorToRgb[idx];
+    colors.push(calculatedColor);
+    idx++;
+  }
+
+  return colors;
+}
+
 // Main function
 function getComplementaryColor(hexColor) {
   // Check if input valid. If invalid throws an error
@@ -153,12 +170,13 @@ function getComplementaryColor(hexColor) {
   // Convert hex to rgb
   const hexColorToRgb = convertHexToRgb(hexColor);
 
-  return hexColorToRgb;
+  // Calculate complimentary color
+  const complementaryColor = calculateComplementaryColor(hexColorToRgb);
+
+  return complementaryColor;
 }
 
-console.log(getComplementaryColor('01fD08'));
-// '#FE02F7'
-
+console.log(getComplementaryColor('01fD08')); //'#FE02F7'
 console.log(getComplementaryColor('')); // '#FFFFFF' 
 // '' becomes '000000'
 
