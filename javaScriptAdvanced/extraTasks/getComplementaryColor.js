@@ -97,10 +97,6 @@ function prependZero(hexColor, hexColorLength) {
   return inputColor;
 }
 
-function convertLetterToNumber(char) {
-  return ALPHA[char.toUpperCase()];
-}
-
 function calculateColor(pair) {
   let color = 0;
 
@@ -108,7 +104,7 @@ function calculateColor(pair) {
     let number = Number(pair[idx]);
 
     if (isNaN(number)) {
-      number = convertLetterToNumber(pair[idx]);
+      number = ALPHA[pair[idx].toUpperCase()];
     }
 
     if (idx === 0) {
@@ -148,7 +144,7 @@ function convertHexToRgb(hexColor) {
   return hexColorToRgb;
 }
 
-// Calculate complimentary color
+// Calculate complimentary color in rgb
 function calculateComplementaryColor(hexColorToRgb) {
   const colors = [];
   let idx = 0;
@@ -162,6 +158,42 @@ function calculateComplementaryColor(hexColorToRgb) {
   return colors;
 }
 
+function getKey(wholeNumber) {
+  let hex = '';
+
+  if (wholeNumber <= MAX_NUMBER) {
+    hex += Math.floor(wholeNumber).toString();
+  }
+
+  if (wholeNumber > MAX_NUMBER) {
+    for (const entries of Object.entries(ALPHA)) {
+      if (entries[1] === Math.floor(wholeNumber)) {
+        hex += entries[0];
+      }
+    }
+  }
+
+  return hex;
+}
+
+// Convert rgb complimentary color to hex
+function convertRgbToHex(complementaryColor) {
+  let hex = '';
+
+  for (const color of complementaryColor) {
+    const wholeNumber = color / HEX_DECIMAL_SYSTEM;
+
+    if (wholeNumber !== Math.floor(wholeNumber)) {
+      hex += getKey(wholeNumber);
+
+      let remainder = color % HEX_DECIMAL_SYSTEM;
+      hex += getKey(remainder);
+    }
+  }
+
+  return '#' + hex;
+}
+
 // Main function
 function getComplementaryColor(hexColor) {
   // Check if input valid. If invalid throws an error
@@ -170,10 +202,13 @@ function getComplementaryColor(hexColor) {
   // Convert hex to rgb
   const hexColorToRgb = convertHexToRgb(hexColor);
 
-  // Calculate complimentary color
+  // Calculate complimentary color in rgb
   const complementaryColor = calculateComplementaryColor(hexColorToRgb);
 
-  return complementaryColor;
+  // Convert rgb complimentary color to hex
+  const hexComplimentaryColor = convertRgbToHex(complementaryColor);
+
+  return hexComplimentaryColor;
 }
 
 console.log(getComplementaryColor('01fD08')); //'#FE02F7'
@@ -183,11 +218,11 @@ console.log(getComplementaryColor('')); // '#FFFFFF'
 console.log(getComplementaryColor('a23')); // '#FFF5DC' 
 // 'a23' becomes '000a23'
 
-// console.log(getComplementaryColor('40fdEd2')); 
-// // throws an error (incorrect string length)
+console.log(getComplementaryColor('40fdEd2')); 
+// throws an error (incorrect string length)
 
-// console.log(getComplementaryColor('76ecLL')); 
-// // throws an error (non-hex chars)
+console.log(getComplementaryColor('76ecLL')); 
+// throws an error (non-hex chars)
 
-// console.log(getComplementaryColor(293942)); 
-// // throws an error (non-string type)
+console.log(getComplementaryColor(293942)); 
+// throws an error (non-string type)
