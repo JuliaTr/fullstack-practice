@@ -67,7 +67,7 @@ const WHITE_RGB = [255, 255, 255];
 
 // Check if input valid. If invalid throws an error
 function isValidHexColor(hexColor) {
-  if (hexColor !== hexColor.toString()) {
+  if (typeof hexColor !== 'string') {
     throw new Error("non-string type");
   }
 
@@ -78,12 +78,6 @@ function isValidHexColor(hexColor) {
   if (hexColor.match(/[^0-9A-Fa-f]/)) {
     throw new Error("contains non-hex chars");
   }
-
-  if (hexColor.length === MAX_LENGTH && hexColor[0] !== '0') {
-    throw new Error("non-hex color");
-  }
-
-  return true;
 }
 
 function prependZero(hexColor, hexColorLength) {
@@ -158,16 +152,17 @@ function calculateComplementaryColor(hexColorToRgb) {
   return colors;
 }
 
-function getKey(wholeNumber) {
+function getKey(number) {
+  const floorNumber = Math.floor(number);
   let hex = '';
 
-  if (wholeNumber <= MAX_NUMBER) {
-    hex += Math.floor(wholeNumber).toString();
+  if (floorNumber <= MAX_NUMBER) {
+    hex += floorNumber.toString();
   }
 
-  if (wholeNumber > MAX_NUMBER) {
+  if (floorNumber > MAX_NUMBER) {
     for (const entries of Object.entries(ALPHA)) {
-      if (entries[1] === Math.floor(wholeNumber)) {
+      if (entries[1] === floorNumber) {
         hex += entries[0];
       }
     }
@@ -182,13 +177,10 @@ function convertRgbToHex(complementaryColor) {
 
   for (const color of complementaryColor) {
     const wholeNumber = color / HEX_DECIMAL_SYSTEM;
+    const remainder = color % HEX_DECIMAL_SYSTEM;
 
-    if (wholeNumber !== Math.floor(wholeNumber)) {
-      hex += getKey(wholeNumber);
-
-      let remainder = color % HEX_DECIMAL_SYSTEM;
-      hex += getKey(remainder);
-    }
+    hex += getKey(wholeNumber);
+    hex += getKey(remainder);
   }
 
   return '#' + hex;
@@ -218,6 +210,11 @@ console.log(getComplementaryColor('')); // '#FFFFFF'
 console.log(getComplementaryColor('a23')); // '#FFF5DC' 
 // 'a23' becomes '000a23'
 
+console.log(getComplementaryColor('356178')); // "#CA9E87"
+
+console.log(getComplementaryColor('FFFFFF')); // #000000
+
+// Errors
 console.log(getComplementaryColor('40fdEd2')); 
 // throws an error (incorrect string length)
 
@@ -226,3 +223,5 @@ console.log(getComplementaryColor('76ecLL'));
 
 console.log(getComplementaryColor(293942)); 
 // throws an error (non-string type)
+
+// Works as expected
