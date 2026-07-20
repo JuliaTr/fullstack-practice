@@ -27,77 +27,62 @@ Example
 const ALPHA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const ALPHA_LENGTH = ALPHA.length;
 
-function numberToTitle(num) {
-  let wholeNum = Math.trunc(num / ALPHA_LENGTH);
-  let remainder = num % ALPHA_LENGTH;
-  let str = '';
-  let i = 0;
-
-  console.log(wholeNum)
-  console.log(remainder)
-
-  while (i < wholeNum) {
-    console.log('-------------------')
-    console.log(remainder)
-
-    str = ALPHA[remainder - 1] + str;
-
-    console.log(wholeNum)
-    console.log(str)
-
-    wholeNum = Math.trunc(wholeNum / ALPHA_LENGTH)
-    remainder = wholeNum % ALPHA_LENGTH;
-  }
-
-  // const outer = Math.floor(num / ALPHA_LENGTH);
-  // console.log(outer)
-  // console.log(ALPHA.slice(0, outer))
-  // for (let idx1 = 0; idx1 <= outer; idx1++) {
-  //   // console.log('----------------')
-  //   // console.log(idx1)
-
-  //   str += ALPHA[idx1];
-  
-  //   if (idx1 > 0) {
-  //     for (let idx2 = 0; idx2 <= ALPHA_LENGTH; idx2++) { 
-  //       if (num <= ALPHA_LENGTH && idx2 + 1 === num) {
-  //         console.log('print1')
-  //         str += ALPHA[idx2];
-  //       }
-  //     }
-  //   }
-  // }
-
-  return str;
+function calculateWholeNumber(num) {
+  return Math.trunc(num / ALPHA_LENGTH);
 }
 
-// console.log(numberToTitle(1)); // 'A'
-// console.log(numberToTitle(28)); // 'AB'
-// console.log(numberToTitle(702)); // 'ZZ'
-console.log(numberToTitle(11111)); // 'PKI'
+function calculateRemainder(num) {
+  return num % ALPHA_LENGTH;
+}
 
+function updateString(str, remainder) {
+  return ALPHA[remainder - 1] + str;
+}
 
-
-// Exeriments:
 function numberToTitle(num) {
+  let wholeNum = calculateWholeNumber(num);
+  let remainder = calculateRemainder(num);
   let str = '';
-  const outer = Math.floor(num / ALPHA_LENGTH);
 
-  for (let idx1 = 0; idx1 <= outer; idx1++) {
-    str += ALPHA[idx1];
-  
-    if (idx1 > 0) {
-      for (let idx2 = 0; idx2 <= ALPHA_LENGTH; idx2++) { 
-        if (num <= ALPHA_LENGTH && idx2 + 1 === num) {
-          console.log('print1')
-          str += ALPHA[idx2];
-        }
-      }
-    }
+  while (wholeNum > 0) {
+    str = updateString(str, remainder);
+
+    remainder = calculateRemainder(wholeNum);
+    wholeNum = calculateWholeNumber(wholeNum);
   }
+
+  str = updateString(str, remainder);
 
   return str;
 }
 
 console.log(numberToTitle(1)); // 'A'
 console.log(numberToTitle(28)); // 'AB'
+console.log(numberToTitle(702)); // 'ZZ'
+console.log(numberToTitle(11111)); // 'PKI'
+
+
+
+// // Exeriments:
+// function numberToTitle(num) {
+//   let str = '';
+//   const outer = Math.floor(num / ALPHA_LENGTH);
+
+//   for (let idx1 = 0; idx1 <= outer; idx1++) {
+//     str += ALPHA[idx1];
+  
+//     if (idx1 > 0) {
+//       for (let idx2 = 0; idx2 <= ALPHA_LENGTH; idx2++) { 
+//         if (num <= ALPHA_LENGTH && idx2 + 1 === num) {
+//           console.log('print1')
+//           str += ALPHA[idx2];
+//         }
+//       }
+//     }
+//   }
+
+//   return str;
+// }
+
+// console.log(numberToTitle(1)); // 'A'
+// console.log(numberToTitle(28)); // 'AB'
