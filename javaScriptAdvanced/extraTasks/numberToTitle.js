@@ -43,13 +43,11 @@ function numberToTitle(num) {
   while (wholeNum > 0) {
     const remainder = wholeNum % ALPHA_LENGTH;
 
-    // To exit the loop
     if (remainder === 0) {
       str = updateString(str, ZERO_IDX);
       wholeNum = calculateWholeNumber(wholeNum) - 1;
     }
 
-    // To continue
     if (remainder > 0) {
       str = updateString(str, remainder);
       wholeNum = calculateWholeNumber(wholeNum);
