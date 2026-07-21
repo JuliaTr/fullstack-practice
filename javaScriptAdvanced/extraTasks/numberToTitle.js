@@ -24,6 +24,55 @@ Example
 ...
 */
 
+// Refactored
+const ALPHA = 'ZABCDEFGHIJKLMNOPQRSTUVWXY';
+const ALPHA_LENGTH = ALPHA.length;
+
+function calculateWholeNumber(num) {
+  return Math.trunc(num / ALPHA_LENGTH);
+}
+
+function numberToTitle(num) {
+  let wholeNum = num;
+  let str = '';
+
+  while (wholeNum > 0) {
+    const remainder = wholeNum % ALPHA_LENGTH;
+
+    str = ALPHA[remainder] + str;
+
+    if (remainder === 0) {
+      wholeNum = calculateWholeNumber(wholeNum) - 1;
+    }
+
+    if (remainder > 0) {
+      wholeNum = calculateWholeNumber(wholeNum);
+    }
+  }
+
+  return str;
+}
+
+console.log(numberToTitle(1)); // 'A'
+console.log(numberToTitle(25)); // 'Y'
+console.log(numberToTitle(26)); // 'Z'
+console.log(numberToTitle(27)); // 'AA'
+console.log(numberToTitle(28)); // 'AB'
+console.log(numberToTitle(29)); // 'AC'
+console.log(numberToTitle(52)); // 'BZ'
+console.log(numberToTitle(701)); // 'ZY'
+console.log(numberToTitle(702)); // 'ZZ'
+console.log(numberToTitle(703)); // 'AAA'
+console.log(numberToTitle(11111)); // 'PKI'
+console.log(numberToTitle(123456)); // 'FZPH'
+console.log(numberToTitle(18278)); // 'ZZZ'
+
+// Works as expected
+
+
+
+
+// Solution
 const ALPHA = 'ZABCDEFGHIJKLMNOPQRSTUVWXY';
 const ZERO_IDX = 0; // 'Z'
 const ALPHA_LENGTH = ALPHA.length;
