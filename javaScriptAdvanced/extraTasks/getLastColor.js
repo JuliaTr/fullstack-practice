@@ -42,8 +42,8 @@ function getLastColor(row) {
     return last;
   }
 
-  if (last === 'R' && previous === 'B' 
-      || last === 'B' && previous === 'R'
+  if ((last === 'R' && previous === 'B')
+      || (last === 'B' && previous === 'R')
   ) {
     return 'G';
   }
@@ -54,4 +54,32 @@ function getLastColor(row) {
 console.log(getLastColor('BR')); // 'G'
 console.log(getLastColor('RRR')); // 'R'
 console.log(getLastColor('RBRGBRB')); // 'G'
+console.log(getLastColor('B')); // 'B'
+
+
+
+// Experiments:
+// Doesn't work with `switch/ case`
+function getLastColor(row) {
+  if (row.length === 1) {
+    return row;
+  }
+
+  const last = row[row.length - 1];
+  const previous = row[row.length - 2];
+  
+  switch (last) {
+    case previous:
+      return last;
+    case 'R' && previous === 'B': // false
+    case 'B' && previous === 'R': // true
+      return 'G'; // isn't executed because of false
+    default:
+      return 'B';
+  }
+}
+
+console.log(getLastColor('BR')); // 'G'
+console.log(getLastColor('RRR')); // 'R'
+// console.log(getLastColor('RBRGBRB')); // 'G' // false
 console.log(getLastColor('B')); // 'B'
