@@ -13,30 +13,26 @@ numbers in the nth row of this triangle (starting at
 index 1).
 */
 
-// Runtime optimized
-function generateAllNumbersFromInput(n) {
-  const allNumbers = [];
-  let i = 1;
-
-  while (allNumbers.length !== n) {
-    allNumbers.push(i);
-    i++;
-  }
-
-  return allNumbers;
-}
+// Runtime optimized and refactored
+const STEP = 2;
 
 function calculateTotal(numbers) {
-  return numbers.reduce((sum, currentEl) => sum + currentEl, 0);
+  let sum = 0;
+
+  for (let i = 1; i <= numbers; i++) {
+    sum += i;
+  }
+
+  return sum;
 }
 
-function generateAllOdds(total) {
+function generateRowOdds(total, n) {
   const allOddNumbers = [];
-  let i = 1;
+  let i = total * STEP - 1;
 
-  while (allOddNumbers.length !== total) {
-    allOddNumbers.push(i);
-    i += 2;
+  while (allOddNumbers.length !== n) {
+    allOddNumbers.unshift(i);
+    i -= STEP;
   }
 
   return allOddNumbers;
@@ -51,29 +47,33 @@ function sumInRow(n = 0) {
     return 1;
   }
 
-  const allNumbers = generateAllNumbersFromInput(n);
-  const total = calculateTotal(allNumbers);
-  const allOddNumbers = generateAllOdds(total);
-  console.log(allOddNumbers)
+  // Calculate sum of numbers from 1 to `n`
+  const total = calculateTotal(n);
+
+  // Generate row odds;
+  // use `total` for to calculate index to start generate odds
+  const allOddNumbers = generateRowOdds(total, n);
 
   // Calculate sum for the last `n` odds (row)
-  const startIdx = allOddNumbers.length - n;
-  const row = allOddNumbers.slice(startIdx);
-  const sumRow = calculateTotal(row);
+  const sumRow = allOddNumbers.reduce((sum, currentEl) => sum + currentEl, 0);
 
   return sumRow;
 }
 
-// console.log(sumInRow(1)); // 1
-// console.log(sumInRow(2)); // 8 // 3 + 5 = 8
-// console.log(sumInRow(3)); // 7 + 9 + 11
-// console.log(sumInRow(4)); // 13 + 15 + 17 + 19
+console.log(sumInRow(1)); // 1
+console.log(sumInRow(2)); // 8 // 3 + 5 = 8
+console.log(sumInRow(3)); // 7 + 9 + 11
+console.log(sumInRow(4)); // 13 + 15 + 17 + 19
+console.log(sumInRow(5)); // 21 + 23 + 25 + 27 + 29
 
 console.log(sumInRow(42)); // 74088
-// console.log(sumInRow(100)); // 1000000
+console.log(sumInRow(100)); // 1000000
 
-// console.log(sumInRow()); // 0
-// console.log(sumInRow(-4)); // 0
+console.log(sumInRow()); // 0
+console.log(sumInRow(-4)); // 0
+
+// Works as expected
+
 
 
 
