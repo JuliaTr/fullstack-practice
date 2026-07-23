@@ -28,6 +28,8 @@ function calculateTotal(numbers) {
 
 function generateRowOdds(total, n) {
   const allOddNumbers = [];
+  
+  // Odd number
   let i = total * STEP - 1;
 
   while (allOddNumbers.length !== n) {
