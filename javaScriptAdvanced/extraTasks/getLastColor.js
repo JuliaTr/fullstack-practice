@@ -29,26 +29,47 @@ R R G B R G B B
        G
 */
 
-// Solution
+// Solution (build the whole row
 function getLastColor(row) {
   if (row.length === 1) {
     return row;
   }
 
-  const last = row[row.length - 1];
-  const previous = row[row.length - 2];
-  
-  if (last === previous) {
-    return last;
+  let currentRow = row;
+  let nextRow = [];
+
+  for (let idx1 = 0; currentRow.length !== 1; idx1++) {
+    for (let idx2 = 0; idx2 < currentRow.length; idx2++) {
+      const currentEl = currentRow[idx2];
+      const nextEl = currentRow[idx2 + 1];
+
+      if (currentEl === nextEl) {
+        nextRow.push(currentEl);
+      }
+    
+      if ((currentEl === 'R' && nextEl === 'B')
+          || (currentEl === 'B' && nextEl === 'R')
+      ) {
+        nextRow.push('G');
+      }
+    
+      if ((currentEl === 'G' && nextEl === 'B')
+          || (currentEl === 'B' && nextEl === 'G')
+      ) {
+        nextRow.push('R');
+      }
+
+      if ((currentEl === 'G' && nextEl === 'R')
+          || (currentEl === 'R' && nextEl === 'G')
+      ) {
+        nextRow.push('B');
+      }
+    }
+    currentRow = nextRow;
+    nextRow = [];
   }
 
-  if ((last === 'R' && previous === 'B')
-      || (last === 'B' && previous === 'R')
-  ) {
-    return 'G';
-  }
-
-  return 'B';
+  return currentRow.join('');
 }
 
 console.log(getLastColor('BR')); // 'G'
@@ -56,30 +77,119 @@ console.log(getLastColor('RRR')); // 'R'
 console.log(getLastColor('RBRGBRB')); // 'G'
 console.log(getLastColor('B')); // 'B'
 
+// `should work for an input of three characters with 
+// different colors`
+console.log(getLastColor('RGB')); // 'G'
+
+// Works as expected
 
 
-// Experiments:
-// Doesn't work with `switch/ case`
-function getLastColor(row) {
-  if (row.length === 1) {
-    return row;
-  }
 
-  const last = row[row.length - 1];
-  const previous = row[row.length - 2];
+
+// function returnLetter(currentEl, nextEl) {
+//   if (currentEl === nextEl) {
+//     return currentEl;
+//   }
+
+//   if ((currentEl === 'R' && nextEl === 'B')
+//       || (currentEl === 'B' && nextEl === 'R')
+//   ) {
+//     return 'G';
+//   }
+
+//   if ((currentEl === 'G' && nextEl === 'B')
+//       || (currentEl === 'B' && nextEl === 'G')
+//   ) {
+//     return 'R';
+//   }
+
+//   return 'B';
+// }
+
+// function getLastColor(row) {
+//   if (row.length === 1) {
+//     return row;
+//   }
+
+//   let currentRow = row;
+//   let nextRow = [];
+
+//   for (let idx1 = 0; currentRow.length !== 1; idx1++) {
+//     console.log('print1')
+//     for (let idx2 = 0; idx2 < currentRow.length; idx2++) {
+//       const currentEl = currentRow[idx2];
+//       const nextEl = currentRow[idx2 + 1];
+//       const letter = returnLetter(currentEl, nextEl);
+      
+//       nextRow.push(letter);
+//     }
+//     currentRow = nextRow;
+//     nextRow = [];
+//   }
+
+//   return currentRow.join('');
+// }
+
+
+
+
+// // Experiments (find color of last pairs of the next row):
+// function getLastColor(row) {
+//   if (row.length === 1) {
+//     return row;
+//   }
+
+//   const last = row[row.length - 1];
+//   const previous = row[row.length - 2];
+
+//   if (last === previous) {
+//     return last;
+//   }
+
+//   if ((last === 'R' && previous === 'B')
+//       || (last === 'B' && previous === 'R')
+//   ) {
+//     return 'G';
+//   }
+
+//   if ((last === 'G' && previous === 'B')
+//       || (last === 'B' && previous === 'G')
+//   ) {
+//     return 'R';
+//   }
+
+//   return 'B';
+// }
+
+// console.log(getLastColor('BR')); // 'G'
+// console.log(getLastColor('RRR')); // 'R'
+// console.log(getLastColor('RBRGBRB')); // 'G'
+// console.log(getLastColor('B')); // 'B'
+
+
+
+
+// // Doesn't work with `switch/ case`
+// function getLastColor(row) {
+//   if (row.length === 1) {
+//     return row;
+//   }
+
+//   const last = row[row.length - 1];
+//   const previous = row[row.length - 2];
   
-  switch (last) {
-    case previous:
-      return last;
-    case 'R' && previous === 'B': // false
-    case 'B' && previous === 'R': // true
-      return 'G'; // isn't executed because of false
-    default:
-      return 'B';
-  }
-}
+//   switch (last) {
+//     case previous:
+//       return last;
+//     case 'R' && previous === 'B': // false
+//     case 'B' && previous === 'R': // true
+//       return 'G'; // isn't executed because of false
+//     default:
+//       return 'B';
+//   }
+// }
 
-console.log(getLastColor('BR')); // 'G'
-console.log(getLastColor('RRR')); // 'R'
-// console.log(getLastColor('RBRGBRB')); // 'G' // false
-console.log(getLastColor('B')); // 'B'
+// console.log(getLastColor('BR')); // 'G'
+// console.log(getLastColor('RRR')); // 'R'
+// // console.log(getLastColor('RBRGBRB')); // 'G' // false
+// console.log(getLastColor('B')); // 'B'
