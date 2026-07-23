@@ -28,7 +28,7 @@ function calculateTotal(numbers) {
 
 function generateRowOdds(total, n) {
   const allOddNumbers = [];
-  
+
   // Odd number
   let i = total * STEP - 1;
 
@@ -150,3 +150,54 @@ console.log(sumInRow()); // 0
 console.log(sumInRow(-4)); // 0
 
 // Works as expected
+
+
+
+// Experiment
+const STEP = 2;
+
+function generateRowOdds(n) {
+  const allOddNumbers = [];
+  
+  // Odd number
+  let i = n * STEP - 1;
+
+  while (allOddNumbers.length !== n) {
+    allOddNumbers.unshift(i);
+    i -= STEP;
+  }
+
+  return allOddNumbers;
+}
+
+function sumInRow(n = 0) {
+  if (n <= 0) {
+    return 0;
+  }
+
+  if (n === 1) {
+    return 1;
+  }
+
+  // Generate row odds;
+  // use `total` for to calculate index to start generate odds
+  const allOddNumbers = generateRowOdds(n);
+
+  // Calculate sum for the last `n` odds (row)
+  const sumRow = allOddNumbers.reduce((sum, currentEl) => sum + currentEl, 0);
+
+  return sumRow;
+}
+
+console.log(sumInRow(1)); // 1
+console.log(sumInRow()); // 0
+console.log(sumInRow(-4)); // 0
+
+// Doesn't work correctly
+// console.log(sumInRow(2)); // 8 // 3 + 5 = 8
+// console.log(sumInRow(3)); // 7 + 9 + 11
+// console.log(sumInRow(4)); // 13 + 15 + 17 + 19
+// console.log(sumInRow(5)); // 21 + 23 + 25 + 27 + 29
+// console.log(sumInRow(42)); // 74088
+// console.log(sumInRow(100)); // 1000000
+
