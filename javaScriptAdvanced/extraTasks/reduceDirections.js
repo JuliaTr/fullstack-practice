@@ -134,75 +134,75 @@ console.log(
 
 
 
-// // Experiment:
-// function deleteSpace(newRoute) {
-//   newRoute.forEach((word, idx) => {
-//     if (word === '-') {
-//       newRoute.splice(idx, 2);
-//     }
-//   });
+// Experiment:
+function deleteSpace(newRoute) {
+  newRoute.forEach((word, idx) => {
+    if (word === '-') {
+      newRoute.splice(idx, 2);
+    }
+  });
 
-//   return newRoute;
-// }
+  return newRoute;
+}
 
-// function reduceDirections(route) {
-//   let newRoute = route;
-//   let idx1 = 0;
+function reduceDirections(route) {
+  let newRoute = route;
+  let idx1 = 0;
 
-//   while (idx1 < newRoute.length) {
-//     let idx2 = 0;
+  while (idx1 < newRoute.length) {
+    let idx2 = 0;
 
-//     while (idx2 < newRoute.length - 1) {
-//       const currentEl = newRoute[idx2];
-//       const nextEl = newRoute[idx2 + 1];
+    while (idx2 < newRoute.length - 1) {
+      const currentEl = newRoute[idx2];
+      const nextEl = newRoute[idx2 + 1];
 
-//       if ((currentEl === 'north' && nextEl === 'south')
-//           || (currentEl === 'south' && nextEl === 'north')
-//           || (currentEl === 'east' && nextEl === 'west')
-//           || (currentEl === 'west' && nextEl === 'east')
-//       ) {
-//         newRoute.splice(idx2, 1, '-');
-//       }
+      if ((currentEl === 'north' && nextEl === 'south')
+          || (currentEl === 'south' && nextEl === 'north')
+          || (currentEl === 'east' && nextEl === 'west')
+          || (currentEl === 'west' && nextEl === 'east')
+      ) {
+        newRoute.splice(idx2, 1, '-');
+      }
 
-//       if (newRoute[idx2 - 1] === '-' && newRoute[idx2 - 2] !== '-') {
-//         newRoute.splice(idx2, 1, '-');
-//       }
+      if (newRoute[idx2 - 1] === '-' && newRoute[idx2 - 2] !== '-') {
+        newRoute.splice(idx2, 1, '-');
+      }
 
-//       idx2++;
-//     }
+      idx2++;
+    }
 
-//     newRoute = deleteSpace(newRoute);
-//     idx1++;
-//   }
+    newRoute = deleteSpace(newRoute);
+    idx1++;
+  }
 
-//   return newRoute;
-// }
+  return newRoute;
+}
 
-// console.log(
-//   reduceDirections(
-//     ['north', 'east', 'west', 'north']
-//   )
-// ); // ['north', 'north']
-// // 'east' and 'west' are removed because they mean going 
-// // one direction and coming back the opposite direction 
-// // right away
+console.log(
+  reduceDirections(
+    ['north', 'east', 'west', 'north']
+  )
+); // ['north', 'north']
+// 'east' and 'west' are removed because they mean going 
+// one direction and coming back the opposite direction 
+// right away
 
-// console.log(
-//   reduceDirections(
-//     ['north', 'south', 'east', 'west']
-//   )
-// ); // []
-// // 'north' and 'south', 'east' and 'west' are removed 
-// // because they mean going one direction 
-// // and coming back the opposite direction right away
+console.log(
+  reduceDirections(
+    ['north', 'south', 'east', 'west']
+  )
+); // []
+// 'north' and 'south', 'east' and 'west' are removed 
+// because they mean going one direction 
+// and coming back the opposite direction right away
 
-// console.log(
-//   reduceDirections(
-//     ['north', 'east', 'west', 'south', 'west', 'west']
-//   )
-// ); // ['west', 'west']
-// // 'east' and 'west' are removed because they mean going 
-// // one direction and coming back the opposite direction 
-// // right away; 
-// // then 'north' and 'south' become directly opposite and 
-// // thus are removed as well
+console.log(
+  reduceDirections(
+    ['north', 'east', 'west', 'south', 'west', 'west']
+  )
+); // ['west', 'west']
+// 'east' and 'west' are removed because they mean going 
+// one direction and coming back the opposite direction 
+// right away; 
+// then 'north' and 'south' become directly opposite and 
+// thus are removed as well
