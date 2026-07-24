@@ -27,6 +27,77 @@ k = 3
 [] => 4 is counted out and goes into the result [3, 6, 2, 7, 5, 1, 4]
 */
 
+// Debugged solution
+function getPermutation(items, k) {
+  if (k <= 1 || items.length <= 1) {
+    return items;
+  }
+
+  const deletedItems = [];
+  let leftItems = items;
+  let i = 0;
+  let count = 0;
+
+  while (leftItems.length > 0) {
+    const currentEl = leftItems[i];
+
+    if (currentEl !== '-') {
+      count += 1;
+    }
+
+    if (count === k) {
+      leftItems.splice(i, 1, '-');
+      deletedItems.push(currentEl);
+      count = 0;
+    }
+
+    const isEmpty = leftItems.every((space) => space === '-');
+
+    if (isEmpty) {
+      leftItems = [];
+    }
+
+    if (i >= leftItems.length - 1) {
+      i = 0;
+    } else {
+      i += 1;
+    }
+  }
+
+  return deletedItems;
+}
+
+console.log(getPermutation([1, 2, 3, 4, 5, 6, 7], 3));
+// [3, 6, 2, 7, 5, 1, 4]
+
+// `should work for a single-item array`
+console.log(getPermutation([1], 4)); // [1]
+
+// `should work with an array of numbers`
+console.log(
+  getPermutation([2, 7, 1, 9, 0, -2, 3, 11, 4, 5], 5)
+); // [0, 5, -2, 7, 4, 11, 2, 9, 3, 1]
+
+// `should work with an array of both numbers and strings`
+console.log(
+  getPermutation(
+    [5, 'd', 'j', 0, 'Q', -3, 199, 'u', 47, 'X'], 
+    6
+  )
+); // [-3, 'd', 47, 199, 'Q', 'u', 5, 'X', 0, 'j']
+
+// `should return the same array if k = 1`
+console.log(
+  getPermutation(
+    ['n', 'o', 'c', 'h', 'a', 'n', 'g', 'e', 's'], 
+    1
+  )
+); // ['n', 'o', 'c', 'h', 'a', 'n', 'g', 'e', 's']
+
+
+
+
+
 // Solution
 function deleteSpace(leftItems) {
   leftItems.forEach((item, idx) => {
@@ -39,7 +110,7 @@ function deleteSpace(leftItems) {
 }
 
 function getPermutation(items, k) {
-  if (k <= 1 || items.lengh <= 1) {
+  if (k <= 1 || items.length <= 1) {
     return items;
   }
 
@@ -79,3 +150,27 @@ function getPermutation(items, k) {
 
 console.log(getPermutation([1, 2, 3, 4, 5, 6, 7], 3));
 // [3, 6, 2, 7, 5, 1, 4]
+
+// `should work for a single-item array`
+console.log(getPermutation([1], 4)); // [1]
+
+
+
+
+// Experiments:
+// Modify array in place
+function deleteSpace(elements) {
+  let array = elements;
+  let i = 0;
+
+  while (array.includes('-')) {
+    if (array[i] === '-') {
+      array.splice(i, 1);
+      i = 0;
+    } else {
+      i++;
+    }
+  }
+
+  return elements;
+}
