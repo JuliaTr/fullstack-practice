@@ -28,13 +28,15 @@ k = 3
 */
 
 // Debugged solution
+// Without modifying input array
 function getPermutation(items, k) {
   if (k <= 1 || items.length <= 1) {
     return items;
   }
 
   const deletedItems = [];
-  let leftItems = items;
+  // Without modifying input array
+  let leftItems = items.map((item) => item);
   let i = 0;
   let count = 0;
 
@@ -67,8 +69,11 @@ function getPermutation(items, k) {
   return deletedItems;
 }
 
-console.log(getPermutation([1, 2, 3, 4, 5, 6, 7], 3));
+const items = [1, 2, 3, 4, 5, 6, 7];
+console.log(getPermutation(items, 3));
 // [3, 6, 2, 7, 5, 1, 4]
+
+console.log(items); 
 
 // `should work for a single-item array`
 console.log(getPermutation([1], 4)); // [1]
@@ -99,6 +104,7 @@ console.log(
 
 
 // Solution
+// Modifying input array
 function deleteSpace(leftItems) {
   leftItems.forEach((item, idx) => {
     if (item === '-') {
@@ -114,6 +120,7 @@ function getPermutation(items, k) {
     return items;
   }
 
+  // Modifying input array
   let leftItems = items;
   const deletedItems = [];
   let interval = k;
