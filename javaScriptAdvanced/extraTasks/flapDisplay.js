@@ -48,26 +48,41 @@ line, which currently spells `CAT`.
 
 const SYMBOLS = `ABCDEFGHIJKLMNOPQRSTUVWXYZ ?!@#&()|<>.:=-+*/0123456789`;
 
+function moveSymbols(display, word, change) {
+  for (let i = 0; i < word.length; i++) {
+    let indexSymbol = SYMBOLS.indexOf(word[i]);
+    let updatedStr = SYMBOLS[indexSymbol + change];
+
+    display.push(updatedStr);
+  }
+
+  return display;
+}
+
 function flapDisplay(lines, rotors) {
-  const display = [];
-  let updatedStr = '';
+  let display = [];
 
-  for (let idx1 = 0; idx1 < lines.length; idx1++) {
+  for (let idx1 = 0; idx1 < rotors.length; idx1++) {
     console.log('---------------------')
-    const word = lines[idx1];
+    let word = lines[idx1].split('');
+    const rotor = rotors[idx1];
 
-    for (let idx2 = 0; idx2 < word.length; idx2++) {
-      let char = word[idx2];
-      let indexSymbol = SYMBOLS.indexOf(char);
+    console.log('rotor', rotor)
 
-      // if (indexSymbol === 0) {
-      //   indexSymbol += 1;
-      // }
+    for (let idx2 = 0; idx2 < rotor.length; idx2++) {
+      console.log('~~~~~~~~~~')
+      const change = rotor[idx2];
+      console.log('change', change)
 
-      console.log(indexSymbol)
+      console.log('word', word)
 
-      updatedStr = SYMBOLS[indexSymbol + rotors[idx1][idx1]];
-      display.push(updatedStr);
+      word = moveSymbols(display, word, change);
+      
+      console.log('display', display)
+      console.log('word', word)
+
+      display = [];
+
     }
   }
 
@@ -94,3 +109,39 @@ console.log(flapDisplay(lines, rotors)); // ['DOG']
 // }
 
 // console.log(indexes);
+
+
+
+
+// const SYMBOLS = `ABCDEFGHIJKLMNOPQRSTUVWXYZ ?!@#&()|<>.:=-+*/0123456789`;
+
+// function flapDisplay(lines, rotors) {
+//   const display = [];
+//   let updatedStr = '';
+
+//   for (let idx1 = 0; idx1 < lines.length; idx1++) {
+//     console.log('---------------------')
+//     const word = lines[idx1];
+
+//     console.log(idx1)
+//     console.log('word', word)
+
+//     const rotor = rotors[idx1];
+
+//     console.log('rotor', rotor)
+
+//     for (let idx2 = 0; idx2 < word.length; idx2++) {
+//       let char = word[idx2];
+//       console.log(char)
+
+//       let indexSymbol = SYMBOLS.indexOf(char);
+
+//       updatedStr = SYMBOLS[indexSymbol + rotors[idx1][idx1]];
+//       display.push(updatedStr);
+//     }
+//   }
+
+//   return display;
+// }
+
+// // Output: ['D', 'B', 'U']
