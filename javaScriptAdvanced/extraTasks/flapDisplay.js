@@ -46,14 +46,27 @@ line, which currently spells `CAT`.
   - Now line says `DOG`
 */
 
+// Solution
 const SYMBOLS = `ABCDEFGHIJKLMNOPQRSTUVWXYZ ?!@#&()|<>.:=-+*/0123456789`;
 
-function moveSymbols(display, word, change) {
-  for (let i = 0; i < word.length; i++) {
+function moveSymbols(display, word, change, index) {
+  for (i = index; i < word.length; i++) {
     let indexSymbol = SYMBOLS.indexOf(word[i]);
-    let updatedStr = SYMBOLS[indexSymbol + change];
 
-    display.push(updatedStr);
+    console.log(word[i]);
+    console.log(SYMBOLS.length)
+
+    let countedStep = indexSymbol + change;
+    console.log(countedStep)
+
+    let updatedStr = SYMBOLS[countedStep];
+    
+    if (countedStep >= SYMBOLS.length - 1) {
+      let newIdx = Math.abs(SYMBOLS.length - countedStep);
+      updatedStr = SYMBOLS[newIdx];
+    }
+
+    display.splice(i, 1, updatedStr);
   }
 
   return display;
@@ -76,13 +89,10 @@ function flapDisplay(lines, rotors) {
 
       console.log('word', word)
 
-      word = moveSymbols(display, word, change);
-      
+      word = moveSymbols(display, word, change, idx2);
+
       console.log('display', display)
       console.log('word', word)
-
-      display = [];
-
     }
   }
 
@@ -97,6 +107,7 @@ rotors = [[1, 13, 27]] // array of array-of-cell-values.
 console.log(flapDisplay(lines, rotors)); // ['DOG'] 
 // array of strings. 
 // Each string is a display line of the final configuration
+
 
 
 
