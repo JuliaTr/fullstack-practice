@@ -52,14 +52,13 @@ const SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ?!@#&()|<>.:=-+*/0123456789';
 function moveSymbols(temp, word, change, index) {
   for (let i = index; i < word.length; i++) {
     const indexSymbol = SYMBOLS.indexOf(word[i]);
-    const countedStep = indexSymbol + change;
-    let updatedStr = SYMBOLS[countedStep];
+    let newIdx = indexSymbol + change;
     
-    if (countedStep >= SYMBOLS.length - 1) {
-      const newIdx = Math.abs(SYMBOLS.length - countedStep);
-
-      updatedStr = SYMBOLS[newIdx];
+    if (newIdx > SYMBOLS.length - 1) {
+      newIdx = Math.abs(SYMBOLS.length - newIdx);
     }
+    
+    let updatedStr = SYMBOLS[newIdx];
 
     temp.splice(i, 1, updatedStr);
   }
@@ -75,10 +74,14 @@ function flapDisplay(lines, rotors) {
     let word = lines[idx1].split('');
     const rotor = rotors[idx1];
 
+    console.log(word)
+
     for (let idx2 = 0; idx2 < rotor.length; idx2++) {
+      console.log('~~~~~~~~~~~~~~~~~')
       const change = rotor[idx2];
 
       word = moveSymbols(temp, word, change, idx2);
+      console.log('word', word)
     }
     
     display.push(temp.join(''));
@@ -87,21 +90,31 @@ function flapDisplay(lines, rotors) {
   return display;
 }
 
-lines = ['CAT'] // array of strings. 
-// Each string is a display line of the initial configuration
-rotors = [[1, 13, 27]] // array of array-of-cell-values. 
-// Each array-of-cell-values is applied to the 
-// corresponding display line
-console.log(flapDisplay(lines, rotors)); // ['DOG'] 
-// array of strings. 
-// Each string is a display line of the final configuration
+// lines = ['CAT'] // array of strings. 
+// // Each string is a display line of the initial configuration
+// rotors = [[1, 13, 27]] // array of array-of-cell-values. 
+// // Each array-of-cell-values is applied to the 
+// // corresponding display line
+// console.log(flapDisplay(lines, rotors)); // ['DOG'] 
+// // array of strings. 
+// // Each string is a display line of the final configuration
 
 
-console.log(flapDisplay(['AGK'], [[3, 6, 10]]));
+// console.log(flapDisplay(['AGK'], [[3, 6, 10]]));
 
-// `should return a correct display if there is no wrapping`
-console.log(flapDisplay(['CAB'], [[3, 11, 8]])); 
-// ['FOX']
+// // `should return a correct display if there is no wrapping`
+// console.log(flapDisplay(['CAB'], [[3, 11, 8]])); 
+// // ['FOX']
+
+// `should work with numbers`
+console.log(flapDisplay(['ROBOT'], [[0, 32, 7, 4, 38]]));
+// ['R2-D2']
+
+// `should work with punctuation marks`
+console.log(flapDisplay(['IN SPACE NOBODY...  '], [[48, 47, 0, 21, 38, 120, 48, 15, 41, 11, 43, 19, 47, 3, 17, 2, 41, 50, 23, 16]]));
+// ['CAN HEAR YOU SCREAM!']
+
+
 
 
 // Experiments:
