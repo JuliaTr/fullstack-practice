@@ -47,53 +47,41 @@ line, which currently spells `CAT`.
 */
 
 // Solution
-const SYMBOLS = `ABCDEFGHIJKLMNOPQRSTUVWXYZ ?!@#&()|<>.:=-+*/0123456789`;
+const SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ?!@#&()|<>.:=-+*/0123456789';
 
-function moveSymbols(display, word, change, index) {
-  for (i = index; i < word.length; i++) {
-    let indexSymbol = SYMBOLS.indexOf(word[i]);
-
-    console.log(word[i]);
-    console.log(SYMBOLS.length)
-
-    let countedStep = indexSymbol + change;
-    console.log(countedStep)
-
+function moveSymbols(temp, word, change, index) {
+  for (let i = index; i < word.length; i++) {
+    const indexSymbol = SYMBOLS.indexOf(word[i]);
+    const countedStep = indexSymbol + change;
     let updatedStr = SYMBOLS[countedStep];
     
     if (countedStep >= SYMBOLS.length - 1) {
-      let newIdx = Math.abs(SYMBOLS.length - countedStep);
+      const newIdx = Math.abs(SYMBOLS.length - countedStep);
+
       updatedStr = SYMBOLS[newIdx];
     }
 
-    display.splice(i, 1, updatedStr);
+    temp.splice(i, 1, updatedStr);
   }
 
-  return display;
+  return temp;
 }
 
 function flapDisplay(lines, rotors) {
-  let display = [];
+  const display = [];
+  const temp = [];
 
   for (let idx1 = 0; idx1 < rotors.length; idx1++) {
-    console.log('---------------------')
     let word = lines[idx1].split('');
     const rotor = rotors[idx1];
 
-    console.log('rotor', rotor)
-
     for (let idx2 = 0; idx2 < rotor.length; idx2++) {
-      console.log('~~~~~~~~~~')
       const change = rotor[idx2];
-      console.log('change', change)
 
-      console.log('word', word)
-
-      word = moveSymbols(display, word, change, idx2);
-
-      console.log('display', display)
-      console.log('word', word)
+      word = moveSymbols(temp, word, change, idx2);
     }
+    
+    display.push(temp.join(''));
   }
 
   return display;
@@ -109,6 +97,11 @@ console.log(flapDisplay(lines, rotors)); // ['DOG']
 // Each string is a display line of the final configuration
 
 
+console.log(flapDisplay(['AGK'], [[3, 6, 10]]));
+
+// `should return a correct display if there is no wrapping`
+console.log(flapDisplay(['CAB'], [[3, 11, 8]])); 
+// ['FOX']
 
 
 // Experiments:
