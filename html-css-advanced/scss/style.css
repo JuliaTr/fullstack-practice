@@ -1,0 +1,27 @@
+.game {
+  position: relative;
+  width: 300px;
+  border: 2px solid #000;
+}
+
+.game__field {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.game__cell {
+  box-sizing: border-box;
+  height: 100px;
+  width: 100px;
+  border: 1px dashed #000;
+}
+
+.game__player {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 80px;
+  width: 80px;
+  background-color: #000;
+  border-radius: 50%;
+}
