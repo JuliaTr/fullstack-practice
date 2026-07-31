@@ -25,3 +25,39 @@
   background-color: #000;
   border-radius: 50%;
 }
+
+.game__player--y--1 {
+  top: 10px;
+}
+
+.game__player--y--2 {
+  top: 110px;
+}
+
+.game__player--y--3 {
+  top: 210px;
+}
+
+.game__player--x--1 {
+  left: 10px;
+}
+
+.game__player--x--2 {
+  left: 110px;
+}
+
+.game__player--x--3 {
+  left: 210px;
+}
+
+.game__player--color--red {
+  background-color: red;
+}
+
+.game__player--color--green {
+  background-color: green;
+}
+
+.game__player--color--blue {
+  background-color: blue;
+}
