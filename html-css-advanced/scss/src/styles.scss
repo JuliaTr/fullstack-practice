@@ -1,12 +1,13 @@
+$cell-size: 100px;
+
 .game {
-  --cell-size: 100px;
-  --player-size: calc(0.8 * var(--cell-size));
+  --player-size: calc(0.8 * #{$cell-size});
   --shift: calc(
-    (var(--cell-size) - var(--player-size)) / 2
+    (#{$cell-size} - var(--player-size)) / 2
   );
 
   position: relative;
-  width: calc(3 * var(--cell-size));
+  width: calc(3 * #{$cell-size});
   border: 2px solid #000;
 }
 
@@ -17,8 +18,8 @@
 
 .game__cell {
   box-sizing: border-box;
-  height: var(--cell-size);
-  width: var(--cell-size);
+  height: #{$cell-size};
+  width: #{$cell-size};
   border: 1px dashed #000;
 }
 
@@ -38,11 +39,11 @@
 }
 
 .game__player--y--2 {
-  top: calc(var(--cell-size) + 10px);
+  top: calc(#{$cell-size} + 10px);
 }
 
 .game__player--y--3 {
-  top: calc(2 * var(--cell-size) + 10px);
+  top: calc(2 * #{$cell-size} + 10px);
 }
 
 .game__player--x--1 {
@@ -50,11 +51,11 @@
 }
 
 .game__player--x--2 {
-  left: calc(var(--cell-size) + 10px);
+  left: calc(#{$cell-size} + 10px);
 }
 
 .game__player--x--3 {
-  left: calc(2 * var(--cell-size) + 10px);
+  left: calc(2 * #{$cell-size} + 10px);
 }
 
 .game__player--color--red {
