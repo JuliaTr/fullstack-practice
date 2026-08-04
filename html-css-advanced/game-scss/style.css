@@ -31,6 +31,12 @@
 .game__player--y--3 {
   top: 210px;
 }
+.game__player--y--4 {
+  top: 310px;
+}
+.game__player--y--5 {
+  top: 410px;
+}
 .game__player--x--1 {
   left: 10px;
 }
