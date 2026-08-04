@@ -44,16 +44,16 @@ $rows-count: 5;
     }
     
 
-    &--color--red {
-      background-color: red;
-    }
-    
-    &--color--green {
-      background-color: green;
-    }
-    
-    &--color--blue {
-      background-color: blue;
+    $colors: 
+      yellow #ff0,
+      red #f00, 
+      green #080, 
+      blue #00f;
+
+    @each $name, $color in $colors {
+      &--color--#{$name} {
+        background-color: $color;
+      }
     }
   }
 }
