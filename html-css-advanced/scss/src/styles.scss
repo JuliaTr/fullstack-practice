@@ -1,71 +1,63 @@
 $cell-size: 100px;
+$player-size: 0.8 * $cell-size;
+$shift: ($cell-size - $player-size) / 2;
+$col-count: 3;
+$rows-count: 5;
 
 .game {
-  --player-size: calc(0.8 * #{$cell-size});
-  --shift: calc(
-    (#{$cell-size} - var(--player-size)) / 2
-  );
-
   position: relative;
-  width: calc(3 * #{$cell-size});
+  width: $col-count * $cell-size;
   border: 2px solid #000;
-}
 
-.game__field {
-  display: flex;
-  flex-wrap: wrap;
-}
+  &__field {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
-.game__cell {
-  box-sizing: border-box;
-  height: #{$cell-size};
-  width: #{$cell-size};
-  border: 1px dashed #000;
-}
+  &__cell {
+    box-sizing: border-box;
+    height: $cell-size;
+    width: $cell-size;
+    border: 1px dashed #000;
+  }
 
-.game__player {
-  position: absolute;
-  top: var(--shift);
-  left: var(--shift);
+  &__player {
+    position: absolute;
+    top: $shift;
+    left: $shift;
+  
+    height: $player-size;
+    width: $player-size;
+    background-color: #000;
+    border-radius: 50%;
 
-  height: var(--player-size);
-  width: var(--player-size);
-  background-color: #000;
-  border-radius: 50%;
-}
+    @function currentShift($position, $size, $base-shift) {
+      @return ($position - 1) * $size + $base-shift;
+    }
+    
+    @for $row from 1 through $rows-count {
+      &--y--#{$row} {
+        top: currentShift($row, $cell-size, $shift);
+      }
+    }
 
-.game__player--y--1 {
-  top: var(--shift);
-}
+    @for $column from 1 through $col-count {
+      &--x--#{$column} {
+        left: currentShift($column, $cell-size, $shift);
+      }
+    }
+    
 
-.game__player--y--2 {
-  top: calc(#{$cell-size} + 10px);
-}
+    $colors: 
+      yellow #ff0,
+      red #f00, 
+      green #080, 
+      blue #00f;
 
-.game__player--y--3 {
-  top: calc(2 * #{$cell-size} + 10px);
-}
-
-.game__player--x--1 {
-  left: var(--shift);
-}
-
-.game__player--x--2 {
-  left: calc(#{$cell-size} + 10px);
-}
-
-.game__player--x--3 {
-  left: calc(2 * #{$cell-size} + 10px);
-}
-
-.game__player--color--red {
-  background-color: red;
-}
-
-.game__player--color--green {
-  background-color: green;
-}
-
-.game__player--color--blue {
-  background-color: blue;
+    @each $name, $color in $colors {
+      &--color--#{$name} {
+        background-color: $color;
+      }
+    }
+  }
 }
