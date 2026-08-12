@@ -1,6 +1,5 @@
 body {
   display: flex;
-  gap: 8px;
 }
 
 .link {
@@ -14,11 +13,4 @@ body {
 .link {
   height: 100px;
   background-color: #ccc;
-  cursor: pointer;
-  transition-duration: 1s;
-}
-
-.link:hover {
-  background-color: #aaa;
-  height: 200px;
 }
