@@ -1,0 +1,26 @@
+body {
+  display: flex;
+  gap: 8px;
+}
+
+.link {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 30px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.link {
+  height: 100px;
+  background-color: #ccc;
+  cursor: pointer;
+  transition-duration: 1s;
+  transition-property: height;
+  transition-timing-function: linear;
+}
+
+.link:hover {
+  background-color: #aaa;
+  height: 600px;
+}
