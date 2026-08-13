@@ -1,0 +1,23 @@
+.box {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background-color: green;
+
+  animation: move 500ms ease-in-out 4 alternate;
+}
+
+.box:hover {
+  animation-play-state: paused;
+}
+
+/* animation scenario */
+@keyframes move {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: 300px;
+  }
+}
