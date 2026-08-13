@@ -1,0 +1,23 @@
+.box {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background-color: green;
+
+  animation-name: move;
+  animation-duration: 500ms;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+  animation-fill-mode: backwards;
+}
+
+/* animation scenario */
+@keyframes move {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: 300px;
+  }
+}
