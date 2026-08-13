@@ -1,0 +1,29 @@
+.box {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background-color: green;
+
+  animation-name: move;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+  animation-delay: -200ms;
+  animation-fill-mode: backwards;
+}
+
+.box:hover {
+  animation-play-state: paused;
+}
+
+/* animation scenario */
+@keyframes move {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: 300px;
+  }
+}
