@@ -1,0 +1,24 @@
+body {
+  display: flex;
+  gap: 8px;
+}
+
+.link {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 30px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.link {
+  height: 100px;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: height 1s steps(4, end) 500ms;
+}
+
+.link:hover {
+  background-color: #aaa;
+  height: 600px;
+}
