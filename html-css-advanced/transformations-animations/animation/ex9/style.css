@@ -1,0 +1,41 @@
+.box {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background-color: green;
+
+  animation: 
+    move 500ms ease-in-out 4 alternate,
+    round 1000ms linear 2 alternate;
+}
+
+.box:hover {
+  animation-play-state: paused;
+}
+
+/* Animation scenarios: */
+/* Change move: */
+@keyframes move {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: 300px;
+  }
+}
+
+/* Change border radius: */
+@keyframes round {
+  0% {
+    border-radius: 0;
+  }
+
+  50% {
+    border-radius: 10%;
+  }
+
+  100% {
+    border-radius: 50%;
+  }
+}
