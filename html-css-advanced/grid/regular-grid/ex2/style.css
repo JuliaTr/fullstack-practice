@@ -1,0 +1,20 @@
+.container {
+  border: 3px solid #000;
+  padding: 10px 20px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  /* `4` - number of columns; `100px` columns' width */
+
+  row-gap: 20px;
+  column-gap: 10px;
+  justify-content: center;
+}
+
+.card {
+  width: 100px;
+  height: 150px;
+
+  border: 2px solid #00f;
+  background-color: yellowgreen;
+}
