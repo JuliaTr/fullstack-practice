@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  color: #fff;
+  font-weight: 000;
+  font-size: 24px;
+  text-align: center;
+}
+
+.box {
+  position: absolute;
+  padding: 1em;
+}
+
+.container {
+  position: relative;
+  height: 100vh;
+}
+
+.header {
+  background-color: #253b4a;
+}
+
+.sidebar {
+  background-color: #ffbc00;
+}
+
+.ads {
+  background-color: #257d92;
+}
+
+.main {
+  background-color: #ff530d;
+}
+
+.news {
+  background-color: #ffbc00;
+}
+
+.footer {
+  background-color: #257d92;
+}
