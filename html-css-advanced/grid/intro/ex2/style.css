@@ -7,6 +7,7 @@ body {
 }
 
 .box {
+  box-sizing: border-box;
   position: absolute;
   padding: 1em;
 }
@@ -17,10 +18,17 @@ body {
 }
 
 .header {
+  height: 16.66%; /* 1/6 */
+  width: 100%;
+  top: 0;
   background-color: #253b4a;
 }
 
 .sidebar {
+  height: 66.66%; /* 2/3 */
+  width: 25%;
+  top: 16.66%; /* 1/6 */
+  left: 0;
   background-color: #ffbc00;
 }
 
@@ -37,5 +45,8 @@ body {
 }
 
 .footer {
+  height: 16.66%; /* 1/6 */
+  width: 100%;
+  bottom: 0;
   background-color: #257d92;
 }
