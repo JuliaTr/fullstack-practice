@@ -1,0 +1,36 @@
+.container {
+  border: 3px solid #000;
+  padding: 10px 20px;
+
+  display: grid;
+  grid-template-columns: repeat(1, 100px);
+  row-gap: 20px;
+  column-gap: 10px;
+  justify-content: center;
+}
+
+@media (min-width: 300px) {
+  .container {
+    grid-template-columns: repeat(2, 100px);
+  }
+}
+
+@media (min-width: 400px) {
+  .container {
+    grid-template-columns: repeat(3, 100px);
+  }
+}
+
+@media (min-width: 500px) {
+  .container {
+    grid-template-columns: repeat(4, 100px);
+  }
+}
+
+.card {
+  width: 100px;
+  height: 150px;
+
+  border: 2px solid #00f;
+  background-color: yellowgreen;
+}
