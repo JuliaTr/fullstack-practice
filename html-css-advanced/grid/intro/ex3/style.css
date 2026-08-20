@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  color: #fff;
+  font-weight: 000;
+  font-size: 24px;
+  text-align: center;
+}
+
+.box {
+  flex-basis: 0;
+  padding: 1em;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  flex-grow: 1;
+  background-color: #253b4a;
+}
+
+.sidebar {
+  flex-grow: 4; /* 1/6 + 1/2 = 4/6 (1/2 is 3/6; 3/6 + 1/6) */
+  background-color: #ffbc00;
+}
+
+.ads {
+  background-color: #257d92;
+}
+
+.main {
+  background-color: #ff530d;
+}
+
+.news {
+  background-color: #ffbc00;
+}
+
+.footer {
+  flex-grow: 1;
+  background-color: #257d92;
+}
