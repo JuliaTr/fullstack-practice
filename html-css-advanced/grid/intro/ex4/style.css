@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  color: #fff;
+  font-weight: 000;
+  font-size: 24px;
+  text-align: center;
+}
+
+.box {
+  box-sizing: border-box;
+  padding: 1em;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  flex-basis: 16.66%;
+  background-color: #253b4a;
+}
+
+.sidebar {
+  flex-basis: 66.66%;
+  background-color: #ffbc00;
+}
+
+.ads {
+  background-color: #257d92;
+}
+
+.main {
+  background-color: #ff530d;
+}
+
+.news {
+  background-color: #ffbc00;
+}
+
+.footer {
+  flex-basis: 16.66%;
+  background-color: #257d92;
+}
