@@ -6,7 +6,7 @@
 
   display: grid;
 
-  /* columns don't fit */
+  /* elements don't fit */
   grid-template-columns: 
     repeat(var(--column-count), minmax(150px, 200px));
   
