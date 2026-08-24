@@ -29,13 +29,56 @@
 // complexity: O(n)
 
 
-// Option 2:
+
+
+// // Option 2:
+// const source = [1, 2, 3, 5, 1, 5, 9, 1, 2, 8];
+
+// const unique = [...new Set(source)];
+// console.log(unique); // [ 1, 2, 3, 5, 9, 8 ]
+
+// const duplicates = [...new Set(source.filter((el, i, arr) => arr.indexOf(el) !== i))];
+// console.log(duplicates); // [ 1, 5, 2 ]
+
+// // complexity 0(n^2)
+
+
+
+
+// Option 3:
+
+// Experiments:
 const source = [1, 2, 3, 5, 1, 5, 9, 1, 2, 8];
 
-const unique = [...new Set(source)];
-console.log(unique); // [ 1, 2, 3, 5, 9, 8 ]
+console.log(getDedupedAndDuplicates(source));
 
-const duplicates = [...new Set(source.filter((el, i, arr) => arr.indexOf(el) !== i))];
-console.log(duplicates); // [ 1, 5, 2 ]
+function getDedupedAndDuplicates(array) {
+  const registry = new Set();
+  console.log(registry); // Set(0) {}
 
-// complexity 0(n^2)
+  const duplicates = new Set();
+  console.log(duplicates); // Set(0) {}
+
+  for (const el of array) {
+    if (!registry.has(el)) {
+      registry.add(el);
+      continue;
+    }
+
+    console.log(registry);
+  }
+
+  console.log(registry);
+  return;
+}
+
+/*
+Output:
+Set(0) {}
+Set(4) { 1, 2, 3, 5 }
+Set(4) { 1, 2, 3, 5 }
+Set(5) { 1, 2, 3, 5, 9 }
+Set(5) { 1, 2, 3, 5, 9 }
+Set(6) { 1, 2, 3, 5, 9, 8 }
+undefined
+*/
