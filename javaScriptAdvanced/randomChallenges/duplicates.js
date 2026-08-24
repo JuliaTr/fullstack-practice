@@ -85,6 +85,21 @@ Set(3) { 1, 5, 2 }
 { deduped: [ 1, 2, 3, 5, 9, 8 ], duplicates: [ 1, 5, 2 ] }
 */
 
+/* 
+Upon each iteration, we we populate `duplicates` only if there're in `register`, meaning they are duplicated.
+If this value is already in `duplicates` like `1`, `Set.protoype.add()` won't add it.
+
+Sets are hash-table-like structure. 
+
+Instead of storing the values ina simple sequence and checking them one by one, a hash-table-like implementation uses a **hash function** to determine where a value should be stored.
+
+`has()` doesn't need to scan every element.
+
+1. Calculates has for the value
+2. Uses that hash to identify the relevant bucket/location
+3. Look there for the value 
+*/
+
 
 
 // Experiments:
