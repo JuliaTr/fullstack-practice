@@ -4,6 +4,9 @@
 `event`:
 - browser behaviour;
 - `event.preventDefault()` prevents standard browser behaviour
+
+`.toggle`:
+- switches class on element
 */
 
 // Find element 
@@ -17,9 +20,12 @@ trigger.addEventListener('contextmenu', (event) => {
   event.preventDefault();
 
   // If `dropdaown` contains `dropdown--active` among its classes
-  if (dropdown.classList.contains('dropdown--active')) {
-    dropdown.classList.remove('dropdown--active');
-  } else {
-    dropdown.classList.add('dropdown--active');
-  }
+  dropdown.classList.toggle('dropdown--active');
+
+  // Works the same a above
+  // if (dropdown.classList.contains('dropdown--active')) {
+  //   dropdown.classList.remove('dropdown--active');
+  // } else {
+  //   dropdown.classList.add('dropdown--active');
+  // }
 });
