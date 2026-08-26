@@ -11,6 +11,11 @@
   line-height: 140%;
   color: var(--color-page);
   background-color: var(--bg-page);
+
+  /* `background-color` and `color` are changed smoothly */
+  transition:
+    color .3,
+    background-color .3;
 }
 
 .page--theme--dark {
