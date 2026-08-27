@@ -4,6 +4,7 @@
 Algo:
 - Select element 
 - Add event listener
+  - Eliminate standard browser behaviour
   - Create new element
   - Add text to new element
   - Add new element to the list
