@@ -6,7 +6,7 @@ Algo:
 - Add event listener
   - Create new element
   - Add text to new element
-  - Delete element from list upon double click
+  - Delete new element from list upon double click
   - Add new element to the list
   - Cleanup form
 */
@@ -23,14 +23,14 @@ form.addEventListener('submit', (event) => {
 
   // Create new element
   const item = document.createElement('li');
-
-  // Delete element from list upon double click
+  
+  // Add text to new element
+  item.textContent = 'New';
+  
+  // Delete new element from list upon double click
   item.addEventListener('dblclick', () => {
     item.remove();
   });
-
-  // Add text to new element
-  item.textContent = 'New';
 
   // Add new element to the list
   list.append(item);
