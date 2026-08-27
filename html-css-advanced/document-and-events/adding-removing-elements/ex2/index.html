@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+  <title>Document</title>
+</head>
+<body>
+  <div class="todo-app">
+    <!-- 
+    `onsubmit="return false"`:
+      - eliminates standard browser behaviour
+
+    `onsubmit="this.reset()":
+      - clean up form
+      - `this` means this form (`<form>`)
+    -->
+    <form 
+      class="todo-app__form"
+      onsubmit="this.reset(); return false"
+    >
+      <input type="text" placeholder="Enter a todo">
+      <button>Add</button>
+    </form>
+    
+    <ul class="todo-app__list">
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>Javascript</li>
+    </ul>
+  </div>
+</body>
+</html>
