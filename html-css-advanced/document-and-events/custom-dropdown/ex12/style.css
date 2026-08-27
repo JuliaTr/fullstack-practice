@@ -1,0 +1,49 @@
+html {
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 140%;
+  background-color: beige;
+}
+
+.content {
+  padding: 20px 40px;
+  margin: 0;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown__trigger {
+  font: inherit;
+}
+
+/* Use css for smooth changes */
+/* Use js where we need to calculate real dimensions or
+set specific positioning and it can be any but not the one of specified */
+
+/* Everything down works the same as ex7 */
+.dropdown__content {
+  position: absolute;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
+
+  overflow: hidden;
+
+  transform-origin: top center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20%);
+  transition:
+    opacity .2s,
+    transform .5s;
+}
+
+/* If dropdown active, then content inside it should be... */
+.dropdown--active .dropdown__content {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
