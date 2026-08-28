@@ -1,5 +1,6 @@
 /* Deconstructed pancake */
 /* flex: 0 1 <baseWidth */
+/* flex: flex-grow flex-shrink flex-basis */
 
 body {
   font-family: system-ui, serif;
@@ -15,10 +16,10 @@ body {
 .child {
   /* If we don't want the items to stretch */
   flex: 0 1 300px; /* no stretch */
+  /* flex: 0 1 <baseWidth */
 
   /* If we want the items to stretch */
   /* flex: 1 1 150px; /* stretch */
-  /* flex: 0 1 <baseWidth */
 
   margin: 5px;
 
