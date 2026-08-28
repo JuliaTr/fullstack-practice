@@ -1,0 +1,34 @@
+/* Deconstructed pancake */
+/* flex: 0 1 <baseWidth */
+
+body {
+  font-family: system-ui, serif;
+}
+
+.parent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  /* doesn't work if we want items to stretch */
+}
+
+.child {
+  /* If we don't want the items to stretch */
+  flex: 0 1 300px; /* no stretch */
+
+  /* If we want the items to stretch */
+  /* flex: 1 1 150px; /* stretch */
+  /* flex: 0 1 <baseWidth */
+
+  height: 300px;
+  margin: 5px;
+
+  border: 1px solid red;
+  background: lightpink;
+  font-size: 2rem;
+
+  /* align text (1, 2, 3) vertically and horizontally in center */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
