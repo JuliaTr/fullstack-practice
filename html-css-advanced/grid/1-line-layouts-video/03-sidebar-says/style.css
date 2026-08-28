@@ -15,7 +15,16 @@ body {
 .sidebar {
   height: 100vh;
 
+  padding-top: 2rem;
   background: lightpink;
   font-size: 2rem;
   text-align: center;
+}
+
+.content {
+  margin: 0;
+  padding: 2rem;
+
+  font-size: 2rem;
+  background: lightblue;
 }
