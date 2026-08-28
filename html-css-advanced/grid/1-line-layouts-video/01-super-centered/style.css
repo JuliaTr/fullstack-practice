@@ -1,0 +1,28 @@
+/* Super centered */
+body {
+  font-family: system-ui, serif;
+}
+
+.parent {
+  display: grid;
+  place-items: center;
+
+  background: lightblue;
+  width: 500px;
+  height: 500px;
+
+  /* resize by clicking on right bottom corner */
+  resize: both; /* enables resizing */
+  /* `both` allows to resize horizontally and vertically */
+  
+  overflow: auto; /* required for resize to work */
+}
+
+.child {
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid red;
+  background: lightpink;
+  font-size: 2rem;
+  text-align: center;
+}
