@@ -1,4 +1,21 @@
+body {
+  font-family: system-ui, serif;
+}
+
 .parent {
   display: flex;
   flex-wrap: wrap;
+}
+
+.child {
+  /* If we don't want the items to stretch */
+  /* flex: 0 1 300px; */
+
+  /* If we want the items to stretch */
+  flex: 1 1 300px;
+
+  border: 1px solid red;
+  background: lightpink;
+  font-size: 2rem;
+  text-align: center;
 }
