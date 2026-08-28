@@ -1,0 +1,14 @@
+/* Sidebar Says */
+/* grid-template-columns: minmax(<min>, <max>) ... */
+
+body {
+  font-family: system-ui, serif;
+
+  display: grid;
+  grid-template-columns: minmax(150px, 25%) 1fr;
+  /* 1 fr is up the rest of the remaining space */
+
+  padding: 0;
+  margin: 0;
+}
+
