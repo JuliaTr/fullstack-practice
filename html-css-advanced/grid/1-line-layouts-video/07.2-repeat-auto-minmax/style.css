@@ -1,0 +1,47 @@
+/* RAM (Repeat, Auto, Minmax) */
+/* 
+`auto-fill` is used here:
+
+`grid-template-columns: 
+    repeat(auto-fill, minmax(200px, 1fr));`
+
+grid-template-columns: 
+    repeat(auto-fill, minmax(<base>, 1fr));
+
+*/
+
+body {
+  font-family: system-ui, serif;
+
+  display: grid;
+  height: 100vh;
+  grid-gap: 1rem;
+
+  /* with `auto-fill` */
+  grid-template-columns: 
+    repeat(auto-fill, minmax(200px, 1fr));
+
+  padding: 0;
+  margin: 0;
+}
+
+div {
+  display: grid;
+  place-items: center;
+}
+
+.pink {
+  background-color: lightpink;
+}
+
+.purple {
+  background-color: rgb(172, 87, 172);
+}
+
+.blue {
+  background-color: lightblue;
+}
+
+.green {
+  background-color: lightgreen;
+}
