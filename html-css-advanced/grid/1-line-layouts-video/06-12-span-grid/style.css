@@ -29,3 +29,8 @@ div {
   background-color: lightblue;
   grid-column: 1 / 7;
 }
+
+.span-4 {
+  background-color: coral;
+  grid-column: 4 / 9;
+}
