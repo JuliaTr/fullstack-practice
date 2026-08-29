@@ -9,6 +9,7 @@ body {
   display: grid;
   height: 100vh;
   grid-template-columns: repeat(12, 1fr);
+  /* We have 12 columns */
 
   padding: 0;
   margin: 0;
@@ -17,4 +18,9 @@ body {
 div {
   display: grid;
   place-items: center;
+}
+
+.span-12 {
+  background-color: lightpink;
+  grid-column: 1 / 13;
 }
