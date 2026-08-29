@@ -1,5 +1,13 @@
 /* Pancake Stack (Header, Main, Footer */
-/* grid-template-rows: auto 1fr. autto */
+/* 
+`grid-template-rows: auto 1fr autto` 
+
+First and last elements take up space internal elements allow.
+
+1fr is remainning space (`<main>`)
+
+- application tool bar
+*/
 
 body {
   font-family: system-ui, serif;
@@ -17,3 +25,13 @@ header {
   padding: 2rem;
 }
 
+main {
+  background: coral;
+  padding: 2rem;
+}
+
+footer {
+  background: wheat;
+  padding: 2rem;
+  text-align: center;
+}
