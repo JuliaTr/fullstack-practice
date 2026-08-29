@@ -1,5 +1,7 @@
 /* RAM (Repeat, Auto, Minmax) */
 /* 
+`auto-fit` is used here
+
 `grid-template-columns: 
     repeat(auto-fit, minmax(200px, 1fr));`
 
@@ -14,6 +16,8 @@ body {
   display: grid;
   height: 100vh;
   grid-gap: 1rem;
+
+  /* with `auto-fit` */
   grid-template-columns: 
     repeat(auto-fit, minmax(200px, 1fr));
 
