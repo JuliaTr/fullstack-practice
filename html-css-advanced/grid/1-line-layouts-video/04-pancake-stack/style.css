@@ -1,0 +1,19 @@
+/* Pancake Stack (Header, Main, Footer */
+/* grid-template-rows: auto 1fr. autto */
+
+body {
+  font-family: system-ui, serif;
+
+  display: grid;
+  height: 100vh;
+  grid-template-rows: auto 1fr auto;
+
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  background-color: lightpink;
+  padding: 2rem;
+}
+
