@@ -1,6 +1,10 @@
 /* RAM (Repeat, Auto, Minmax) */
 /* 
+`grid-template-columns: 
+    repeat(auto-fit, minmax(200px, 1fr));`
 
+grid-template-columns: 
+    repeat(auto-fit, minmax(<base>, 1fr));
 
 */
 
