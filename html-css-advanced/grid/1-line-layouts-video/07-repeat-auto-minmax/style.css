@@ -1,0 +1,23 @@
+/* RAM (Repeat, Auto, Minmax) */
+/* 
+
+
+*/
+
+body {
+  font-family: system-ui, serif;
+
+  display: grid;
+  height: 100vh;
+  grid-gap: 1rem;
+  grid-template-columns: 
+    repeat(auto-fit, minmax(200px, 1fr));
+
+  padding: 0;
+  margin: 0;
+}
+
+div {
+  display: grid;
+  place-items: center;
+}
