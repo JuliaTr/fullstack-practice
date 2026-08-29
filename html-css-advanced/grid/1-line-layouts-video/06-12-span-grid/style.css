@@ -24,3 +24,8 @@ div {
   background-color: lightpink;
   grid-column: 1 / 13;
 }
+
+.span-6 {
+  background-color: lightblue;
+  grid-column: 1 / 7;
+}
