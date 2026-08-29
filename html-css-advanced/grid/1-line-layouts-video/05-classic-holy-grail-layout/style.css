@@ -1,0 +1,50 @@
+/* Holy Grail */
+/* 
+`grid-template: auto 1fr auto / auto 1fr auto;`
+
+grid-template: grid-template-rows / grid-template-columns
+
+`auto` - for header, footer, left-sidebar, right-sidebar
+`1fr` - for main (occupy the rest space)
+*/
+
+body {
+  font-family: system-ui, serif;
+
+  display: grid;
+  height: 100vh;
+  grid-template: auto 1fr auto / auto 1fr auto;
+
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  background-color: lightpink;
+  padding: 2rem;
+  grid-column: 1 / 4; /* all 4 columns */
+}
+
+.left-sidebar {
+  background-color: lightblue;
+  padding: 1rem;
+  grid-column: 1 / 2; /* from column 1 to 2 */
+}
+
+main {
+  background: coral;
+  grid-column: 2 / 3;  /* from 2 to 4 */
+}
+
+.right-sidebar {
+  background-color: yellow;
+  padding: 1rem;
+  grid-column: 3 / 4; /* from 3 to 4 */
+}
+
+footer {
+  background: wheat;
+  padding: 2rem;
+  text-align: center;
+  grid-column: 1 / 4; /* from 1 to 4 */
+}
