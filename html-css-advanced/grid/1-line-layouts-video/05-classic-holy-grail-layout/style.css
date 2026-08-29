@@ -14,6 +14,7 @@ body {
   display: grid;
   height: 100vh;
   grid-template: auto 1fr auto / auto 1fr auto;
+  /* We have 3 columns */
 
   padding: 0;
   margin: 0;
@@ -22,7 +23,7 @@ body {
 header {
   background-color: lightpink;
   padding: 2rem;
-  grid-column: 1 / 4; /* all 4 columns */
+  grid-column: 1 / 4; /* all columns; from 1 to 4*/
 }
 
 .left-sidebar {
@@ -33,7 +34,7 @@ header {
 
 main {
   background: coral;
-  grid-column: 2 / 3;  /* from 2 to 4 */
+  grid-column: 2 / 3;  /* from 2 to 3 */
 }
 
 .right-sidebar {
