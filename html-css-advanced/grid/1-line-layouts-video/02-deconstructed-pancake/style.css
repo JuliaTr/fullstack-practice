@@ -1,6 +1,10 @@
 /* Deconstructed pancake */
-/* flex: 0 1 <baseWidth */
-/* flex: flex-grow flex-shrink flex-basis */
+/* 
+flex: 0 1 <baseWidth
+flex: flex-grow flex-shrink flex-basis
+
+- applied on marketing sites (images with text about the product)
+*/
 
 body {
   font-family: system-ui, serif;
