@@ -1,6 +1,9 @@
 /* Line Up */
 /* 
+`display: flex;
+justify-content: space-between;`
 
+The first and last elements are exactly at the top and bottom of our cards.
 */
 
 body {
