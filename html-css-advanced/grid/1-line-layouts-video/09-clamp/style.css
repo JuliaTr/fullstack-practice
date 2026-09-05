@@ -14,14 +14,14 @@ body {
   margin: 0;
 }
 
-/* .visual {
+.visual {
   height: 100px;
   width: 100%;
   background: wheat;
   margin: 0.5rem 0;
 }
 
-.card {
+/* .card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
