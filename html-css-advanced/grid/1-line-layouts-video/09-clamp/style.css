@@ -21,14 +21,14 @@ body {
   margin: 0.5rem 0;
 }
 
-/* .card {
+.card {
+  width: clamp(45ch, 50%, 75ch);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   background: lightpink;
   padding: 1rem;
 }
 
 h1 {
   font-size: 1.5rem;
-} */
+}
