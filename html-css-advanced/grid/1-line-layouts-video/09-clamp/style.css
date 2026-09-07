@@ -1,6 +1,13 @@
 /* Clamping My Style */
 /* 
+`width: clamp(23ch, 50%, 46ch)`
+`clamp(<min>, <actual>, <max>)`
 
+If `50%` means bigger than `46ch`, then it's going to stop getting bigger. Card stops decreasing its size when 50% of it's parent's size means that it's smaller than `23ch`.
+
+Use `clamp` for:
+- width
+- font
 */
 
 body {
@@ -22,7 +29,7 @@ body {
 }
 
 .card {
-  width: clamp(45ch, 50%, 75ch);
+  width: clamp(23ch, 50%, 46ch);
   display: flex;
   flex-direction: column;
   background: lightpink;
