@@ -1,3 +1,14 @@
+/*
+Detect pangram
+
+Create the function isPangram that:
+
+Takes a string str.
+Returns true, if str is a pangram, otherwise — false.
+💡 A pangram is a sentence that includes every letter of the alphabet at least once, regardless of case, like 'The quick brown fox jumps over the lazy dog'.
+*/
+
+// Solution
 const ALPHA = 'abcdefghijklmnopqrstuvwxyz';
 
 function isPangram(str) {
