@@ -22,11 +22,11 @@ export const Product = ({ title, price = 0 }) => (
 
 export default Product;
 
-
 // Same as `<> </>` above
 // import React from 'react';
-{/* <React.Fragment>
+{
+  /* <React.Fragment>
   <span>*</span>
   <span>*</span>
-</React.Fragment> */}
-
+</React.Fragment> */
+}
