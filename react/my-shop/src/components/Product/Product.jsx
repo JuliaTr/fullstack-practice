@@ -1,3 +1,5 @@
+import "./Product.scss";
+
 export const Product = ({ title, price = 0 }) => (
   <div className="Product">
     <h2 className="Product__title">{title}</h2>
