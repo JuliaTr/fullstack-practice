@@ -1,10 +1,11 @@
 import "./Card.scss";
 
-export const Card = (props) => (
+export const Card = ({ title, text, price = 0 }) => (
   <div className="Card">
-    <h2 className="Card__title">{props.title}</h2>
+    <h2 className="Card__title">{title}</h2>
     <div className="Card__details">
-      <p>{props.text}</p>
+      <p>{text}</p>
+      <p>Price: ${price.toFixed(2)}</p>
     </div>
   </div>
 );
