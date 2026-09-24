@@ -5,20 +5,3 @@ body {
 
   margin: 1em;
 }
-
-.Card {
-  margin-bottom: 1.5rem;
-  box-shadow:
-    0 4px 10px 0 rgba(0, 0, 0, 0.2),
-    0 4px 20px 0 rgba(0, 0, 0, 0.3);
-  &__title {
-    margin: 0;
-    padding: 0.5em 1rem;
-    color: #fff;
-    background-color: #2196f3;
-  }
-
-  &__details {
-    padding: 1px 1rem;
-  }
-}
