@@ -1,4 +1,4 @@
-import { GoodsList } from './components/GoodsList/GoodsList';
+import { GoodsList } from './components/GoodsList';
 import goods from './goods.json';
 import './index.scss';
 
