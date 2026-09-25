@@ -1,20 +1,12 @@
+import { GoodsList } from './components/GoodsList/GoodsList';
 import goods from './goods.json';
+import './index.scss';
 
 export const App = () => (
   <div className="App">
     <h1>Goods List</h1>
 
-    <div className="GoodsList">
-      {goods.map(good => (
-        <div
-          key={good.id}
-          className="GoodsCard"
-          style={{ color: good.color }}
-        >
-          {good.name}
-        </div>
-      ))}
-    </div>
+    <GoodsList goods={goods} />
   </div>
 );
 
