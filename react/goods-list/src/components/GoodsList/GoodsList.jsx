@@ -1,4 +1,4 @@
-import { GoodsCard } from '../GoodsCard/GoodsCard';
+import { GoodsCard } from '../GoodsCard';
 import './GoodsList.scss';
 
 export const GoodsList = ({ goods }) => (
