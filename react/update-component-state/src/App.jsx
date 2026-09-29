@@ -1,9 +1,42 @@
-export const App = () => (
-  <div className="App">
-    <h1>Value is 0</h1>
+import { useState } from "react";
 
-    <button onClick={() => console.log(1)}>1</button>
-    <button onClick={() => console.log(2)}>2</button>
-    <button onClick={() => console.log(3)}>3</button>
-  </div>
-);
+export const App = () => {
+  const [value, setValue] = useState(0);
+  const [message, setMessage] = useState('');
+
+  console.log('rendering', value);
+
+  return (
+    <div className="App">
+      <h1>Value is {value}</h1>
+
+      <button 
+        onClick={() => {
+          setValue(1);
+          console.log(value);
+        }}
+      >
+        1
+      </button>
+
+      <button 
+        onClick={() => {
+          setValue(2);
+          console.log(value);
+        }}
+      >
+        2
+      </button>
+
+      <button 
+        onClick={() => {
+          setValue(3);
+          console.log(value);
+        }}
+      >
+        3
+      </button>
+
+    </div>
+  )
+};
