@@ -8,30 +8,22 @@ import './index.scss';
 const SORT_FIELD_ID = 'id';
 
 export const App = () => {
-  const [visibleGoods, setVisibleGoods] = useState(goodsFromServer);
   const [sortField, setSortField] = useState('');
+  const visibleGoods = [...goodsFromServer];
 
-  const reset = () => {
-    setVisibleGoods(goodsFromServer);
-    setSortField(sortField);
+  if (sortField) {
+    visibleGoods.sort((good1, good2) => good1.id - good2.id);
   }
-
-  const sortById = () => {
-    setVisibleGoods(
-      [...visibleGoods].sort((good1, good2) => good1.id - good2.id)
-    );
-    setSortField(SORT_FIELD_ID);
-  };
 
   return (
     <div className="App">
       <header className='header'>
-        <button onClick={reset}>Reset</button>
+        <button onClick={() => setSortField('')}>Reset</button>
 
         <div className='header__sort'>
           Sort by:
           <button 
-            onClick={sortById} 
+            onClick={() => setSortField(SORT_FIELD_ID)} 
             className={classNames({ active: sortField === SORT_FIELD_ID })}
           >
             id
