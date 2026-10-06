@@ -11,7 +11,10 @@ export const App = () => {
   const [visibleGoods, setVisibleGoods] = useState(goodsFromServer);
   const [sortField, setSortField] = useState('');
 
-  console.log('render');
+  const reset = () => {
+    setVisibleGoods(goodsFromServer);
+    setSortField(sortField);
+  }
 
   const sortById = () => {
     setVisibleGoods(
@@ -23,7 +26,7 @@ export const App = () => {
   return (
     <div className="App">
       <header className='header'>
-        <button>Reset</button>
+        <button onClick={reset}>Reset</button>
 
         <div className='header__sort'>
           Sort by:
