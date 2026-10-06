@@ -1,16 +1,18 @@
 import goodsFromServer from './goods.json';
-import { GoodsList } from './components/GoodsList/GoodList';
+import { GoodsList } from './components/GoodsList';
+import './index.scss';
 
 export const App = () => {
   return (
     <div className="App">
-      <header>
-        <button>React</button>
-        <div>
+      <header className='header'>
+        <button>Reset</button>
+
+        <div className='header__sort'>
           Sort by:
-          <bitton>is</bitton>
-          <bitton>name</bitton>
-          <bitton>color</bitton>
+          <button>is</button>
+          <button>name</button>
+          <button>color</button>
         </div>
       </header>
 
