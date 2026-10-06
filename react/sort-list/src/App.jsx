@@ -3,6 +3,10 @@ import { GoodsList } from './components/GoodsList';
 import './index.scss';
 
 export const App = () => {
+  const sortById = () => {
+    goodsFromServer.sort((good1, good2) => good1.id - good2.id)
+  };
+
   return (
     <div className="App">
       <header className='header'>
@@ -10,7 +14,7 @@ export const App = () => {
 
         <div className='header__sort'>
           Sort by:
-          <button>is</button>
+          <button onClick={sortById}>id</button>
           <button>name</button>
           <button>color</button>
         </div>
