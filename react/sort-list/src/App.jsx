@@ -46,7 +46,19 @@ export const App = () => {
 
         <div className='header__sort'>
           Sort by:
-          <button 
+
+          {[SORT_FIELD_ID, SORT_FIELD_NAME, SORT_FIELD_COLOR].map(field => (
+            <button
+              key={field}
+              onClick={() => setSortField(field)} 
+              className={classNames({ active: sortField === field })}
+            >
+              {field}
+            </button>
+          ))}
+
+          {/* Works the same as above */}
+          {/* <button 
             onClick={() => setSortField(SORT_FIELD_ID)} 
             className={classNames({ active: sortField === SORT_FIELD_ID })}
           >
@@ -59,13 +71,13 @@ export const App = () => {
           >
             name
           </button>
-          
+
           <button 
             onClick={() => setSortField(SORT_FIELD_COLOR)} 
             className={classNames({ active: sortField === SORT_FIELD_COLOR })}
           >
             color
-          </button>
+          </button> */}
         </div>
       </header>
 
