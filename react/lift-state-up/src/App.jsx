@@ -1,13 +1,10 @@
 import { useState } from 'react';
-import classNames from 'classnames';
 
 import goodsFromServer from './goods.json';
 import { GoodsList } from './components/GoodsList';
 import './index.scss';
-
-const SORT_FIELD_ID = 'id';
-const SORT_FIELD_NAME = 'name';
-const SORT_FIELD_COLOR = 'color';
+import { SORT_FIELD } from './constants';
+import { Header } from './components/Header/Header';
 
 function getPreparedGoods(goods, { sortField, query }) {
   let preparedGoods = [...goods];
@@ -19,11 +16,11 @@ function getPreparedGoods(goods, { sortField, query }) {
   if (sortField) {
     preparedGoods.sort((good1, good2) => {
       switch (sortField) {
-        case SORT_FIELD_ID:
+        case SORT_FIELD.ID:
           return good1[sortField] - good2[sortField];
 
-        case SORT_FIELD_NAME:
-        case SORT_FIELD_COLOR:
+        case SORT_FIELD.NAME:
+        case SORT_FIELD.COLOR:
           return good1[sortField].localeCompare(good2[sortField]);
 
         default: 
@@ -37,37 +34,14 @@ function getPreparedGoods(goods, { sortField, query }) {
 
 export const App = () => {
   const [sortField, setSortField] = useState('');
-  const visibleGoods = getPreparedGoods(goodsFromServer, { sortField, query: 'e' });
+  const visibleGoods = getPreparedGoods(goodsFromServer, { sortField });
 
   return (
     <div className="App">
-      <header className='header'>
-        <button onClick={() => setSortField('')}>Reset</button>
-
-        <div className='header__sort'>
-          Sort by:
-          <button 
-            onClick={() => setSortField(SORT_FIELD_ID)} 
-            className={classNames({ active: sortField === SORT_FIELD_ID })}
-          >
-            id
-          </button>
-
-          <button 
-            onClick={() => setSortField(SORT_FIELD_NAME)} 
-            className={classNames({ active: sortField === SORT_FIELD_NAME })}
-          >
-            name
-          </button>
-
-          <button 
-            onClick={() => setSortField(SORT_FIELD_COLOR)} 
-            className={classNames({ active: sortField === SORT_FIELD_COLOR })}
-          >
-            color
-          </button>
-        </div>
-      </header>
+      <Header
+        sortField={sortField}
+        setSortField={setSortField}
+      />
 
       <GoodsList goods={visibleGoods} />
     </div>
