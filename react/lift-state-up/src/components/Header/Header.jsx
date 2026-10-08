@@ -2,12 +2,7 @@ import classNames from 'classnames';
 
 import { SORT_FIELD } from "../../constants";
 
-export const Header = ({ 
-  sortField, 
-  sortBy,
-  query,
-  filterBy,
-}) => (
+export const Header = ({ sortField, sortBy, query, filterBy }) => (
   <header className='header'>
     <button 
       onClick={() => {
