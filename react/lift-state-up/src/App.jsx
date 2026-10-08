@@ -34,18 +34,29 @@ function getPreparedGoods(goods, { sortField, query }) {
 
 export const App = () => {
   const [sortField, setSortField] = useState('');
-  const visibleGoods = getPreparedGoods(goodsFromServer, { sortField });
+  const [query, setQuery] = useState('');
+
+  const visibleGoods = getPreparedGoods(
+    goodsFromServer, 
+    { sortField, query },
+  );
 
   return (
     <div className="App">
       <Header
         // Lifting state up:
         sortField={sortField}
+
         sortBy={(field) => {
           console.log(field); // place for additional checks
           setSortField(field);
         }}
         // sortBy={setSortField} // same as sortBy={(field) => setSortField(field)}
+
+        query={query}
+        filterBy={(newQuery) => {
+          setQuery(newQuery);
+        }}
       />
 
       <GoodsList goods={visibleGoods} />
