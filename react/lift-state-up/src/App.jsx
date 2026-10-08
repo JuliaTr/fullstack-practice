@@ -39,8 +39,13 @@ export const App = () => {
   return (
     <div className="App">
       <Header
+        // Lifting state up:
         sortField={sortField}
-        setSortField={setSortField}
+        sortBy={(field) => {
+          console.log(field); // place for additional checks
+          setSortField(field);
+        }}
+        // sortBy={setSortField} // same as sortBy={(field) => setSortField(field)}
       />
 
       <GoodsList goods={visibleGoods} />
