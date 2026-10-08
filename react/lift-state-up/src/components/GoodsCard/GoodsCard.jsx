@@ -6,6 +6,5 @@ export const GoodsCard = ({ good }) => (
     style={{ color: good.color }}
   >
     {good.name}
-    <input type="text" />
   </div>
 );
