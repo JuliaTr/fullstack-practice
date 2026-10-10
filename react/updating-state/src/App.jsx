@@ -62,6 +62,25 @@ export const App = () => {
     ]);
   };
 
+   const moveDown = (good) => {
+    const index = goods.indexOf(good);
+
+    if (index === goods.length - 1) {
+      return;
+    }
+
+    setGoods([
+      // all before previous item
+      ...goods.slice(0, index),
+
+      goods[index + 1], // next
+      goods[index], // current
+      
+      // all after next
+      ...goods.slice(index + 2),
+    ]);
+  };
+
   return (
     <div className="App">
       {false && (
@@ -77,21 +96,13 @@ export const App = () => {
         />
       )}
 
-      <GoodsList goods={goods} moveUp={moveUp} />
+      <GoodsList 
+        goods={goods} 
+        moveUp={moveUp}
+        moveDown={moveDown}
+      />
     </div>
   );
 };
 
 export default App;
-
-
-
-// {[SORT_FIELD_ID, SORT_FIELD_NAME, SORT_FIELD_COLOR].map(field => (
-//   <button
-//     key={field}
-//     onClick={() => setSortField(field)} 
-//     className={classNames({ active: sortField === field })}
-//   >
-//     {field}
-//   </button>
-// ))}
