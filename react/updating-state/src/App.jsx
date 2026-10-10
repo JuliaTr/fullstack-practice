@@ -33,6 +33,7 @@ function getPreparedGoods(goods, { sortField, query }) {
 }
 
 export const App = () => {
+  const [goods, setGoods] = useState(goodsFromServer);
   const [sortField, setSortField] = useState('');
   const [query, setQuery] = useState('');
 
@@ -41,25 +42,42 @@ export const App = () => {
     { sortField, query },
   );
 
+  // Reorder elements
+  const moveUp = (good) => {
+    const index = goods.indexOf(good);
+
+    if (index < 1) {
+      return;
+    }
+
+    setGoods([
+      // all before previous item
+      ...goods.slice(0, index - 1),
+
+      goods[index], // current
+      goods[index - 1], // previous
+      
+      // all after current
+      ...goods.slice(index + 1),
+    ]);
+  };
+
   return (
     <div className="App">
-      <Header
-        // Lifting state up:
-        sortField={sortField}
+      {false && (
+        <Header
+          sortField={sortField}
+          sortBy={(field) => {
+            setSortField(field);
+          }}
+          query={query}
+          filterBy={(newQuery) => {
+            setQuery(newQuery);
+          }}
+        />
+      )}
 
-        sortBy={(field) => {
-          console.log(field); // place for additional checks
-          setSortField(field);
-        }}
-        // sortBy={setSortField} // same as sortBy={(field) => setSortField(field)}
-
-        query={query}
-        filterBy={(newQuery) => {
-          setQuery(newQuery);
-        }}
-      />
-
-      <GoodsList goods={visibleGoods} />
+      <GoodsList goods={goods} moveUp={moveUp} />
     </div>
   );
 };
