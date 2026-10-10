@@ -44,6 +44,7 @@ export const App = () => {
 
   // Reorder elements
   const moveUp = (good) => {
+    // find index of current element
     const index = goods.indexOf(good);
 
     if (index < 1) {
@@ -54,6 +55,7 @@ export const App = () => {
       // all before previous item
       ...goods.slice(0, index - 1),
 
+      // change place of current and previus elements
       goods[index], // current
       goods[index - 1], // previous
       
@@ -63,22 +65,31 @@ export const App = () => {
   };
 
    const moveDown = (good) => {
-    const index = goods.indexOf(good);
+    // Update state with callback:
+    // Parameter `goods` is the last calculated value, but not the initial
+    setGoods((currentGoods) => {
+      console.log(currentGoods.map(g => g.name))
 
-    if (index === goods.length - 1) {
-      return;
-    }
+      // find index of current element
+      const index = currentGoods.indexOf(good);
 
-    setGoods([
-      // all before previous item
-      ...goods.slice(0, index),
+      if (index === currentGoods.length - 1) {
+        return;
+      }
 
-      goods[index + 1], // next
-      goods[index], // current
-      
-      // all after next
-      ...goods.slice(index + 2),
-    ]);
+      return [
+        // all before previous item
+        ...currentGoods.slice(0, index),
+
+        // change place of current and previus elements
+        currentGoods[index + 1], // next
+        currentGoods[index], // current
+        
+        // all after next
+        ...currentGoods.slice(index + 2),
+      ]
+    });
+    // When react executes several updates with the same value, the result of each previous callback will be passed to the next same callback which is called on. similar to method `reduce`. So we call this function 3 times in `GoodsList` button `down 3`.
   };
 
   return (
