@@ -11,7 +11,9 @@ function isAwardEligible(attendance) {
   let absent = '';
   let late = '';
   
-  for (char of attendance) {
+  for (let i = 0; i < attendance.length; i++) {
+    const char = attendance[i];
+  
     if (char === 'A') {
       absent += 'A';
     }
@@ -20,7 +22,7 @@ function isAwardEligible(attendance) {
       return false;
     }
 
-    if ((char === 'P' || char === 'A') && late != '') {
+    if ((char === 'P' || char === 'A') && late !== '') {
       late = '';
     }
     
@@ -39,6 +41,8 @@ function isAwardEligible(attendance) {
 console.log(isAwardEligible('PPLPPAPL')); //true // Both criteria are met
 console.log(isAwardEligible('PPAPLAPPP')); // false // Student was absent more than once
 console.log(isAwardEligible('LLPAPPLLLP'));// false // Student was late for 3 consecutive days
+
+console.log(isAwardEligible('PPPAAPP')); // false
 
 // works as expected
 
