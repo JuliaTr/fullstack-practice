@@ -12,7 +12,7 @@ Consider following:
 function multiplyAll(numbers) {
   return function(multiplier) {
     return numbers.map(number => number * multiplier);
-  }
+  };
 }
 
 console.log(multiplyAll([])(5)); // []
