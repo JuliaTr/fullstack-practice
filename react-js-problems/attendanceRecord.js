@@ -7,35 +7,45 @@ Create a function `isAwardEligible` that:
 - The student can't be late more than two times in a row.
 */
 
-function countAttendance(attendance) {
-  const record = { 'A': 0, 'L': 0, 'P': 0 }
+// function isEligible(missing, number, attendancePattern, char) {
+//   if (missing.length > number) {
+//     return false;
+//   }
 
+//   if (char === attendancePattern) {
+//     missing += attendancePattern;
+//   }
+// }
+
+function isAwardEligible(attendance) {
+  let absent = '';
+  let late = '';
+  
   for (char of attendance) {
+    console.log(absent)
+
+    if (absent.length > 1) {
+      return false;
+    }
+
     if (char === 'A') {
-      record['A'] += 1;
+      absent += 'A';
+    }
+
+    if ((char === 'P' || char === 'A') && late != '') {
+      late = '';
+    }
+
+    if (late.length > 2) {
+      return false;
     }
 
     if (char === 'L') {
-      record['L'] += 1;
-    }
-
-    if (char === 'P') {
-      record['P'] += 1;
+      late += 'L';
     }
   }
 
-  return record;
-}
-
-function isAwardEligible(attendance) {
-  let isEligible = true;
-  const attendanceRecord = countAttendance(attendance);
-  console.log(attendanceRecord);
-
-  // if (attendanceRecord['A'] < 2 && attendanceRecord['L'])
-
-
-  return isEligible; 
+  return true;
 }
 
 console.log(isAwardEligible('PPLPPAPL')); //true // Both criteria are met
