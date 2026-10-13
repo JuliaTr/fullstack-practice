@@ -16,8 +16,12 @@ Create a function detectCapital that:
 function detectCapital(word) {
   const trimmedWord = word.trim();
 
-  if (trimmedWord.split(' ').length > 1 || trimmedWord === '') {
-    return "Enter a word here";
+  if (trimmedWord === '') {
+    return 'Enter a word here';
+  }
+
+  if (trimmedWord.split(' ').length > 1) {
+    return 'Enter one word at a time';
   }
 
   if (trimmedWord.toUpperCase() === trimmedWord) {
@@ -28,7 +32,7 @@ function detectCapital(word) {
     return true;
   }
 
-  if (trimmedWord[0].toUpperCase() === trimmedWord[0] 
+  if (trimmedWord[0].toUpperCase() === trimmedWord[0]
       && trimmedWord.slice(1).toLowerCase() === trimmedWord.slice(1)
   ) {
     return true;
