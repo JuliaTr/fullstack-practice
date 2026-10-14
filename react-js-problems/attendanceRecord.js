@@ -11,9 +11,7 @@ function isAwardEligible(attendance) {
   let absent = '';
   let late = '';
   
-  for (let i = 0; i < attendance.length; i++) {
-    const char = attendance[i];
-  
+  for (const char of attendance) {
     if (char === 'A') {
       absent += 'A';
     }
