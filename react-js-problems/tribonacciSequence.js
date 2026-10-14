@@ -14,24 +14,17 @@ function getTribonacciSequence(start, n) {
   const numbers = [];
 
   for (let i = 0; i < n; i++) {
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-    if (i < 2) {
+    if (i <= 2) {
       numbers.push(start[i]);
       continue;
     }
 
-    console.log(numbers)
-
     const lastNum = numbers[numbers.length - 1];
-    console.log('lastNum:', lastNum)
-
-    let previous3Numbers = numbers.slice(numbers.length - 3, numbers.length - 1);
-
-    console.log('previous3Numbers', previous3Numbers)
+    const previous3Numbers = numbers.slice(
+      numbers.length - 3, numbers.length - 1,
+    );
 
     previous3Numbers.push(lastNum);
-
-    console.log('previous3Numbers', previous3Numbers)
 
     const tribNum = previous3Numbers.reduce(
       (sum, currentValue) => sum + currentValue, 
@@ -55,3 +48,5 @@ console.log(getTribonacciSequence([2, 5, 8], 2));
 
 console.log(getTribonacciSequence([10, 11, 12], 0));
 // []
+
+// Works as expected
