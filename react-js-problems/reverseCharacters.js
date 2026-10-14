@@ -19,6 +19,10 @@ ________________________________________
 */
 
 function reverseChars(str, k) {
+  if (str.length < k) {
+    return str.split('').reverse().join('');
+  }
+
   let newStr = '';
   let temp = [];
   let step = k;
@@ -62,5 +66,13 @@ console.log(reverseChars('abcdefg', 2)); // 'bacdfeg'
 console.log(reverseChars('abcdabcdabcd', 3)); // 'cbadabadcbcd'
 console.log(reverseChars('qwerty', 6)); // 'ytrewq'
 console.log(reverseChars('zxcv', 1)); // 'zxcv'
+
+
+// `should not change the input string if string length = 1`
+console.log(reverseChars('l', 6)); // 'l'
+
+// `should reverse the whole string if string length is less than k`
+console.log(reverseChars('gnirtsllams', 15)); 
+// 'smallstring'
 
 // Works as expected
