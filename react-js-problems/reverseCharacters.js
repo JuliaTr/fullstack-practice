@@ -8,14 +8,23 @@ Create a function `reverseChars` that:
 
 ________________________________________
 
-'abcdefg'
-
+'abcdefg', 2
 .      .
 'ba cd fe g'
 
 
-'abcdabcdabcd'
+'abcdabcdabcd', 3
 'cba dab adc bcd'
+
+
+'veeroythrepari', 2
+.      .     .     .
+'ev er yo th er pa ir'
+
+
+'rewqtyuisapodfghlkj'
+
+'rewqtyuisapodfghlkj'
 */
 
 function reverseChars(str, k) {
@@ -29,32 +38,40 @@ function reverseChars(str, k) {
   let isIncreased = false;
 
   for (let i = 0; i < str.length; i++) {
-    // console.log('~~~~~~~~~~~~~~~~~~~~~')
-    // console.log(newStr)
-    // console.log(temp)
-    // console.log(isIncreased)
+    console.log('~~~~~~~~~~~~~~~~~~~~~')
+    console.log('newStr:', newStr)
+    console.log(`temp:`, temp)
+    console.log('isIncreased', isIncreased)
+    console.log('i:', i)
+    console.log('step:', step)
 
     const char = str[i];
 
-    // console.log(char)
+    console.log('char:', char)
 
     if (isIncreased) {
+      console.log('print1')
       newStr += char;
     } else {
+      console.log('print2')
       temp.push(char);
     }
 
+    console.log(`temp:`, temp)
+
     if (temp.length === k) {
+      console.log('print3')
       newStr += temp.reverse().join('');
 
-      // console.log(temp)
+      console.log(temp)
 
       temp = [];
-      step *= 2;
+      step += 2 * k;
       isIncreased = true;
     }
 
-    if (i === step - 1) {
+    if (i === step - 3) {
+      console.log('print4')
       isIncreased = false;
     }
   }
@@ -62,17 +79,27 @@ function reverseChars(str, k) {
   return newStr;
 }
 
-console.log(reverseChars('abcdefg', 2)); // 'bacdfeg' 
-console.log(reverseChars('abcdabcdabcd', 3)); // 'cbadabadcbcd'
-console.log(reverseChars('qwerty', 6)); // 'ytrewq'
-console.log(reverseChars('zxcv', 1)); // 'zxcv'
+// console.log(reverseChars('abcdefg', 2)); // 'bacdfeg' 
+// console.log(reverseChars('abcdabcdabcd', 3)); // 'cbadabadcbcd'
+// console.log(reverseChars('qwerty', 6)); // 'ytrewq'
+// console.log(reverseChars('zxcv', 1)); // 'zxcv'
 
 
-// `should not change the input string if string length = 1`
-console.log(reverseChars('l', 6)); // 'l'
+// `should reverse every other pair of characters if k = 2`
+console.log(reverseChars('veeroythrepari', 2));
+// 'everyotherpair'
 
-// `should reverse the whole string if string length is less than k`
-console.log(reverseChars('gnirtsllams', 15)); 
-// 'smallstring'
+
+// // `should reverse all characters at the end of the string if there are fewer than k characters left`
+// console.log(reverseChars('qwertyuiopasdfghjkl', 4));
+// // 'rewqtyuisapodfghlkj'
+
+
+// // `should not change the input string if string length = 1`
+// console.log(reverseChars('l', 6)); // 'l'
+
+// // `should reverse the whole string if string length is less than k`
+// console.log(reverseChars('gnirtsllams', 15)); 
+// // 'smallstring'
 
 // Works as expected
