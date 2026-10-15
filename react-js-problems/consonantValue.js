@@ -47,11 +47,14 @@ function calculateGroupsOfConsonants(str) {
 }
 
 function getHighestValue(str) {
+  if (str.length === 0) {
+    return 0;
+  }
+
   const consonants = calculateGroupsOfConsonants(str);
+  const sortedKeys = Object.keys(consonants).sort();
 
-  
-
-  return consonants;
+  return Number(sortedKeys[sortedKeys.length - 1]);
 }
 
 console.log(getHighestValue('aeuiae')); // 0 
