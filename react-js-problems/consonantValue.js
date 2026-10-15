@@ -21,42 +21,28 @@ For example, let's take the word `'testing'`, which contains three consonant sub
 The highest value among the substrings is `39`, so the function should return this exact number.
 */
 
+// Refactored:
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
 
 function calculateGroupsOfConsonants(str) {
-  const consonants = {};
-  let temp = '';
+  const counts = [];
   let consonantCount = 0;
 
   for (let i = 0; i < str.length; i++) {
-    // console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-
     const char = str[i];
     const isConsonant = char.match(/[^aeiou0-9/\W]/gi);
 
-    // console.log('char:', char)
-    // console.log('temp:', temp)
-    // console.log('consonantCount:', consonantCount)
-
     if (isConsonant) {
-      // console.log('print1')
-
-      temp += char;
       consonantCount += ALPHABET.indexOf(char) + 1;
-
-      // console.log('temp:', temp)
-      // console.log('consonantCount:', consonantCount)
     }
 
-    if ((!isConsonant && temp.length > 0) || i + 1 === str.length) {
-      // console.log('print2')
-      consonants[consonantCount] = temp;
-      temp = '';
+    if ((!isConsonant && consonantCount > 0) || i + 1 === str.length) {
+      counts.push(consonantCount);
       consonantCount = 0;
     }
   }
 
-  return consonants;
+  return counts;
 }
 
 function getHighestValue(str) {
@@ -64,13 +50,10 @@ function getHighestValue(str) {
     return 0;
   }
 
-  const consonants = calculateGroupsOfConsonants(str);
-  // console.log(consonants)
+  const consonantCounts = calculateGroupsOfConsonants(str);
+  const sortedCounts = consonantCounts.sort((a, b) => a - b);
 
-  const sortedKeys = Object.keys(consonants).sort((a, b) => Number(a) - Number(b));
-  // console.log(sortedKeys)
-
-  return Number(sortedKeys[sortedKeys.length - 1]);
+  return Number(sortedCounts[sortedCounts.length - 1]);
 }
 
 console.log(getHighestValue('aeuiae')); // 0 
@@ -85,3 +68,65 @@ console.log(getHighestValue('')); // 0
 
 // `should return the value of a greater consonant if a string contains only two separated consonants`
 console.log(getHighestValue('bake')); // 11
+
+// `should return the value of any of the greatest groups if they have equal values`
+console.log(getHighestValue('almuafseebc')); // 25;
+
+
+
+
+
+// // Solution:
+// const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
+
+// function calculateGroupsOfConsonants(str) {
+//   const consonants = {};
+//   let temp = '';
+//   let consonantCount = 0;
+
+//   for (let i = 0; i < str.length; i++) {
+//     const char = str[i];
+//     const isConsonant = char.match(/[^aeiou0-9/\W]/gi);
+
+//     if (isConsonant) {
+//       temp += char;
+//       consonantCount += ALPHABET.indexOf(char) + 1;
+//     }
+
+//     if ((!isConsonant && temp.length > 0) || i + 1 === str.length) {
+//       consonants[consonantCount] = temp;
+//       temp = '';
+//       consonantCount = 0;
+//     }
+//   }
+
+//   return consonants;
+// }
+
+// function getHighestValue(str) {
+//   if (str.length === 0) {
+//     return 0;
+//   }
+
+//   const consonants = calculateGroupsOfConsonants(str);
+//   const keys = Object.keys(consonants);
+//   const sortedKeys = keys.sort((a, b) => Number(a) - Number(b));
+
+//   return Number(sortedKeys[sortedKeys.length - 1]);
+// }
+
+// console.log(getHighestValue('aeuiae')); // 0 
+// // no consonants
+
+// console.log(getHighestValue('d')); // 4 
+// console.log(getHighestValue('blink')); // 25 
+// // 'nk' has the highest value, which is 14 + 11 = 25
+
+// console.log(getHighestValue('')); // 0 
+// // no consonants
+
+// // `should return the value of a greater consonant if a string contains only two separated consonants`
+// console.log(getHighestValue('bake')); // 11
+
+// // `should return the value of any of the greatest groups if they have equal values`
+// console.log(getHighestValue('almuafseebc')); // 25;
