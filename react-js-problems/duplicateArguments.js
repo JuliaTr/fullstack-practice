@@ -7,10 +7,12 @@ Create a function `detectDuplicates` that:
 Said function can take strings, numbers, booleans, `null` and `undefined`.
 */
 
-function detectDuplicates() {
+const DUPLICATE = 2;
+
+function calculateFrequencies(args) {
   const frequencies = {};
 
-  for (const value of arguments) {
+  for (const value of args) {
     if (frequencies[value]) {
       frequencies[value] += 1;
     } else {
@@ -19,6 +21,13 @@ function detectDuplicates() {
   }
 
   return frequencies;
+}
+
+function detectDuplicates() {
+  const frequencies = calculateFrequencies(arguments);
+  const values = Object.values(frequencies);
+
+  return values.includes(DUPLICATE);
 }
 
 console.log(detectDuplicates(1, 2, 3)); // false
