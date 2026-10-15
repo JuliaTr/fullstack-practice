@@ -13,10 +13,17 @@ function calculateFrequencies(args) {
   const frequencies = {};
 
   for (const value of args) {
-    if (frequencies[value]) {
-      frequencies[value] += 1;
+    let newValue = value;
+    const isString = value === String(newValue);
+
+    if (isString) {
+      newValue = '_' + newValue;
+    }
+
+    if (frequencies[newValue]) {
+      frequencies[newValue] += 1;
     } else {
-      frequencies[value] = 1;
+      frequencies[newValue] = 1;
     }
   }
 
@@ -33,4 +40,11 @@ function detectDuplicates() {
 console.log(detectDuplicates(1, 2, 3)); // false
 console.log(detectDuplicates(1, 2, 'a', 1)); // true
 console.log(detectDuplicates(true, true, false)); // true
-console.log(detectDuplicates(undefined, null, 0)); // false
+console.log(detectDuplicates(undefined, null, 0)); 
+// false
+
+// `should work with numbers and number strings`
+console.log(detectDuplicates(1, 2, 3, '1', '2', '3')); 
+// false
+
+// Works as expected
