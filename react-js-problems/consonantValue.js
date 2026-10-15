@@ -29,17 +29,30 @@ function calculateGroupsOfConsonants(str) {
   let consonantCount = 0;
 
   for (let i = 0; i < str.length; i++) {
+    // console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+
     const char = str[i];
     const isConsonant = char.match(/[^aeiou0-9/\W]/gi);
 
+    // console.log('char:', char)
+    // console.log('temp:', temp)
+    // console.log('consonantCount:', consonantCount)
+
     if (isConsonant) {
+      // console.log('print1')
+
       temp += char;
       consonantCount += ALPHABET.indexOf(char) + 1;
+
+      // console.log('temp:', temp)
+      // console.log('consonantCount:', consonantCount)
     }
 
     if ((!isConsonant && temp.length > 0) || i + 1 === str.length) {
+      // console.log('print2')
       consonants[consonantCount] = temp;
       temp = '';
+      consonantCount = 0;
     }
   }
 
@@ -52,7 +65,10 @@ function getHighestValue(str) {
   }
 
   const consonants = calculateGroupsOfConsonants(str);
-  const sortedKeys = Object.keys(consonants).sort();
+  // console.log(consonants)
+
+  const sortedKeys = Object.keys(consonants).sort((a, b) => Number(a) - Number(b));
+  // console.log(sortedKeys)
 
   return Number(sortedKeys[sortedKeys.length - 1]);
 }
@@ -66,3 +82,6 @@ console.log(getHighestValue('blink')); // 25
 
 console.log(getHighestValue('')); // 0 
 // no consonants
+
+// `should return the value of a greater consonant if a string contains only two separated consonants`
+console.log(getHighestValue('bake')); // 11
