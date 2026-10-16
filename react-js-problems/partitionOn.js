@@ -20,6 +20,7 @@ The partitioning should be done `in-place`, so you have to modify the `items` ar
  */
 
 function partitionItems(pred, items) {
+  // Two pointers
   let idx = 0;
   let endIdx = items.length;
 
@@ -31,17 +32,19 @@ function partitionItems(pred, items) {
 
       items.splice(idx, 1);
       items.push(temp);
+      endIdx--;
     }
 
-    idx++;
+    if (!pred(item)) {
+      idx++;
+    }
   }
 
-  return items
+  return items;
 }
 
 function partitionArray(pred, items) {
   const partitions = partitionItems(pred, items);
-  console.log(partitions)
 
   for (let i = 0; i < partitions.length; i++) {
     if (pred(partitions[i])) {
@@ -52,11 +55,11 @@ function partitionArray(pred, items) {
   return partitions.length;
 }
 
-// const items = [1, 2, 3, 4, 5, 6];
-// function isEven(n) {return n % 2 === 0};
+const items = [1, 2, 3, 4, 5, 6];
+function isEven(n) {return n % 2 === 0};
 
-// console.log(partitionArray(isEven, items)); // 3 
-// // items should now be [1, 3, 5, 2, 4, 6]
+console.log(partitionArray(isEven, items)); // 3 
+// items should now be [1, 3, 5, 2, 4, 6]
 
 
 // // `should partition the array in-place`
@@ -86,3 +89,5 @@ function partitionArray(pred, items) {
 // const items = ['ab', 'cd', 'ef', 'gh', 'ij'];
 
 // console.log(partitionArray((el => el.length > 2), items)); // 5
+
+// All test cases work as expected
