@@ -41,8 +41,15 @@ function partitionItems(pred, items) {
 
 function partitionArray(pred, items) {
   const partitions = partitionItems(pred, items);
+  console.log(partitions)
 
-  return partitions.length - 3;
+  for (let i = 0; i < partitions.length; i++) {
+    if (pred(partitions[i])) {
+      return i;
+    }
+  }
+
+  return partitions.length;
 }
 
 // const items = [1, 2, 3, 4, 5, 6];
@@ -52,11 +59,11 @@ function partitionArray(pred, items) {
 // // items should now be [1, 3, 5, 2, 4, 6]
 
 
-// `should partition the array in-place`
-const items = ['I', 'study', 'in', 'Mate', 'academy'];
+// // `should partition the array in-place`
+// const items = ['I', 'study', 'in', 'Mate', 'academy'];
 
-console.log(partitionArray(el => el.length > 4, items));
-// ['I', 'in', 'Mate', 'study', 'academy'])
+// console.log(partitionArray(el => el.length > 4, items));
+// // ['I', 'in', 'Mate', 'study', 'academy'])
 
 
 
