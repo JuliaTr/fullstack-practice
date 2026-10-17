@@ -1,3 +1,5 @@
+// Ex1:
+
 // function print(value) {
 //   console.log(`Value is ${value}`);
 // }
@@ -22,10 +24,16 @@ const form = document.querySelector('form');
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  const x = form.element.x.value;
-  const y = form.element.y.value;
+  const x = form.elements.x.value;
+  const y = form.elements.y.value;
   const z = form.elements.z.value;
 
   calculate(x, y, z); 
   // wrong calculations here, because `+` will be not addition, but concatenation
 });
+
+/*
+(2 + 3) * 10 = 50
+(1 + 5) * 2 = 12
+(1 + 5) * 2 = 30
+*/
