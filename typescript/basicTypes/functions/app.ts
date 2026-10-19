@@ -8,6 +8,22 @@ const result = add(2, 3);
 console.log(result);
 
 
+
+// // `void` - returns nothing:
+// function add(x: number, y: number): void {
+//   // doesn't allow to return smth else, but not `void`
+//   // if (true) {
+//   //   return 123;
+//   // }
+
+//   return; // valid
+//   // return undefined; // valid
+// }
+
+
+
+
+
 // Function expression:
 // // Option 1:
 // const multiply = (x: number, y: number): number => {
