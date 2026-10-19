@@ -5,8 +5,9 @@ function add(x, y) {
 }
 const result = add(2, 3);
 console.log(result);
-// Function expression:
-// Option 1:
+const subtract = (x, y) => {
+    return x - y;
+};
 const multiply = (x, y) => {
     return x + y;
 };
