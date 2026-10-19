@@ -1,9 +1,16 @@
+/*
+`y?: number` - optional parameter
+`y = 0` - optional parameter, too (type is defined by the value type)
+
+Don't combine these two options. Use either or. 
+*/
+
 // Function declaration:
-function add(x: number, y: number): number {
+function add(x: number, y = 0): number {
   return x + y;
 }
 
-const result = add(2, 3);
+const result = add(2);
 
 console.log(result);
 
