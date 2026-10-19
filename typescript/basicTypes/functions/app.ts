@@ -55,3 +55,10 @@ const multiply = (x: number, y: number): number => {
 
 // const sum: Callback = (a, b) => a + b;
 // const multiply: Callback = (a, b) => a * b;
+
+
+
+// type Callback = (a: number, b: number) => number;
+
+// const square: Callback = a => a * a;
+// const reply: Callback = () => 42;
