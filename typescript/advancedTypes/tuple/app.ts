@@ -8,4 +8,9 @@ To maintain the necessary order:
 - `boolean?` is optional for the third element; it may be absolutely absent
 */
 
-const data: [string, number, boolean?] = ['coach', 39, false];
+// const data: [string, number, boolean?] = ['coach', 39, false];
+
+
+// Custom type
+type UserData = [string, number, boolean?];
+const data: UserData = ['coach', 39, false];
