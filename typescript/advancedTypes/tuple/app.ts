@@ -11,6 +11,16 @@ To maintain the necessary order:
 // const data: [string, number, boolean?] = ['coach', 39, false];
 
 
-// Custom type
+// // Custom type
+// type UserData = [string, number, boolean?];
+// const data: UserData = ['coach', 39, false];
+
+// With destructuring:
 type UserData = [string, number, boolean?];
-const data: UserData = ['coach', 39, false];
+const [role, age1, hasGroup = false]: UserData = ['coach', 39, false];
+
+/*
+In React such hook will always return `useState`.
+
+const [value, setValue]: UserData = ['coach', 39, false];
+*/
