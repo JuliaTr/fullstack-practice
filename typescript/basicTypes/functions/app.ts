@@ -16,7 +16,7 @@ console.log(result);
 
 
 
-// // `void` - returns nothing:
+// // `void` - does NOT return a value or returns `undefined`:
 // function add(x: number, y: number): void {
 //   // doesn't allow to return smth else, but not `void`
 //   // if (true) {
@@ -26,8 +26,6 @@ console.log(result);
 //   return; // valid
 //   // return undefined; // valid
 // }
-
-
 
 
 
@@ -62,3 +60,13 @@ const multiply = (x: number, y: number): number => {
 
 // const square: Callback = a => a * a;
 // const reply: Callback = () => 42;
+
+
+
+// type Callback = (a: number, b: number) => void;
+
+// const printArgs: Callback = (...args) => {
+//   console.log(args);
+// }
+
+// const f2: Callback = () => '123';
