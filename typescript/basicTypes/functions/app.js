@@ -24,3 +24,8 @@ const multiply = (x, y) => {
 // type Callback = (a: number, b: number) => number;
 // const square: Callback = a => a * a;
 // const reply: Callback = () => 42;
+// type Callback = (a: number, b: number) => void;
+// const printArgs: Callback = (...args) => {
+//   console.log(args);
+// }
+// const f2: Callback = () => '123';
