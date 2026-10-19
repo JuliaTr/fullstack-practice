@@ -17,3 +17,7 @@ const subtract = (x, y) => {
 const multiply = (x, y) => {
     return x + y;
 };
+// // More examples:
+// type Callback = (a: number, b: number) => number;
+// const sum: Callback = (a, b) => a + b;
+// const multiply: Callback = (a, b) => a * b;
