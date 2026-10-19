@@ -2,7 +2,7 @@
 let value: 
 // `value`'s value can be anything
 
-let value: any;
+let value: any; // BAD practice
 
 value = 123;
 value = 'qwe';
@@ -24,7 +24,9 @@ let isMarried = false;  // 'boolean' type
 let wife = null;        // 'any' type 
 // let wife: null = null; // 'null' type
 
-// let wife: null | string = null;
+// let wife: null | string = 'Carol; // valid 
+// `null | string` legitimate empty value
+
 // wife = 123; // error (neither `null`, not string)
 // wife = 'qwe`;
 // wife = null;
