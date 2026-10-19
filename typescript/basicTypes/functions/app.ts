@@ -70,3 +70,24 @@ const multiply = (x: number, y: number): number => {
 // }
 
 // const f2: Callback = () => '123';
+
+
+
+// function doSomething(): void {
+//   console.log('Doing something ...');
+// }
+
+// function test(x: number): void {
+//   if (x > 10) {
+//     return;
+//   }
+
+//   if (x < 0) {
+//     return undefined;
+//   }
+
+//   if (x === 5) {
+//     return 5; 
+//     // Type 'number' is not assignable to type 'void'
+//   }
+// }
