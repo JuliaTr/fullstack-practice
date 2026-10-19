@@ -16,3 +16,11 @@ function printProduct1(id: ProductId) {
 }
 
 console.log(printProduct1(productId1));
+
+
+
+// // More examples:
+// type ConfigOption = string | string[] | boolean;
+
+// let files: ConfigOption = [];
+// let imports: ConfigOption = false;
