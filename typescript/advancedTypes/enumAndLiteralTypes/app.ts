@@ -42,3 +42,12 @@ console.log(size2); // 0
 
 
 
+// Option 2:
+enum PizzaSize3 {
+  small = 'small',
+  medium = 'medium',
+  large = 'large',
+}
+
+let size3: PizzaSize3 = PizzaSize3.small;
+console.log(size3); // small
