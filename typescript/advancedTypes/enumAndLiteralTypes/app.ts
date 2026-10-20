@@ -30,6 +30,7 @@ console.log(size);
 
 
 // Enum type:
+// `enum` creates an object with a set of keys and numeric values by default 0, 1, 2...
 // Option 1:
 enum PizzaSize2 {
   small,  // 0
