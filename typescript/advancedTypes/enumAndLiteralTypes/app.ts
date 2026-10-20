@@ -25,3 +25,20 @@ console.log(size);
 // size = 'large123'; // error 
 // (limit which values to use)
 // console.log(size)
+
+
+
+
+// Enum type:
+// Option 1:
+enum PizzaSize2 {
+  small,  // 0
+  medium, // 1
+  large,  // 2
+}
+
+let size2: PizzaSize2 = PizzaSize2.small;
+console.log(size2); // 0
+
+
+
