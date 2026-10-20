@@ -75,34 +75,62 @@ Objects:
 
 
 
-type Point2D = {
-  readonly x: number;
-  y?: number;
-};
-interface Point extends Point2D {
-  z: number;
-};
+// type Point2D = {
+//   readonly x: number;
+//   y?: number;
+// };
+// interface Point extends Point2D {
+//   z: number;
+// };
 
-type Collection = {
-  [key: string]: number,
-};
+// type Collection = {
+//   [key: string]: number,
+// };
 
-const pointA: Point = {
-  x: 0,
-  z: 2,
-  // x1: 12,
-  // Object literal may only specify known properties, and 'x1' does not exist in type 'Point'
-};
+// const pointA: Point = {
+//   x: 0,
+//   z: 2,
+//   // x1: 12,
+//   // Object literal may only specify known properties, and 'x1' does not exist in type 'Point'
+// };
 
-// pointA.x = 12; 
-// Cannot assign to 'x' because it is a read-only property.
+// // pointA.x = 12; 
+// // Cannot assign to 'x' because it is a read-only property.
 
 
-function test(a: Point2D) {
+// function test(a: Point2D) {
 
-}
+// }
 
-test(pointA);
+// test(pointA);
+
+
+
+// // Valid
+// type Point2D = {
+//   readonly x: number;
+//   y?: number;
+// };
+// interface Point {
+//   readonly x: number;
+//   y?: number;
+//   z: number;
+// };
+
+// type Collection = {
+//   [key: string]: number,
+// };
+
+// const pointA: Point = {
+//   x: 0,
+//   z: 2,
+// };
+
+// function test(a: Point2D) {
+
+// }
+
+// test(pointA);
 
 
 
@@ -116,6 +144,39 @@ test(pointA);
 // type Point1 = Point2D1 & {
 //   z: number;
 // };
+
+
+
+// `Omit`
+type Point2D = {
+  readonly x: number;
+  y?: number;
+};
+interface Point {
+  readonly x: number;
+  y?: number;
+  z: number;
+};
+
+type Collection = {
+  [key: string]: number,
+};
+
+const pointA: Point = {
+  x: 0,
+  y: 1,
+  z: 2,
+};
+
+// `Omit` - utility type; creates a new object type, which has all properties with their types without `z` property
+function test(a: Omit<Point, 'z'>) {
+
+}
+
+test({
+  x: 0,
+  y: 1,
+});
 
 
 
