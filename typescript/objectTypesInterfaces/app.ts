@@ -147,26 +147,26 @@ Objects:
 
 
 
-// `Omit`, `Pick`, `Partial`, `Required`:
-type Point2D = {
-  readonly x: number;
-  y?: number;
-};
-interface Point {
-  readonly x: number;
-  y?: number;
-  z: number;
-};
+// // `Omit`, `Pick`, `Partial`, `Required` utils:
+// type Point2D = {
+//   readonly x: number;
+//   y?: number;
+// };
+// interface Point {
+//   readonly x: number;
+//   y?: number;
+//   z: number;
+// };
 
-type Collection = {
-  [key: string]: number,
-};
+// type Collection = {
+//   [key: string]: number,
+// };
 
-const pointA: Point = {
-  x: 0,
-  y: 1,
-  z: 2,
-};
+// const pointA: Point = {
+//   x: 0,
+//   y: 1,
+//   z: 2,
+// };
 
 // // `Omit` - utility type; creates a new object type, which has all properties with their types without `z` property
 // function test(a: Omit<Point, 'z'>) {
@@ -202,16 +202,48 @@ const pointA: Point = {
 // });
 
 
-// `Required` - all keys from type `Point` are required
-function test(a: Required<Point>) {
+// // `Required` - all keys from type `Point` are required
+// function test(a: Required<Point>) {
 
-}
+// }
 
-test({
+// test({
+//   x: 0,
+//   y: 0,
+//   z: 0,
+// });
+
+
+
+
+
+
+// `Readonly` util:
+type Point2D = {
+  readonly x: number;
+  y?: number;
+};
+interface Point {
+  readonly x: number;
+  y?: number;
+  z: number;
+};
+
+type Collection = {
+  [key: string]: number,
+};
+
+// `Readonly` - property cannot be reassigned
+const pointA: Readonly<Point> = {
   x: 0,
-  y: 0,
-  z: 0,
-});
+  y: 1,
+  z: 2,
+};
+
+// pointA.x = 10;
+// Cannot assign to 'x' because it is a read-only property.ts(2540)
+
+
 
 
 // More examples:
