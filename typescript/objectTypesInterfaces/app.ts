@@ -1,14 +1,15 @@
+
 // type Point2 = {
 //   x: number;
 //   y: number;
 //   z: number;
-// }
+// };
 
 // interface Point {
 //   x: number;
 //   y: number;
 //   z: string;
-// }
+// };
 
 // const pointA: Point = {
 //   x: 0,
@@ -16,21 +17,27 @@
 //   z: '2',
 // };
 
+  
+/*
+Objects:
+- interfaces and type for objects are interchangable
+- `?` for optional property
+- `readonly` property caaanot be changed
+*/
 
 
-
-
+// Object:
 // type Point2 = {
 //   x: number;
 //   y: number;
 //   z: number;
-// }
+// };
 
 // interface Point {
 //   x: number;
 //   y: number;
 //   z: string;
-// }
+// };
 
 // // `object` - for non primitive value; if we don't know which data type we have
 // const pointA: object = {
@@ -42,23 +49,22 @@
 
 
 
-
 // type Point2 = {
 //   x: number;
 //   y: number;
 //   z: number;
-// }
+// };
 
 // interface Point {
 //   x: number;
 //   y: number;
 //   z: string;
-// }
+// };
 
 // // if we don't know which keys we can have in object, but we know types of values, type object:
 // type Collection = {
 //   [key: string]: number,
-// }
+// };
 
 // const pointA: Collection = {
 //   x: 0,
@@ -70,23 +76,46 @@
 
 
 type Point2D = {
-  x: number;
-  y: number;
-}
+  readonly x: number;
+  y?: number;
+};
 interface Point extends Point2D {
   z: number;
-}
+};
 
 type Collection = {
   [key: string]: number,
-}
+};
 
 const pointA: Point = {
   x: 0,
-  y: 1,
   z: 2,
+  // x1: 12,
+  // Object literal may only specify known properties, and 'x1' does not exist in type 'Point'
 };
 
+// pointA.x = 12; 
+// Cannot assign to 'x' because it is a read-only property.
+
+
+function test(a: Point2D) {
+
+}
+
+test(pointA);
+
+
+
+
+// interface Point2D1 {
+//   x: number;
+//   y: number;
+// };
+
+// // type includes all properties of interface `Point2D1` and `z: number` property
+// type Point1 = Point2D1 & {
+//   z: number;
+// };
 
 
 
@@ -97,13 +126,13 @@ const pointA: Point = {
 //   x: number;
 //   y: number;
 //   z: number;
-// }
+// };
 
 // interface Point {
 //   x: number;
 //   y: number;
 //   z: string;
-// }
+// };
 
 // const pointA: object = [];
 
@@ -115,12 +144,12 @@ const pointA: Point = {
 //   x: number;
 //   y: number;
 //   z: number;
-// }
+// };
 
 // interface Point {
 //   x: number;
 //   y: number;
 //   z: string;
-// }
+// };
 
 // const pointA: object = () => {};
