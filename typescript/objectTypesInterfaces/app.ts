@@ -43,24 +43,45 @@
 
 
 
-type Point2 = {
+// type Point2 = {
+//   x: number;
+//   y: number;
+//   z: number;
+// }
+
+// interface Point {
+//   x: number;
+//   y: number;
+//   z: string;
+// }
+
+// // if we don't know which keys we can have in object, but we know types of values, type object:
+// type Collection = {
+//   [key: string]: number,
+// }
+
+// const pointA: Collection = {
+//   x: 0,
+//   y: 1,
+//   z: 2,
+// };
+
+
+
+
+type Point2D = {
   x: number;
   y: number;
+}
+interface Point extends Point2D {
   z: number;
 }
 
-interface Point {
-  x: number;
-  y: number;
-  z: string;
-}
-
-// if we don't know which keys we can have in object, but we know types of values, type object:
 type Collection = {
   [key: string]: number,
 }
 
-const pointA: Collection = {
+const pointA: Point = {
   x: 0,
   y: 1,
   z: 2,
