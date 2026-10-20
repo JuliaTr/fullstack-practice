@@ -17,3 +17,12 @@ var PizzaSize2;
 })(PizzaSize2 || (PizzaSize2 = {}));
 let size2 = PizzaSize2.small;
 console.log(size2); // 0
+// Option 2:
+var PizzaSize3;
+(function (PizzaSize3) {
+    PizzaSize3["small"] = "small";
+    PizzaSize3["medium"] = "medium";
+    PizzaSize3["large"] = "large";
+})(PizzaSize3 || (PizzaSize3 = {}));
+let size3 = PizzaSize3.small;
+console.log(size3); // small
