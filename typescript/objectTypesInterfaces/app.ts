@@ -147,41 +147,7 @@ Objects:
 
 
 
-// // `Omit`
-// type Point2D = {
-//   readonly x: number;
-//   y?: number;
-// };
-// interface Point {
-//   readonly x: number;
-//   y?: number;
-//   z: number;
-// };
-
-// type Collection = {
-//   [key: string]: number,
-// };
-
-// const pointA: Point = {
-//   x: 0,
-//   y: 1,
-//   z: 2,
-// };
-
-// // `Omit` - utility type; creates a new object type, which has all properties with their types without `z` property
-// function test(a: Omit<Point, 'z'>) {
-
-// }
-
-// test({
-//   x: 0,
-//   y: 1,
-// });
-
-
-
-
-// `Pick`
+// `Omit`, `Pick`, `Partial`, `Required`:
 type Point2D = {
   readonly x: number;
   y?: number;
@@ -202,16 +168,50 @@ const pointA: Point = {
   z: 2,
 };
 
-// `Pick` - utility type which will have obligatory `z` property of necessary type
-function test(a: Pick<Point, 'z'>) {
+// // `Omit` - utility type; creates a new object type, which has all properties with their types without `z` property
+// function test(a: Omit<Point, 'z'>) {
+
+// }
+
+// test({
+//   x: 0,
+//   y: 1,
+// });
+
+
+// // `Pick` - utility type which will have obligatory `z` property of necessary type
+// function test(a: Pick<Point, 'z'>) {
+
+// }
+
+// test({
+//   z: 0, // should pass only `z`
+// });
+
+
+// // `Partial` - object will have any properties from the type without extra properties
+// function test(a: Partial<Point>) {
+
+// }
+
+// test({
+//   z: 0,
+//   x: 0,
+//   // t: 0,
+//   // Object literal may only specify known properties, and 't' does not exist in type 'Partial<Point>'.
+// });
+
+
+// `Required` - all keys from type `Point` are required
+function test(a: Required<Point>) {
 
 }
 
 test({
-  z: 0, // should pass only `z`
+  x: 0,
+  y: 0,
+  z: 0,
 });
-
-
 
 
 // More examples:
