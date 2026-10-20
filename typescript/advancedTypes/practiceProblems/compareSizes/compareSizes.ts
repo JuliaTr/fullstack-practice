@@ -13,9 +13,12 @@ enum ClothingSize {
   xs, s, m, l, xl,
 }
 
+// `keyof typeof` - enum's keys
+type SizeStrings = keyof typeof ClothingSize;
+
 function canIWear(
-  mySize: keyof typeof ClothingSize, 
-  itemSize: keyof typeof ClothingSize
+  mySize: SizeStrings, 
+  itemSize: SizeStrings
 ): boolean {
   return ClothingSize[mySize] <= ClothingSize[itemSize];
 }
