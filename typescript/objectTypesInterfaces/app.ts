@@ -147,6 +147,9 @@ Objects:
 
 
 
+
+
+
 // // `Omit`, `Pick`, `Partial`, `Required` utils:
 // type Point2D = {
 //   readonly x: number;
@@ -217,7 +220,6 @@ Objects:
 
 
 
-
 // `Readonly` util:
 type Point2D = {
   readonly x: number;
@@ -242,6 +244,16 @@ const pointA: Readonly<Point> = {
 
 // pointA.x = 10;
 // Cannot assign to 'x' because it is a read-only property.ts(2540)
+
+function test(a: keyof Point) {
+
+}
+
+test('x');
+// test('q');
+// Argument of type '"q"' is not assignable to parameter of type 'keyof Point'.
+
+
 
 
 
