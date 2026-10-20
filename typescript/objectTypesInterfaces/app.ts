@@ -147,7 +147,41 @@ Objects:
 
 
 
-// `Omit`
+// // `Omit`
+// type Point2D = {
+//   readonly x: number;
+//   y?: number;
+// };
+// interface Point {
+//   readonly x: number;
+//   y?: number;
+//   z: number;
+// };
+
+// type Collection = {
+//   [key: string]: number,
+// };
+
+// const pointA: Point = {
+//   x: 0,
+//   y: 1,
+//   z: 2,
+// };
+
+// // `Omit` - utility type; creates a new object type, which has all properties with their types without `z` property
+// function test(a: Omit<Point, 'z'>) {
+
+// }
+
+// test({
+//   x: 0,
+//   y: 1,
+// });
+
+
+
+
+// `Pick`
 type Point2D = {
   readonly x: number;
   y?: number;
@@ -168,14 +202,13 @@ const pointA: Point = {
   z: 2,
 };
 
-// `Omit` - utility type; creates a new object type, which has all properties with their types without `z` property
-function test(a: Omit<Point, 'z'>) {
+// `Pick` - utility type which will have obligatory `z` property of necessary type
+function test(a: Pick<Point, 'z'>) {
 
 }
 
 test({
-  x: 0,
-  y: 1,
+  z: 0, // should pass only `z`
 });
 
 
