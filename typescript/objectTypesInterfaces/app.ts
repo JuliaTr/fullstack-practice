@@ -43,6 +43,25 @@
 
 
 
+// type Point2 = {
+//   x: number;
+//   y: number;
+//   z: number;
+// }
+
+// interface Point {
+//   x: number;
+//   y: number;
+//   z: string;
+// }
+
+// // `object` - if we don't know which data type we have
+// const pointA: object = [];
+
+
+
+
+
 type Point2 = {
   x: number;
   y: number;
@@ -56,4 +75,4 @@ interface Point {
 }
 
 // `object` - if we don't know which data type we have
-const pointA: object = [];
+const pointA: object = () => {};
