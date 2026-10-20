@@ -9,11 +9,17 @@ Create a function `canIWear` that:
 There are five available sizes, `xs`, `s`, `m`, `l` and `xl`.
 */
 
+// enum's value type
 enum ClothingSize {
   xs, s, m, l, xl,
 }
 
 // `keyof typeof` - enum's keys
+// `keyof` - gets the keys of a type
+// `typeof` - obtains a type from a value
+// `typeof ClothingSize` - refers to enum object
+
+// Extract its member names as a union of string literal types
 type SizeStrings = keyof typeof ClothingSize;
 
 function canIWear(
