@@ -21,10 +21,19 @@ Modificators:
 `abstract`:
 - is added to the class when I don't want to let to create objects of this class
 - instead it contains basic interface
+
+
+`implements`:
+- class should always use implemented inteface (its all properties)
+- can implement many interfaces
 */
 
 // Valid
-abstract class Point2D {
+interface Position2D {
+  x: number;
+  y: number;
+}
+abstract class Point2D implements Position2D {
   constructor(
     // `readonly` and `protected readonly` work the same
     readonly x: number, 
@@ -52,7 +61,6 @@ class Point3D extends Point2D {
     console.log(`(${x}, ${y}, ${z})`);
   }
 }
-
 class Place extends Point2D {
   constructor(public name: string, x: number, y: number) {
     super(x, y);
@@ -61,6 +69,59 @@ class Place extends Point2D {
 
 const a = new Point3D(1, 2);
 a.printPosition();
+
+console.log(a.x);
+print2DInfo(a);
+
+function print2DInfo(point: Position2D) {
+  const { x, y } = point;
+
+  console.log(`(${x}, ${y})`);
+}
+
+
+
+
+
+// // Valid
+// abstract class Point2D {
+//   constructor(
+//     // `readonly` and `protected readonly` work the same
+//     readonly x: number, 
+//     public y: number,
+//   ) {}
+
+//   printPosition() {
+//     const { x, y} = this;
+
+//     console.log(`(${x}, ${y})`);
+//   }
+// }
+// class Point3D extends Point2D {
+//   constructor(
+//     x: number, 
+//     y: number, 
+//     public z = 0,
+//   ) {
+//     super(x, y);
+//   }
+
+//   print3DPosition() {
+//     const { x, y, z } = this;
+
+//     console.log(`(${x}, ${y}, ${z})`);
+//   }
+// }
+
+// class Place extends Point2D {
+//   constructor(public name: string, x: number, y: number) {
+//     super(x, y);
+//   }
+// }
+
+// const a = new Point3D(1, 2);
+// a.printPosition();
+
 
 
 
