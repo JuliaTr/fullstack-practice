@@ -1,0 +1,158 @@
+"use strict";
+/*
+Create a function `sortStudents` that:
+
+1. Takes an array `students`, a sorting order `sortBy` of type `SortType`, and an `order` (`'asc'` by default or `'desc'`).
+2. Returns a new array sorted accordingly. **Don't modify the original array.**
+
+Types:
+
+- `interface Student` — representing students:
+{
+  name: 'Jessica',
+  surname: 'Buxton',
+  age: 26,
+  married: true,
+  grades: [5, 5, 4, 5, 4, 4, 4, 4, 5, 4, 5, 4],
+}
+
+- enum `SortType` — representing sorted type:
+`Name`
+`Surname`
+`Age`
+`Married`
+`AverageGrade`
+
+- type `SortOrder` with values `'asc'` and `'desc'`.
+
+For sorting descendingly, don't use the `reverse` method. Instead, multiply comparison function's result in the `sort` method by `-1`.
+*/
+var SortType;
+(function (SortType) {
+    SortType[SortType["Name"] = 0] = "Name";
+    SortType[SortType["Surname"] = 1] = "Surname";
+    SortType[SortType["Age"] = 2] = "Age";
+    SortType[SortType["Married"] = 3] = "Married";
+    SortType[SortType["AverageGrade"] = 4] = "AverageGrade";
+})(SortType || (SortType = {}));
+const students = [
+    {
+        name: 'Diana',
+        surname: 'Dorsey',
+        age: 24,
+        married: false,
+        grades: [3, 3, 4, 5, 4, 3, 5, 5],
+    },
+    {
+        name: 'Christina',
+        surname: 'Branscome',
+        age: 23,
+        married: true,
+        grades: [4, 4, 4, 5, 5, 5, 5, 5],
+    },
+    {
+        name: 'Willie',
+        surname: 'Barrera',
+        age: 22,
+        married: false,
+        grades: [3, 5, 5, 3, 3, 5, 4, 4],
+    },
+    {
+        name: 'Douglas',
+        surname: 'Paez',
+        age: 23,
+        married: true,
+        grades: [5, 5, 5, 4, 5, 5, 5, 5],
+    },
+    {
+        name: 'Richard',
+        surname: 'Hall',
+        age: 23,
+        married: false,
+        grades: [3, 2, 4, 5, 4, 3, 3, 3],
+    },
+    {
+        name: 'Dale',
+        surname: 'Gandy',
+        age: 23,
+        married: false,
+        grades: [5, 3, 3, 3, 3, 5, 4, 3, 4],
+    },
+    {
+        name: 'Lillian',
+        surname: 'Quinn',
+        age: 23,
+        married: false,
+        grades: [3, 4, 3, 4, 4, 4, 5, 2, 3],
+    },
+    {
+        name: 'Jessica',
+        surname: 'Buxton',
+        age: 26,
+        married: true,
+        grades: [5, 5, 4, 5, 4, 4, 4, 4, 5, 4, 5, 4],
+    },
+    {
+        name: 'Pamela',
+        surname: 'Casillas',
+        age: 24,
+        married: false,
+        grades: [4, 5, 4, 5, 5, 4, 3, 2, 3, 3, 3, 2],
+    },
+    {
+        name: 'Glenn',
+        surname: 'Thompson',
+        age: 22,
+        married: false,
+        grades: [5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 3, 2],
+    },
+];
+function averageGrade(grades) {
+    const total = grades.reduce((sum, value) => sum + value, 0);
+    // console.log(Math.ceil(total / grades.length))
+    return total / grades.length;
+}
+function sortStudents(students, sortType, sortOrder) {
+    const copyStudents = [...students];
+    copyStudents.sort((a, b) => {
+        let comparison = 0;
+        switch (sortType) {
+            case SortType.Name:
+                comparison = a.name.localeCompare(b.name);
+                break;
+            case SortType.Surname:
+                comparison = a.surname.localeCompare(b.surname);
+                break;
+            case SortType.Age:
+                comparison = a.age - b.age;
+                break;
+            case SortType.Married:
+                comparison = Number(a.married) - Number(b.married);
+                break;
+            case SortType.AverageGrade:
+                comparison = averageGrade(a.grades) - averageGrade(b.grades);
+                break;
+            default:
+                comparison = 0;
+                break;
+        }
+        if (sortOrder === 'desc') {
+            comparison *= (-1);
+        }
+        return comparison;
+    });
+    return copyStudents;
+}
+// from youngest to oldest
+const studentsByAge = sortStudents(students, SortType.Age, 'asc');
+console.log(studentsByAge);
+// // from oldest to youngest
+// const studentsByAge = sortStudents(students, SortType.Age, 'desc');
+// console.log(studentsByAge);
+// from lowest average grade to highest
+const studentsByGrade = sortStudents(students, SortType.AverageGrade, 'asc');
+console.log(studentsByGrade);
+// Surnames from Z to A
+const studentsBySurnameDesc = sortStudents(students, SortType.Surname, 'desc');
+console.log(studentsBySurnameDesc);
+// works as expected
