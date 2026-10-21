@@ -35,7 +35,20 @@ interface Student {
   grades: number[];
 }
 
-const students: object = [
+enum SortType {
+  Name,
+  Surname,
+  Age,
+  Married,
+  AverageGrade,
+}
+
+type SortOrder = {
+  ascending: 'asc',
+  descending: 'desc',
+}
+
+const students: Student[] = [
   {
     name: 'Diana',
     surname: 'Dorsey',
