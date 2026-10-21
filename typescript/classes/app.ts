@@ -1,10 +1,12 @@
 /*
-Modificators:
+Access modifiers:
 - for classes and methods
+
+- `public`, `private`, `protected`
 
 `public`:
 - for classes and methods
-- by default all class properties are public
+- by default all class fields and methods are public
 - we can use property anywhere outside of the class
 
 `private`:
@@ -18,12 +20,18 @@ Modificators:
 - `readonly` and `protected readonly` work the same
 
 
-`abstract`:
+`readonly` modifier:
+- makes the fiels read-only
+- can be combined with any access modifiers
+
+
+`abstract` (Abstract Class):
 - is added to the class when I don't want to let to create objects of this class
-- instead it contains basic interface
+- it contains basic interface
+- cannot create instance of an abstract class
 
 
-`implements`:
+`implements` (keyword):
 - class should always use implemented inteface (its all properties)
 - can implement many interfaces
 */
