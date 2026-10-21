@@ -122,6 +122,7 @@ function averageGrade(grades: number[]): number {
   const total: number = grades.reduce(
     (sum: number, value: number) => sum + value, 0);
 
+  // console.log(Math.ceil(total / grades.length))
   return total / grades.length;
 }
 
@@ -136,12 +137,13 @@ function sortStudents(
   copyStudents.sort((a: Student, b: Student) => {
     switch (sortType) {
       case SortType.Name:
+        return a.name.localeCompare(b.name);
       case SortType.Surname:
         return a.surname.localeCompare(b.surname);
       case SortType.Age:
         return a.age - b.age;
       case SortType.Married:
-        return Number(a.married) - Number(b.married)
+        return Number(a.married) - Number(b.married);
       case SortType.AverageGrade: 
         return averageGrade(a.grades) - averageGrade(b.grades);
       default:
@@ -149,12 +151,30 @@ function sortStudents(
     }
   });
 
+  if (sortOrder === 'desc') {
+    copyStudents.sort((a: Student, b: Student) => {
+      switch (sortType) {
+        case SortType.Name:
+        case SortType.Surname:
+          return (a.surname.localeCompare(b.surname)) * (-1);
+        case SortType.Age:
+          return (a.age - b.age) * (-1);
+        case SortType.Married:
+          return (Number(a.married) - Number(b.married)) * (-1);
+        case SortType.AverageGrade: 
+          return (averageGrade(a.grades) - averageGrade(b.grades)) * (-1);
+        default:
+          return 0;
+      }
+    });
+  }
+
   return copyStudents;
 }
 
-// // from youngest to oldest
-// const studentsByAge = sortStudents(students, SortType.Age, 'asc');
-// console.log(studentsByAge);
+// from youngest to oldest
+const studentsByAge = sortStudents(students, SortType.Age, 'asc');
+console.log(studentsByAge);
 
 // // from oldest to youngest
 // const studentsByAge = sortStudents(students, SortType.Age, 'desc');
@@ -164,6 +184,6 @@ function sortStudents(
 const studentsByGrade = sortStudents(students, SortType.AverageGrade, 'asc');
 console.log(studentsByGrade);
 
-// // Surnames from Z to A
-// const studentsBySurnameDesc = sortStudents(students, SortType.Surname, 'desc');
-// console.log(studentsBySurnameDesc);
+// Surnames from Z to A
+const studentsBySurnameDesc = sortStudents(students, SortType.Surname, 'desc');
+console.log(studentsBySurnameDesc);
