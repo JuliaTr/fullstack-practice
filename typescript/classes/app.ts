@@ -1,16 +1,61 @@
 /*
+Modificators:
+- for classes and methods
+
 `public`:
+- for classes and methods
 - by default all class properties are public
 - we can use property anywhere outside of the class
 
 `private`:
+- for classes and methods
 - property canNOT be used ONLY outside the class
 
 `protected`:
+- for classes and methods
 - can be used inside the class, classes which inherit from this class
 - canNOT be used outside
+- `readonly` and `protected readonly` work the same
 
 */
+
+// Valid
+class Point2D {
+  constructor(
+    // `readonly` and `protected readonly` work the same
+    readonly x: number, 
+    public y: number,
+  ) {}
+
+  printPosition() {
+    const { x, y} = this;
+
+    console.log(`(${x}, ${y})`);
+  }
+}
+
+const a = new Point2D(1, 2);
+a.printPosition()
+
+
+// Valid subclass
+class Point3D extends Point2D {
+  constructor(
+    x: number, 
+    y: number, 
+    public z: number
+  ) {
+    super(x, y);
+  }
+
+  print3DPosition() {
+    const { x, y, z } = this;
+
+    console.log(`(${x}, ${y}, ${z})`);
+  }
+}
+
+
 
 // // Valid
 // class Point2D {
@@ -39,46 +84,52 @@
 //   ) {
 //     super(x, y);
 //   }
+
+//   print3DPosition() {
+//     const { x, y, z } = this;
+
+//     console.log(`(${x}, ${y}, ${z})`);
+//   }
 // }
 
 
 
 
-// Valid
-class Point2D {
-  constructor(
-    public x: number, 
-    public y: number,
-  ) {}
+// // Valid
+// class Point2D {
+//   constructor(
+//     public x: number, 
+//     public y: number,
+//   ) {}
 
-  printPosition() {
-    const { x, y} = this;
+//   printPosition() {
+//     const { x, y} = this;
 
-    console.log(`(${x}, ${y})`);
-  }
-}
+//     console.log(`(${x}, ${y})`);
+//   }
+// }
 
-const a = new Point2D(1, 2);
-a.printPosition()
+// const a = new Point2D(1, 2);
+// a.printPosition()
 
-// Valid subclass
-class Point3D extends Point2D {
-  constructor(
-    x: number, 
-    y: number, 
-    public z: number
-  ) {
-    super(x, y);
+// // Valid subclass
+// class Point3D extends Point2D {
+//   constructor(
+//     x: number, 
+//     y: number, 
+//     public z: number
+//   ) {
+//     super(x, y);
 
-    this.z = z; // will work without this line
-  }
+//     this.z = z; // will work without this line
+//   }
 
-  print3DPosition() {
-    const { x, y, z } = this;
+//   print3DPosition() {
+//     const { x, y, z } = this;
 
-    console.log(`(${x}, ${y}, ${z})`);
-  }
-}
+//     console.log(`(${x}, ${y}, ${z})`);
+//   }
+// }
 
 
 
