@@ -43,10 +43,7 @@ enum SortType {
   AverageGrade,
 }
 
-type SortOrder = {
-  ascending: 'asc',
-  descending: 'desc',
-}
+type SortOrder = 'asc' | 'desc';
 
 const students: Student[] = [
   {
@@ -121,19 +118,52 @@ const students: Student[] = [
   },
 ];
 
+function averageGrade(grades: number[]): number {
+  const total: number = grades.reduce(
+    (sum: number, value: number) => sum + value, 0);
 
-function sortStudents(students, SortType, Age): string[] {
-
+  return total / grades.length;
 }
 
-// from youngest to oldest
-const studentsByAge = sortStudents(students, SortType.Age, 'asc');
+
+function sortStudents(
+  students: Student[],
+  sortType: SortType,
+  sortOrder: SortOrder
+): Student[] {
+  const copyStudents: Student[] = [...students];
+
+  copyStudents.sort((a: Student, b: Student) => {
+    switch (sortType) {
+      case SortType.Name:
+      case SortType.Surname:
+        return a.surname.localeCompare(b.surname);
+      case SortType.Age:
+        return a.age - b.age;
+      case SortType.Married:
+        return Number(a.married) - Number(b.married)
+      case SortType.AverageGrade: 
+        return averageGrade(a.grades) - averageGrade(b.grades);
+      default:
+        return 0;
+    }
+  });
+
+  return copyStudents;
+}
+
+// // from youngest to oldest
+// const studentsByAge = sortStudents(students, SortType.Age, 'asc');
+// console.log(studentsByAge);
 
 // // from oldest to youngest
 // const studentsByAge = sortStudents(students, SortType.Age, 'desc');
+// console.log(studentsByAge);
 
-// // from lowest average grade to highest
-// const studentsByGrade = sortStudents(students, SortType.AverageGrade, 'asc');
+// from lowest average grade to highest
+const studentsByGrade = sortStudents(students, SortType.AverageGrade, 'asc');
+console.log(studentsByGrade);
 
 // // Surnames from Z to A
 // const studentsBySurnameDesc = sortStudents(students, SortType.Surname, 'desc');
+// console.log(studentsBySurnameDesc);
