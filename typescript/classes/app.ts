@@ -12,24 +12,98 @@
 
 */
 
+// // Valid
+// class Point2D {
+//   constructor(
+//     public x: number, 
+//     public y: number,
+//   ) {}
+
+//   printPosition() {
+//     const { x, y} = this;
+
+//     console.log(`(${x}, ${y})`);
+//   }
+// }
+
+// const a = new Point2D(1, 2);
+// a.printPosition()
+
+
+// // Valid subclass
+// class Point3D extends Point2D {
+//   constructor(
+//     x: number, 
+//     y: number, 
+//     public z: number
+//   ) {
+//     super(x, y);
+//   }
+// }
+
+
+
+
 // Valid
 class Point2D {
   constructor(
     public x: number, 
-    private y: number, 
-    protected z: number, 
-    public b: number
+    public y: number,
   ) {}
 
   printPosition() {
-    const { x, y, z, b } = this;
+    const { x, y} = this;
 
-    console.log(`(${x}, ${y}, ${z}, ${b})`);
+    console.log(`(${x}, ${y})`);
   }
 }
 
-const a = new Point2D(1, 2, 3, 4);
-a.printPosition();
+const a = new Point2D(1, 2);
+a.printPosition()
+
+// Valid subclass
+class Point3D extends Point2D {
+  constructor(
+    x: number, 
+    y: number, 
+    public z: number
+  ) {
+    super(x, y);
+
+    this.z = z; // will work without this line
+  }
+
+  print3DPosition() {
+    const { x, y, z } = this;
+
+    console.log(`(${x}, ${y}, ${z})`);
+  }
+}
+
+
+
+
+
+
+// // Valid
+// class Point2D {
+//   // shorthand
+//   constructor(
+//     public x: number, 
+//     private y: number, 
+//     protected z: number, 
+//     public b: number
+//   ) {}
+
+//   printPosition() {
+//     const { x, y, z, b } = this;
+
+//     console.log(`(${x}, ${y}, ${z}, ${b})`);
+//   }
+// }
+
+// const a = new Point2D(1, 2, 3, 4);
+// a.printPosition();
 
 
 
