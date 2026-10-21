@@ -49,17 +49,6 @@ Objects:
 
 
 
-// type Point2 = {
-//   x: number;
-//   y: number;
-//   z: number;
-// };
-
-// interface Point {
-//   x: number;
-//   y: number;
-//   z: string;
-// };
 
 // // if we don't know which keys we can have in object, but we know types of values, type object:
 // type Collection = {
@@ -79,6 +68,7 @@ Objects:
 //   readonly x: number;
 //   y?: number;
 // };
+
 // interface Point extends Point2D {
 //   z: number;
 // };
