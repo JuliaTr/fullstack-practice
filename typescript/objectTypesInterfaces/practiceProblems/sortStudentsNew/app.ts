@@ -135,39 +135,35 @@ function sortStudents(
   const copyStudents: Student[] = [...students];
 
   copyStudents.sort((a: Student, b: Student) => {
+    let comparison: number = 0;
+
     switch (sortType) {
       case SortType.Name:
-        return a.name.localeCompare(b.name);
+        comparison = a.name.localeCompare(b.name);
+        break;
       case SortType.Surname:
-        return a.surname.localeCompare(b.surname);
+        comparison = a.surname.localeCompare(b.surname);
+        break;
       case SortType.Age:
-        return a.age - b.age;
+        comparison = a.age - b.age;
+        break;
       case SortType.Married:
-        return Number(a.married) - Number(b.married);
+        comparison = Number(a.married) - Number(b.married);
+        break;
       case SortType.AverageGrade: 
-        return averageGrade(a.grades) - averageGrade(b.grades);
+        comparison = averageGrade(a.grades) - averageGrade(b.grades);
+        break;
       default:
-        return 0;
+        comparison = 0;
+        break;
     }
-  });
+      
+    if (sortOrder === 'desc') {
+      comparison *= (-1);
+    }
 
-  if (sortOrder === 'desc') {
-    copyStudents.sort((a: Student, b: Student) => {
-      switch (sortType) {
-        case SortType.Name:
-        case SortType.Surname:
-          return (a.surname.localeCompare(b.surname)) * (-1);
-        case SortType.Age:
-          return (a.age - b.age) * (-1);
-        case SortType.Married:
-          return (Number(a.married) - Number(b.married)) * (-1);
-        case SortType.AverageGrade: 
-          return (averageGrade(a.grades) - averageGrade(b.grades)) * (-1);
-        default:
-          return 0;
-      }
-    });
-  }
+    return comparison;
+  });
 
   return copyStudents;
 }
@@ -187,3 +183,5 @@ console.log(studentsByGrade);
 // Surnames from Z to A
 const studentsBySurnameDesc = sortStudents(students, SortType.Surname, 'desc');
 console.log(studentsBySurnameDesc);
+
+// works as expected
