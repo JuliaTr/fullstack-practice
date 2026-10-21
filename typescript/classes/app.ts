@@ -17,10 +17,14 @@ Modificators:
 - canNOT be used outside
 - `readonly` and `protected readonly` work the same
 
+
+`abstract`:
+- is added to the class when I don't want to let to create objects of this class
+- instead it contains basic interface
 */
 
 // Valid
-class Point2D {
+abstract class Point2D {
   constructor(
     // `readonly` and `protected readonly` work the same
     readonly x: number, 
@@ -33,17 +37,11 @@ class Point2D {
     console.log(`(${x}, ${y})`);
   }
 }
-
-const a = new Point2D(1, 2);
-a.printPosition()
-
-
-// Valid subclass
 class Point3D extends Point2D {
   constructor(
     x: number, 
     y: number, 
-    public z: number
+    public z = 0,
   ) {
     super(x, y);
   }
@@ -54,6 +52,54 @@ class Point3D extends Point2D {
     console.log(`(${x}, ${y}, ${z})`);
   }
 }
+
+class Place extends Point2D {
+  constructor(public name: string, x: number, y: number) {
+    super(x, y);
+  }
+}
+
+const a = new Point3D(1, 2);
+a.printPosition();
+
+
+
+// // Valid
+// class Point2D {
+//   constructor(
+//     // `readonly` and `protected readonly` work the same
+//     readonly x: number, 
+//     public y: number,
+//   ) {}
+
+//   printPosition() {
+//     const { x, y} = this;
+
+//     console.log(`(${x}, ${y})`);
+//   }
+// }
+
+// const a = new Point2D(1, 2);
+// a.printPosition()
+
+
+// // Valid subclass
+// class Point3D extends Point2D {
+//   constructor(
+//     x: number, 
+//     y: number, 
+//     public z: number
+//   ) {
+//     super(x, y);
+//   }
+
+//   print3DPosition() {
+//     const { x, y, z } = this;
+
+//     console.log(`(${x}, ${y}, ${z})`);
+//   }
+// }
+
 
 
 
