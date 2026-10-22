@@ -42,7 +42,7 @@ class Pizza {
 }
 
 class PizzaMaker { 
-  static create(order: Order) {
+  static create(order: Order): Pizza {
     return new Pizza(order.name, order.toppings);
   }
 }
