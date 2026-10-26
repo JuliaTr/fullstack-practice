@@ -23,6 +23,9 @@ Objects:
 - interfaces and type for objects are interchangable
 - `?` for optional property
 - `readonly` property caaanot be changed
+
+`interface`:
+- refers to a single object, which contains all properties.
 */
 
 
