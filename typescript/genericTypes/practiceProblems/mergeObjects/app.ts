@@ -7,9 +7,11 @@ Create the function `mergeObjects` that:
   - `R` properties that aren't already found in `T`.
 */
 
-function mergeObjects(user: object, robot: object) {
-  return Object.assign(user, robot);
+function mergeObjects<T, R>(user: T, robot: R): Omit<R, keyof T> & T {
+  return Object.assign({}, robot, user);
 }
+
+type Result = ReturnType<typeof mergeObjects>;
 
 const user = {
   name: 'Harry',
@@ -22,7 +24,7 @@ const robot = {
   wheels: 3,
 };
 
-console.log(mergeObjects(user, robot));
+const result: Result = mergeObjects(user, robot);
 /*
 {
   name: 'Harry',
