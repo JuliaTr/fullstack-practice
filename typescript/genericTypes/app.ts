@@ -22,6 +22,14 @@ if (field5 instanceof HTMLInputElement) {
 }
 
 
+// Works (convert to a list):
+const field6 = [...document.querySelectorAll<HTMLInputElement>('.field')];
+
+if (field6 instanceof HTMLInputElement) {
+  console.dir(field6.value);
+} else {
+  console.log(field6);
+}
 
 
 // Examples to practice:
@@ -58,3 +66,14 @@ if (field5 instanceof HTMLInputElement) {
 // const field4 = <HTMLInputElement>document.querySelector('.field')
 
 // console.dir(field4.value);
+
+
+
+// // Won't work with `querySelectorAll`, because it's `NodeListOf<HTMLInputElement>`
+// const field6 = document.querySelectorAll<HTMLInputElement>('.field');
+
+// if (field6 instanceof HTMLInputElement) {
+//   console.dir(field6.value);
+// } else {
+//   console.log(field6);
+// }
