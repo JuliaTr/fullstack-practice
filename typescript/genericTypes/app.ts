@@ -2,8 +2,14 @@
 When I type value for `querySelector`, TS knows which type this element be. It's `HTMLInputElement`.
 
 Generic Types:
+- generic is type which we pass as argument when function is called. 
+- When function is declared we take it as variable. 
+- Can use it for typing of result of function, for typing parameters, inside function body for typing all of we need
 - 'generic' means inside it can have properties of different type
 - ex: array
+- passing type as a parameter to generic, we can type function return value differently
+- we can create custom types with help of generic types
+- used in React and other frameworks
 */
 
 // // Generic Types:
@@ -44,9 +50,26 @@ length: 2
 */
 
 
+
+
 // Custom generic type:
+type Collection<T> = {
+  size: number,
+  items: T[],
+}
 
+// `Item extends Element` - restricts the generic type to DOM elements
+// `Collection<Item>` - says the function returns a collection containing those elements
+// `querySelectorAll<Item>(selector)` tells TS what type of elements we expect
+function findAll<Item extends Element>(selector: string): Collection<Item> {
+  return {
+    size: 0,
+    items: [...document.querySelectorAll<Item>(selector)],
+  };
+}
 
+const result = findAll<HTMLInputElement>('.field');
+const result2 = findAll<HTMLAnchorElement>('a');
 
 
 
