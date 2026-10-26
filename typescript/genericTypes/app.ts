@@ -1,35 +1,53 @@
 /*
 When I type value for `querySelector`, TS knows which type this element be. It's `HTMLInputElement`.
+
+Generic Types:
+- 'generic' means inside it can have properties of different type
+- ex: array
 */
 
-// Generic Types:
-// Option 1: (works) - often in use
-const field5 = document.querySelector<HTMLInputElement>('.field');
+// // Generic Types:
+// // Option 1: (works) - often in use
+// const field5 = document.querySelector<HTMLInputElement>('.field');
 
-// Checks empty value
-if (field5) {
-  console.dir(field5.value);
-}
+// // Checks empty value
+// if (field5) {
+//   console.dir(field5.value);
+// }
 
-// Type Quards - to check object type
-// Checks field necessary type
-if (field5 instanceof HTMLInputElement) {
-  console.dir(field5.value); 
-  // Will always be `HTMLInputElement`
-} else {
-  console.log(field5);
-  // Will always be `null`
-}
+// // Type Quards - to check object type
+// // Checks field necessary type
+// if (field5 instanceof HTMLInputElement) {
+//   console.dir(field5.value); 
+//   // Will always be `HTMLInputElement`
+// } else {
+//   console.log(field5);
+//   // Will always be `null`
+// }
 
 
 // Works (convert to a list):
-const field6 = [...document.querySelectorAll<HTMLInputElement>('.field')];
+const field7: Array<HTMLInputElement> = [...document.querySelectorAll<HTMLInputElement>('.field')];
 
-if (field6 instanceof HTMLInputElement) {
-  console.dir(field6.value);
+if (field7 instanceof HTMLInputElement) {
+  console.dir(field7.value);
 } else {
-  console.log(field6);
+  console.log(field7);
 }
+
+/*
+(2) [input.field, input.field]
+0: input.field
+1: input.field
+length: 2
+[[Prototype]]: Array(0)
+*/
+
+
+// Custom generic type:
+
+
+
 
 
 // Examples to practice:
