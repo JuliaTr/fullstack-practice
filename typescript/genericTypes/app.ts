@@ -29,3 +29,9 @@ const field3 = document.querySelector('.field') as HTMLInputElement;
 
 console.dir(field3.value)
 
+
+// Option 2: (works)
+const field4 = <HTMLInputElement>document.querySelector('.field')
+
+console.dir(field4.value);
+
