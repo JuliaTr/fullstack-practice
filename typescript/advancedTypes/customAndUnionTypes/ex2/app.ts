@@ -1,3 +1,10 @@
+/*
+`|`:
+- can be used with many types
+- each types are separate (when we want to perform a selection later)
+
+*/
+
 let age1: number = 10;
 
 // `|` is a union type; can be used with many types
