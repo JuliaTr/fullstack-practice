@@ -7,7 +7,7 @@ Create a function `removeDuplicates` that:
 */
 
 // Refactored:
-function removeDuplicates(nums: number[]): number[] {
+function removeDuplicates(nums: number[]): number {
   let i: number = 0;
 
   while (i < nums.length) {
@@ -20,7 +20,7 @@ function removeDuplicates(nums: number[]): number[] {
     }
   }
 
-  return nums;
+  return nums.length;
 }
 
 console.log(removeDuplicates([1, 2, 3, 3])); // 3 
@@ -35,6 +35,7 @@ console.log(removeDuplicates([-9, -8, -7])); // 3
 console.log(removeDuplicates([4, 4, 4])); // 1 
 // nums = [4]
 
+// Works as expected
 
 
 
@@ -53,7 +54,7 @@ console.log(removeDuplicates([4, 4, 4])); // 1
 //   return temp;
 // }
 
-// function removeDuplicates(nums: number[]): number[] {
+// function removeDuplicates(nums: number[]): number {
 //   const temp: (number | string)[] = nums;
 
 //   // Substitute duplicates
@@ -70,7 +71,7 @@ console.log(removeDuplicates([4, 4, 4])); // 1
 //     }
 //   }
 
-//   return nums;
+//   return nums.length;
 // }
 
 // console.log(removeDuplicates([1, 2, 3, 3])); // 3 
