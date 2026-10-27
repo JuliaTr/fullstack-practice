@@ -16,9 +16,10 @@ const GRAVEL: string = 'gravel';
 const ROCK: string = 'rock';
 
 function rakeGarden(garden: string): string {
+  const gardenWords: string[] = garden.split(' ');
   let result: string[] = [];
 
-  for (const word of garden) {
+  for (const word of gardenWords) {
     if (word === GRAVEL || word === ROCK) {
       result.push(word);
     } else {
