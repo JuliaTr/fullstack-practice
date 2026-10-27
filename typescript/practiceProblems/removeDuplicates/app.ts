@@ -6,17 +6,14 @@ Create a function `removeDuplicates` that:
 3. Returns the new length of `nums`.
 */
 
+// Solution:
 function substituteDuplicates(
   temp: (number | string)[]
 ): (number | string)[] {
-  // const indexes: number[] = [];
-
   for (let i: number = 0; i < temp.length; i++) {
     const slicedStr: (number | string)[] = temp.slice(0, i);
-    // console.log(slicedStr)
     if (slicedStr.includes(temp[i])) {
       temp.splice(i, 1, '-');
-      // indexes.push(i);
     }
   }
 
@@ -25,15 +22,18 @@ function substituteDuplicates(
 
 function removeDuplicates(nums: number[]): number[] {
   const temp: (number | string)[] = nums;
-  // const numsLength: number = nums.length;
 
   // Substitute duplicates
-  const dashesForDuplicates = substituteDuplicates(temp);
+  substituteDuplicates(temp);
 
   // Clean string
-  for (let i: number = 0; i < nums.length; i++) {
+  let i: number = 0;
+
+  while (i < nums.length) {
     if (temp[i] === '-') {
       temp.splice(i, 1);
+    } else {
+      i++;
     }
   }
 
