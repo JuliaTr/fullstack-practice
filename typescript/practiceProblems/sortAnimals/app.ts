@@ -17,16 +17,22 @@ Create a `sortAnimals` function that:
  * @returns {Animal[] | null}
  */
 
+// Refactored
 type Animal = {
   name: string;
   numberOfLegs: number;
 }
 
-function sortAnimals(animals: Animal[]): Animal[] {
+function areNumberOfLegsSame(animals: Animal[]): boolean {
   const legs: number = animals[0].numberOfLegs;
-  const allLegsEqual: boolean = animals.every(
+
+  return animals.every(
     (animal: Animal) => animal.numberOfLegs === legs
   );
+}
+
+function sortAnimals(animals: Animal[]): Animal[] {
+  const allLegsEqual: boolean = areNumberOfLegsSame(animals);
 
   if (allLegsEqual) {
     return animals.toSorted((a: Animal, b: Animal) => (
@@ -56,3 +62,47 @@ console.log(sortAnimals(animals));
 //   { name: 'Dog', numberOfLegs: 4 },
 //   { name: 'Pig', numberOfLegs: 4 }
 // ];
+
+
+
+
+// // Solution
+// type Animal = {
+//   name: string;
+//   numberOfLegs: number;
+// }
+
+// function sortAnimals(animals: Animal[]): Animal[] {
+//   const legs: number = animals[0].numberOfLegs;
+//   const allLegsEqual: boolean = animals.every(
+//     (animal: Animal) => animal.numberOfLegs === legs
+//   );
+
+//   if (allLegsEqual) {
+//     return animals.toSorted((a: Animal, b: Animal) => (
+//       a.name.localeCompare(b.name)
+//     ));
+//   }
+
+//   return animals.toSorted(
+//     (a: Animal, b: Animal) => (
+//       a.numberOfLegs - b.numberOfLegs
+//     ));
+// }
+
+// const animals = [
+//   { name: 'Dog', numberOfLegs: 4 }, 
+//   { name: 'Snake', numberOfLegs: 0 }, 
+//   { name: 'Pig', numberOfLegs: 4 },
+//   { name: 'Bird', numberOfLegs: 2 },
+//   { name: 'Cat', numberOfLegs: 4 },
+// ];
+
+// console.log(sortAnimals(animals));
+// // [
+// //   { name: 'Snake', numberOfLegs: 0 },
+// //   { name: 'Bird', numberOfLegs: 2 }, 
+// //   { name: 'Cat', numberOfLegs: 4 },  
+// //   { name: 'Dog', numberOfLegs: 4 },
+// //   { name: 'Pig', numberOfLegs: 4 }
+// // ];
