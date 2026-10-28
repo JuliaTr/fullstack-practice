@@ -10,39 +10,73 @@ Create a function `generatePieChart` that:
 If necessary, angles should be rounded to two decimal places.
 */
 
+const FULL_CIRCLE_DEGREES = 360;
+
 type Data = {
   [key: string]: number;
 }
 
-function generatePieChart(data: string): Data {
-  const parsedJSON: Data = JSON.parse(data);
-  return parsedJSON;
+function calculateTotal(jsData: Data): number {
+  let total: number = 0;
+
+  for (const value of Object.values(jsData)) {
+    total += value;
+  }
+
+  return total;
 }
 
-const data = `{
-  "pencils": 18,
-  "pens": 36
-}`;
+function generatePieChart(data: string): string {
+  const jsData: Data = JSON.parse(data);
 
-console.log(generatePieChart(data));
-// `{
-//   "pencils": 120,
-//   "pens": 240
-// }`
+  // Calculate total
+  const total: number = calculateTotal(jsData);
+  console.log(total)
 
+  // Compute angles
+  const pieChart: Data = {};
+
+  for (const entries of Object.entries(jsData)) {
+    const angle: number = (entries[1] / total) * FULL_CIRCLE_DEGREES;
+    const roundedAngleStr: string = angle.toFixed(2);
+    let finalAngle: number = +roundedAngleStr;
+
+    const sliced: string = roundedAngleStr.slice(roundedAngleStr.length - 2);
+
+    if (sliced === '00') {
+      finalAngle = Math.floor(finalAngle * 100) / 100;
+    }
+
+    pieChart[entries[0]] = finalAngle;
+  }
+
+  return JSON.stringify(pieChart);
+}
 
 // const data = `{
-//   "cats": 182,
-//   "dogs": 213,
-//   "rabbits": 79,
+//   "pencils": 18,
+//   "pens": 36
 // }`;
 
 // console.log(generatePieChart(data));
 // // `{
-// //   "cats": 138.23,
-// //   "dogs": 161.77,
-// //   "rabbits": 60,
-// // }`;
+// //   "pencils": 120,
+// //   "pens": 240
+// // }`
+
+
+const data = `{
+  "cats": 182,
+  "dogs": 213,
+  "rabbits": 79
+}`;
+
+console.log(generatePieChart(data));
+// `{
+//   "cats": 138.23,
+//   "dogs": 161.77,
+//   "rabbits": 60
+// }`
 
 
 // const data = `{
