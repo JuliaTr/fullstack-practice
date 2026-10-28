@@ -35,3 +35,5 @@ console.log(isPinValid('1234567')); // false
 console.log(isPinValid('-1234')); // false
 console.log(isPinValid('1.234')); // false
 console.log(isPinValid('123e')); // false
+
+// Works as expected
