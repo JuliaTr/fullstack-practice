@@ -23,10 +23,21 @@ type Animal = {
 }
 
 function sortAnimals(animals: Animal[]): Animal[] {
-  const sorted: Animal[] = animals.toSorted(
-    (a: Animal, b: Animal) => a.numberOfLegs - b.numberOfLegs);
-  
-  return sorted;
+  const legs: number = animals[0].numberOfLegs;
+  const allLegsEqual: boolean = animals.every(
+    (animal: Animal) => animal.numberOfLegs === legs
+  );
+
+  if (allLegsEqual) {
+    return animals.toSorted((a: Animal, b: Animal) => (
+      a.name.localeCompare(b.name)
+    ));
+  }
+
+  return animals.toSorted(
+    (a: Animal, b: Animal) => (
+      a.numberOfLegs - b.numberOfLegs
+    ));
 }
 
 const animals = [
