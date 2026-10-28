@@ -27,6 +27,7 @@ function calculateTotal(jsData: Data): number {
 }
 
 function generatePieChart(data: string): string {
+  // Convert JSON string into JS object
   const jsData: Data = JSON.parse(data);
 
   // Calculate total
@@ -50,6 +51,7 @@ function generatePieChart(data: string): string {
     pieChart[entries[0]] = finalAngle;
   }
 
+  // Convert JS object into JSON string
   return JSON.stringify(pieChart);
 }
 
