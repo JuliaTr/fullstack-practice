@@ -17,18 +17,10 @@ Create a `sortAnimals` function that:
  * @returns {Animal[] | null}
  */
 
-// Refactored
+// Debugged
 type Animal = {
   name: string;
   numberOfLegs: number;
-}
-
-function areNumberOfLegsSame(animals: Animal[]): boolean {
-  const legs: number = animals[0].numberOfLegs;
-
-  return animals.every(
-    (animal: Animal) => animal.numberOfLegs === legs
-  );
 }
 
 function sortAnimals(animals: Animal[]): Animal[] {
@@ -36,36 +28,110 @@ function sortAnimals(animals: Animal[]): Animal[] {
     return [];
   }
 
-  const allLegsEqual: boolean = areNumberOfLegsSame(animals);
-
   return animals.toSorted((a: Animal, b: Animal) => {
-    if (allLegsEqual) {
+    const legsSorted: number = a.numberOfLegs - b.numberOfLegs;
+
+    if (legsSorted === 0) {
       return a.name.localeCompare(b.name);
     }
 
-    return a.numberOfLegs - b.numberOfLegs;
+    return legsSorted;
   });
 }
 
+// const animals = [
+//   { name: 'Dog', numberOfLegs: 4 }, 
+//   { name: 'Snake', numberOfLegs: 0 }, 
+//   { name: 'Pig', numberOfLegs: 4 },
+//   { name: 'Bird', numberOfLegs: 2 },
+//   { name: 'Cat', numberOfLegs: 4 },
+// ];
+
+// console.log(sortAnimals(animals));
+// // [
+// //   { name: 'Snake', numberOfLegs: 0 },
+// //   { name: 'Bird', numberOfLegs: 2 }, 
+// //   { name: 'Cat', numberOfLegs: 4 },  
+// //   { name: 'Dog', numberOfLegs: 4 },
+// //   { name: 'Pig', numberOfLegs: 4 }
+// // ];
+
+
+// `should sort an array by number of legs first and then by name`
 const animals = [
-  { name: 'Dog', numberOfLegs: 4 }, 
-  { name: 'Snake', numberOfLegs: 0 }, 
-  { name: 'Pig', numberOfLegs: 4 },
-  { name: 'Bird', numberOfLegs: 2 },
-  { name: 'Cat', numberOfLegs: 4 },
+  { name: 'Wolf', numberOfLegs: 4 },
+  { name: 'Worm', numberOfLegs: 0 },
+  { name: 'Ladybug', numberOfLegs: 6 },
+  { name: 'Lion', numberOfLegs: 4 },
+  { name: 'Tiger', numberOfLegs: 4 },
+  { name: 'Snake', numberOfLegs: 0 }
 ];
 
 console.log(sortAnimals(animals));
 // [
 //   { name: 'Snake', numberOfLegs: 0 },
-//   { name: 'Bird', numberOfLegs: 2 }, 
-//   { name: 'Cat', numberOfLegs: 4 },  
-//   { name: 'Dog', numberOfLegs: 4 },
-//   { name: 'Pig', numberOfLegs: 4 }
+//   { name: 'Worm', numberOfLegs: 0 },
+//   { name: 'Lion', numberOfLegs: 4 },
+//   { name: 'Tiger', numberOfLegs: 4 },
+//   { name: 'Wolf', numberOfLegs: 4 },
+//   { name: 'Ladybug', numberOfLegs: 6 }
 // ];
 
 // `should return an empty array if the input is an empty array`
 console.log(sortAnimals([])); // []
+
+
+
+
+// // Refactored
+// type Animal = {
+//   name: string;
+//   numberOfLegs: number;
+// }
+
+// function areNumberOfLegsSame(animals: Animal[]): boolean {
+//   const legs: number = animals[0].numberOfLegs;
+
+//   return animals.every(
+//     (animal: Animal) => animal.numberOfLegs === legs
+//   );
+// }
+
+// function sortAnimals(animals: Animal[]): Animal[] {
+//   if (animals.length === 0) {
+//     return [];
+//   }
+
+//   const allLegsEqual: boolean = areNumberOfLegsSame(animals);
+
+//   return animals.toSorted((a: Animal, b: Animal) => {
+//     if (allLegsEqual) {
+//       return a.name.localeCompare(b.name);
+//     }
+
+//     return a.numberOfLegs - b.numberOfLegs;
+//   });
+// }
+
+// const animals = [
+//   { name: 'Dog', numberOfLegs: 4 }, 
+//   { name: 'Snake', numberOfLegs: 0 }, 
+//   { name: 'Pig', numberOfLegs: 4 },
+//   { name: 'Bird', numberOfLegs: 2 },
+//   { name: 'Cat', numberOfLegs: 4 },
+// ];
+
+// console.log(sortAnimals(animals));
+// // [
+// //   { name: 'Snake', numberOfLegs: 0 },
+// //   { name: 'Bird', numberOfLegs: 2 }, 
+// //   { name: 'Cat', numberOfLegs: 4 },  
+// //   { name: 'Dog', numberOfLegs: 4 },
+// //   { name: 'Pig', numberOfLegs: 4 }
+// // ];
+
+// // `should return an empty array if the input is an empty array`
+// console.log(sortAnimals([])); // []
 
 
 
