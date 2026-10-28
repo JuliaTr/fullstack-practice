@@ -32,18 +32,19 @@ function areNumberOfLegsSame(animals: Animal[]): boolean {
 }
 
 function sortAnimals(animals: Animal[]): Animal[] {
-  const allLegsEqual: boolean = areNumberOfLegsSame(animals);
-
-  if (allLegsEqual) {
-    return animals.toSorted((a: Animal, b: Animal) => (
-      a.name.localeCompare(b.name)
-    ));
+  if (animals.length === 0) {
+    return [];
   }
 
-  return animals.toSorted(
-    (a: Animal, b: Animal) => (
-      a.numberOfLegs - b.numberOfLegs
-    ));
+  const allLegsEqual: boolean = areNumberOfLegsSame(animals);
+
+  return animals.toSorted((a: Animal, b: Animal) => {
+    if (allLegsEqual) {
+      return a.name.localeCompare(b.name);
+    }
+
+    return a.numberOfLegs - b.numberOfLegs;
+  });
 }
 
 const animals = [
@@ -63,6 +64,8 @@ console.log(sortAnimals(animals));
 //   { name: 'Pig', numberOfLegs: 4 }
 // ];
 
+// `should return an empty array if the input is an empty array`
+console.log(sortAnimals([])); // []
 
 
 
