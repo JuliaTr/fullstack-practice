@@ -13,15 +13,19 @@ function getMaxNumber(number: number): number {
   const numberToArray: string[] = Math.abs(number).toString().split('');
 
   if (number > 0) {
-    const sorted: string[] = numberToArray.sort((el1: string, el2: string) => Number(el2) - Number(el1));
+    const sortedDesc: string[] = numberToArray.sort((el1: string, el2: string) => Number(el2) - Number(el1));
 
-    return Number(sorted.join(''));
+    return Number(sortedDesc.join(''));
   }
-  
-  return 0;
+
+  const sortedAsc: string[] = numberToArray.sort((el1: string, el2: string) => Number(el1) - Number(el2));
+
+  return Number(`-${sortedAsc.join('')}`);
 }
 
 console.log(getMaxNumber(123)); // 321
 console.log(getMaxNumber(1)); // 1
 console.log(getMaxNumber(1265)); // 6521
 console.log(getMaxNumber(-526)); // -256
+
+// Works as expected
