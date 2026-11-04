@@ -5,13 +5,16 @@ Takes a number number.
 Returns the largest number that can be obtained by rearranging the digits in number.
 */
 
-function getMaxNumber(number: number): string[] {
-  // if (number 
+function getMaxNumber(number: number): number {
+  if (number >= 0 && number < 10) {
+    return number;
+  }
+
   const numberToArray: string[] = number.toString().split('');
 
   // if (number >= 0)
   
-  return numberToArray;
+  return 0;
 }
 
 console.log(getMaxNumber(123)); // 321
