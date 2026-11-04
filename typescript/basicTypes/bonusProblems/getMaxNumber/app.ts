@@ -10,9 +10,13 @@ function getMaxNumber(number: number): number {
     return number;
   }
 
-  const numberToArray: string[] = number.toString().split('');
+  const numberToArray: string[] = Math.abs(number).toString().split('');
 
-  // if (number >= 0)
+  if (number > 0) {
+    const sorted: string[] = numberToArray.sort((el1: string, el2: string) => Number(el2) - Number(el1));
+
+    return Number(sorted.join(''));
+  }
   
   return 0;
 }
