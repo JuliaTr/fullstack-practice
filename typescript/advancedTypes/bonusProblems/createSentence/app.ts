@@ -9,8 +9,8 @@ If the array is empty, return an empty string.
 */
 
 // Debugged
-function cleanedWords(words: string[]): string[] {
-  let cleanedWords: string[] = [];
+function cleandWords(words: string[]): string[] {
+  const cleanedWords: string[] = [];
 
   for (const word of words) {
     if (word === '') {
@@ -23,15 +23,34 @@ function cleanedWords(words: string[]): string[] {
   return cleanedWords;
 }
 
-function createSentence(words: string[]): string | string[] {
+function createSentence(words: string[]): string {
   // Cleaned array from empty strings
-  const cleanWords: string[] = cleanedWords(words);
+  const cleanedWords: string[] = cleandWords(words);
+  let sentence = '';
 
-  if (cleanWords.length === 0) {
-    return '';
+  if (cleanedWords.length === 0) {
+    return sentence;
   }
 
-  return cleanWords;
+  // Format sentence
+  let idx: number = 0;
+  const beforeLastIdx: number = cleanedWords.length - 2;
+
+  while (idx < cleanedWords.length) {
+    sentence += cleanedWords[idx];
+
+    if (idx === beforeLastIdx) {
+      sentence += ' and ';
+    }
+    
+    if (idx < beforeLastIdx) {
+      sentence += ', ';
+    }
+
+    idx++;
+  }
+
+  return sentence;
 }
 
 console.log(createSentence(['Michael', 'Carolyn', 'Roger'])); 
@@ -56,6 +75,8 @@ console.log(createSentence(
   ['Jane J. Moran', 'Frances J. Dunleavy', '', 'Amanda J. Taylor', 'Robert J. Greene', '', '', '', '']
 ));
 // 'Jane J. Moran, Frances J. Dunleavy, Amanda J. Taylor and Robert J. Greene'
+
+// Works as expected
 
 
 
