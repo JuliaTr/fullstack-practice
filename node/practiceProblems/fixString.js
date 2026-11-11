@@ -22,7 +22,7 @@ function countLetters(str) {
     }
   }
 
-  return [uppercaseLetters, lowercaseLetters, ];
+  return [uppercaseLetters, lowercaseLetters];
 }
 
 function fixString(str) {
