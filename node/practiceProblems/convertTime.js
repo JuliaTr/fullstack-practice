@@ -14,22 +14,29 @@ const MINUTES_PER_HOUR = 60;
 // const HOURS_PER_DAY = 24;
 const SECONDS_PER_MINUTE = 60;
 
-// const SECONDS_PER_HOUR = SECONDS_PER_MINUTE * MINUTES_PER_HOUR; // 3600
+const SECONDS_PER_HOUR = SECONDS_PER_MINUTE * MINUTES_PER_HOUR; // 3600
 
 function convertTime(seconds) {
-  // Calculate minutes:
-  const minutes = Math.floor(seconds / SECONDS_PER_MINUTE);
+  const hours = seconds / SECONDS_PER_HOUR;
+  const wholeHour = Math.floor(hours);
 
-  // Calculate hours:
-  const hours = Math.floor(minutes / MINUTES_PER_HOUR);
+  console.log(hours)
+
+  const minutes = (seconds % SECONDS_PER_HOUR) / MINUTES_PER_HOUR;
+  const wholeMinutes = Math.floor(minutes);
+  // // Calculate minutes:
+  // const minutes = seconds / SECONDS_PER_MINUTE;
+
+  // // Calculate hours:
+  // const hours = minutes / MINUTES_PER_HOUR;
   
-  // Calculate seconds:
-  // const secondsNow;
-  return secondsNow;
+  // // Calculate seconds:
+  // const secondsNow = SECONDS_PER_HOUR / minutes;
+  return wholeMinutes
 }
 
-console.log(convertTime(0)); // '00:00:00'
-console.log(convertTime(20)); // '00:00:20'
-console.log(convertTime(65)); // '00:01:05'
-console.log(convertTime(3600)); // '01:00:00'
+// console.log(convertTime(0)); // '00:00:00'
+// console.log(convertTime(20)); // '00:00:20'
+// console.log(convertTime(65)); // '00:01:05'
+// console.log(convertTime(3600)); // '01:00:00'
 console.log(convertTime(123456)); // '34:17:36'
