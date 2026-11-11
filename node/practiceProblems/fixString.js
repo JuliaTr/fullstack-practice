@@ -11,6 +11,10 @@ function countLetters(str) {
   let uppercaseLetters = 0;
   
   for (const letter of str) {
+    if (letter === ' ') {
+      continue;
+    }
+
     if (letter === letter.toUpperCase()) {
       uppercaseLetters += 1;
     } else {
@@ -18,14 +22,19 @@ function countLetters(str) {
     }
   }
 
-  return [lowercaseLetters, uppercaseLetters];
+  return [uppercaseLetters, lowercaseLetters, ];
 }
 
 function fixString(str) {
   const countedLetters = countLetters(str);
-  return countedLetters;
+
+  if (countedLetters[0] > countedLetters[1]) {
+    return str.toUpperCase();
+  }
+
+  return str.toLowerCase();
 }
 
 console.log(fixString('Mate Academy')); // 'mate academy'
-// console.log(fixString('Mate ACADEmy')); // 'MATE ACADEMY'
-// console.log(fixString('maTE')); // 'mate'
+console.log(fixString('Mate ACADEmy')); // 'MATE ACADEMY'
+console.log(fixString('maTE')); // 'mate'
