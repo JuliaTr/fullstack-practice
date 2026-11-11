@@ -27,9 +27,18 @@ function convertTime(seconds) {
   // Calculate seconds:
   let restSeconds = (seconds % SECONDS_PER_HOUR) % SECONDS_PER_MINUTE;
 
-  // if (wholeHour < 10) {
+  // Format string
+  if (wholeHour < 10) {
+    wholeHour = `0${wholeHour}`;
+  }
 
-  // }
+  if (wholeMinutes < 10) {
+    wholeMinutes = `0${wholeMinutes}`;
+  }
+
+  if (restSeconds < 10) {
+    restSeconds = `0${restSeconds}`;
+  }
 
   return `${wholeHour}:${wholeMinutes}:${restSeconds}`;
 }
@@ -39,3 +48,5 @@ console.log(convertTime(20)); // '00:00:20'
 console.log(convertTime(65)); // '00:01:05'
 console.log(convertTime(3600)); // '01:00:00'
 console.log(convertTime(123456)); // '34:17:36'
+
+// Works as expected
