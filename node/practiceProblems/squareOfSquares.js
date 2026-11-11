@@ -12,14 +12,15 @@ function isSquare(n) {
   }
 
   // Chaeck if square
-  for (let number = 1; number < n; number++) {
+  for (let number = 0; number <= n; number++) {
     const square = number * number;
+
     if (square === n) {
-      return true
+      return true;
     }
   }
 
-  return false
+  return false;
 }
 
 console.log(isSquare(16)); // true // 4 * 4 = 16
