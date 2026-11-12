@@ -23,10 +23,9 @@ function toPigLatin(str) {
         && (char.match(/[a-zA-Z]/))
     ) {
       tempChar = char;
-      continue;
+    } else {
+      newStr += char;
     }
-
-    newStr += char;
 
     if (char.match(/[a-zA-Z]/) 
         && (nextChar === undefined || nextChar.match(/[^a-zA-Z]/))
@@ -45,6 +44,12 @@ console.log(toPigLatin('Javascript is fun'));
 
 console.log(toPigLatin('Thank you !')); 
 // 'hankTay ouyay !'
+
+`should add 'ay' to the word which consists of one letter`
+
+console.log(toPigLatin('d')); // 'day'
+
+// Works as expected
 
 
 
