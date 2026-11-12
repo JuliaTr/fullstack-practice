@@ -11,29 +11,41 @@ Create a function `toPigLatin` that:
 */
 
 function toPigLatin(str) {
-  let stopIdx = str.length - 1;
+  let newStr = '';
+  let stopIdx = str.length;
   let idx = 0;
   let tempChar = '';
 
   while (idx < stopIdx) {
+    console.log('~~~~~~~~~~~~~~~~~~~~~~~~')
     let char = str[idx];
+    let nextChar = str[idx + 1];
 
-    if (idx === 0 || str[idx - 1].match(/[^a-zA-z]/)) {
+    console.log(char)
+
+    if (idx === 0 || str[idx - 1].match(/[^a-zA-Z]/)) {
+      console.log('print1')
+
       tempChar = char;
-      char = '';
-      stopIdx--;
+      idx++;
+      continue;
     }
 
-    if (char.match(/[a-zA-z]/) && str[idx + 1].match(/[^a-zA-z]/)) {
-      char = `${char}ay${char}`;
+    if (char.match(/[a-zA-Z]/) && 
+        (nextChar === undefined || nextChar.match(/[^a-zA-Z]/) || nextChar === undefined)
+      ) {
+      console.log('print2')
+
+      newStr += `${char}${tempChar}ay`;
       temp = '';
-      stopIdx += 3;
+    } else {
+      newStr += char;
     }
     
     idx++;
   }
 
-  return str;
+  return newStr;
 }
 
 console.log(toPigLatin('code')); // 'odecay'
@@ -42,3 +54,55 @@ console.log(toPigLatin('code')); // 'odecay'
 
 // console.log(toPigLatin('Thank you !')); 
 // // 'hankTay ouyay !'
+
+
+
+
+// Draft
+function toPigLatin(str) {
+  let newStr = '';
+  let stopIdx = str.length;
+  let idx = 0;
+  let tempChar = '';
+
+  while (idx < stopIdx) {
+    console.log('~~~~~~~~~~~~~~~~~~~~~~~~')
+    let char = str[idx];
+    let nextChar = str[idx + 1];
+
+    console.log(char)
+
+    if (idx === 0 || str[idx - 1].match(/[^a-zA-Z]/)) {
+      console.log('print1')
+
+      tempChar = char;
+      idx++;
+      continue;
+    }
+
+    if (char.match(/[a-zA-Z]/) && 
+        (nextChar === undefined || nextChar.match(/[^a-zA-Z]/) || nextChar === undefined)
+      ) {
+      console.log('print2')
+
+      newStr += `${char}${tempChar}ay`;
+      temp = '';
+    } else {
+      newStr += char;
+    }
+    
+    idx++;
+  }
+
+  return newStr;
+}
+
+console.log(toPigLatin('code')); // 'odecay'
+
+
+
+// // Experiments:
+// // Strings are immutable in JS
+// const a = 'Hello';
+// a[0] = '-';
+// console.log(a) // Hello
