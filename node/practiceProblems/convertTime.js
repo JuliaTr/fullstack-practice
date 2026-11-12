@@ -10,37 +10,47 @@ Create a function `convertTime` that:
 The maximum number of seconds is `359999` (`99:59:59`).
 */
 
+// Refactored
 const MINUTES_PER_HOUR = 60;
 const SECONDS_PER_MINUTE = 60;
+const FIRST_TWO_DIGIT_NUMBER = 10;
 
 const SECONDS_PER_HOUR = SECONDS_PER_MINUTE * MINUTES_PER_HOUR; // 3600
 
+function getRemainder(number1, number2) {
+  return number1 % number2;
+}
+
+function calculateTime(number1, number2) {
+  return number1 / number2;
+}
+
+function convertNumberToString(time) {
+  let wholeNum = Math.floor(hours);
+
+  return time < FIRST_TWO_DIGIT_NUMBER
+    ? `0${wholeNum}`
+    : `${wholeNum}`;
+}
+
 function convertTime(seconds) {
   // Calculate hours:
-  const hours = seconds / SECONDS_PER_HOUR;
-  let wholeHour = Math.floor(hours);
+  let hours = calculateTime(seconds, SECONDS_PER_HOUR);
+
+  let remaainedSeconds = getRemainder(seconds, SECONDS_PER_HOUR);
 
   // Calculate minutes:
-  const minutes = (seconds % SECONDS_PER_HOUR) / MINUTES_PER_HOUR;
-  let wholeMinutes = Math.floor(minutes);
+  let minutes = calculateTime(remaainedSeconds, MINUTES_PER_HOUR);
 
   // Calculate seconds:
-  let restSeconds = (seconds % SECONDS_PER_HOUR) % SECONDS_PER_MINUTE;
+  let restSeconds = getRemainder(remaainedSeconds, SECONDS_PER_MINUTE);
 
   // Format string
-  if (wholeHour < 10) {
-    wholeHour = `0${wholeHour}`;
-  }
+  hours = convertNumberToString(hours);
+  minutes = convertNumberToString(minutes);
+  restSeconds = convertNumberToString(restSeconds);
 
-  if (wholeMinutes < 10) {
-    wholeMinutes = `0${wholeMinutes}`;
-  }
-
-  if (restSeconds < 10) {
-    restSeconds = `0${restSeconds}`;
-  }
-
-  return `${wholeHour}:${wholeMinutes}:${restSeconds}`;
+  return `${hours}:${minutes}:${restSeconds}`;
 }
 
 console.log(convertTime(0)); // '00:00:00'
@@ -50,3 +60,48 @@ console.log(convertTime(3600)); // '01:00:00'
 console.log(convertTime(123456)); // '34:17:36'
 
 // Works as expected
+
+
+
+
+// // Solution:
+// const MINUTES_PER_HOUR = 60;
+// const SECONDS_PER_MINUTE = 60;
+
+// const SECONDS_PER_HOUR = SECONDS_PER_MINUTE * MINUTES_PER_HOUR; // 3600
+
+// function convertTime(seconds) {
+//   // Calculate hours:
+//   const hours = seconds / SECONDS_PER_HOUR;
+//   let wholeHour = Math.floor(hours);
+
+//   // Calculate minutes:
+//   const minutes = (seconds % SECONDS_PER_HOUR) / MINUTES_PER_HOUR;
+//   let wholeMinutes = Math.floor(minutes);
+
+//   // Calculate seconds:
+//   let restSeconds = (seconds % SECONDS_PER_HOUR) % SECONDS_PER_MINUTE;
+
+//   // Format string
+//   if (wholeHour < 10) {
+//     wholeHour = `0${wholeHour}`;
+//   }
+
+//   if (wholeMinutes < 10) {
+//     wholeMinutes = `0${wholeMinutes}`;
+//   }
+
+//   if (restSeconds < 10) {
+//     restSeconds = `0${restSeconds}`;
+//   }
+
+//   return `${wholeHour}:${wholeMinutes}:${restSeconds}`;
+// }
+
+// console.log(convertTime(0)); // '00:00:00'
+// console.log(convertTime(20)); // '00:00:20'
+// console.log(convertTime(65)); // '00:01:05'
+// console.log(convertTime(3600)); // '01:00:00'
+// console.log(convertTime(123456)); // '34:17:36'
+
+// // Works as expected
