@@ -10,94 +10,95 @@ Create a function `toPigLatin` that:
   - Letters retain their original case.
 */
 
+// Solution
 function toPigLatin(str) {
   let newStr = '';
-  let stopIdx = str.length;
-  let idx = 0;
   let tempChar = '';
 
-  while (idx < stopIdx) {
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~')
+  for (let idx = 0; idx < str.length; idx++) {
+    // console.log('~~~~~~~~~~~~~~~~~~~~~~~~')
     let char = str[idx];
     let nextChar = str[idx + 1];
 
-    console.log(char)
+    // console.log(char)
+
+    if (char.match(/[^a-zA-Z]/)) {
+      newStr += char;
+      continue;
+    }
 
     if (idx === 0 || str[idx - 1].match(/[^a-zA-Z]/)) {
-      console.log('print1')
+      // console.log('print1')
 
       tempChar = char;
-      idx++;
       continue;
     }
 
     if (char.match(/[a-zA-Z]/) && 
         (nextChar === undefined || nextChar.match(/[^a-zA-Z]/) || nextChar === undefined)
       ) {
-      console.log('print2')
+      // console.log('print2')
 
       newStr += `${char}${tempChar}ay`;
       temp = '';
     } else {
       newStr += char;
     }
-    
-    idx++;
   }
 
   return newStr;
 }
 
-console.log(toPigLatin('code')); // 'odecay'
+// console.log(toPigLatin('code')); // 'odecay'
 // console.log(toPigLatin('Javascript is fun')); 
 // // 'avascriptJay siay unfay'
 
-// console.log(toPigLatin('Thank you !')); 
-// // 'hankTay ouyay !'
+console.log(toPigLatin('Thank you !')); 
+// 'hankTay ouyay !'
 
 
 
 
-// Draft
-function toPigLatin(str) {
-  let newStr = '';
-  let stopIdx = str.length;
-  let idx = 0;
-  let tempChar = '';
+// // Draft
+// function toPigLatin(str) {
+//   let newStr = '';
+//   let stopIdx = str.length;
+//   let idx = 0;
+//   let tempChar = '';
 
-  while (idx < stopIdx) {
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~')
-    let char = str[idx];
-    let nextChar = str[idx + 1];
+//   while (idx < stopIdx) {
+//     console.log('~~~~~~~~~~~~~~~~~~~~~~~~')
+//     let char = str[idx];
+//     let nextChar = str[idx + 1];
 
-    console.log(char)
+//     console.log(char)
 
-    if (idx === 0 || str[idx - 1].match(/[^a-zA-Z]/)) {
-      console.log('print1')
+//     if (idx === 0 || str[idx - 1].match(/[^a-zA-Z]/)) {
+//       console.log('print1')
 
-      tempChar = char;
-      idx++;
-      continue;
-    }
+//       tempChar = char;
+//       idx++;
+//       continue;
+//     }
 
-    if (char.match(/[a-zA-Z]/) && 
-        (nextChar === undefined || nextChar.match(/[^a-zA-Z]/) || nextChar === undefined)
-      ) {
-      console.log('print2')
+//     if (char.match(/[a-zA-Z]/) && 
+//         (nextChar === undefined || nextChar.match(/[^a-zA-Z]/) || nextChar === undefined)
+//       ) {
+//       console.log('print2')
 
-      newStr += `${char}${tempChar}ay`;
-      temp = '';
-    } else {
-      newStr += char;
-    }
+//       newStr += `${char}${tempChar}ay`;
+//       temp = '';
+//     } else {
+//       newStr += char;
+//     }
     
-    idx++;
-  }
+//     idx++;
+//   }
 
-  return newStr;
-}
+//   return newStr;
+// }
 
-console.log(toPigLatin('code')); // 'odecay'
+// console.log(toPigLatin('code')); // 'odecay'
 
 
 
