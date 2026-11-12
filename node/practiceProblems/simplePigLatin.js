@@ -10,51 +10,83 @@ Create a function `toPigLatin` that:
   - Letters retain their original case.
 */
 
-// Solution
+// Refactored
 function toPigLatin(str) {
   let newStr = '';
   let tempChar = '';
 
   for (let idx = 0; idx < str.length; idx++) {
-    // console.log('~~~~~~~~~~~~~~~~~~~~~~~~')
-    let char = str[idx];
-    let nextChar = str[idx + 1];
+    const char = str[idx];
+    const nextChar = str[idx + 1];
 
-    // console.log(char)
-
-    if (char.match(/[^a-zA-Z]/)) {
-      newStr += char;
-      continue;
-    }
-
-    if (idx === 0 || str[idx - 1].match(/[^a-zA-Z]/)) {
-      // console.log('print1')
-
+    if ((idx === 0 || str[idx - 1].match(/[^a-zA-Z]/)) 
+        && (char.match(/[a-zA-Z]/))
+    ) {
       tempChar = char;
       continue;
     }
 
-    if (char.match(/[a-zA-Z]/) && 
-        (nextChar === undefined || nextChar.match(/[^a-zA-Z]/) || nextChar === undefined)
-      ) {
-      // console.log('print2')
+    newStr += char;
 
-      newStr += `${char}${tempChar}ay`;
-      temp = '';
-    } else {
-      newStr += char;
+    if (char.match(/[a-zA-Z]/) 
+        && (nextChar === undefined || nextChar.match(/[^a-zA-Z]/))
+    ) {
+      newStr += `${tempChar}ay`;
+      tempChar = '';
     }
   }
 
   return newStr;
 }
 
+console.log(toPigLatin('code')); // 'odecay'
+console.log(toPigLatin('Javascript is fun')); 
+// 'avascriptJay siay unfay'
+
+console.log(toPigLatin('Thank you !')); 
+// 'hankTay ouyay !'
+
+
+
+
+// // Solution
+// function toPigLatin(str) {
+//   let newStr = '';
+//   let tempChar = '';
+
+//   for (let idx = 0; idx < str.length; idx++) {
+//     let char = str[idx];
+//     let nextChar = str[idx + 1];
+
+//     if (char.match(/[^a-zA-Z]/)) {
+//       newStr += char;
+//       continue;
+//     }
+
+//     if (idx === 0 || str[idx - 1].match(/[^a-zA-Z]/)) {
+//       tempChar = char;
+//       continue;
+//     }
+
+//     if (char.match(/[a-zA-Z]/) && 
+//         (nextChar === undefined || nextChar.match(/[^a-zA-Z]/))
+//       ) {
+//       newStr += `${char}${tempChar}ay`;
+//       temp = '';
+//     } else {
+//       newStr += char;
+//     }
+//   }
+
+//   return newStr;
+// }
+
 // console.log(toPigLatin('code')); // 'odecay'
 // console.log(toPigLatin('Javascript is fun')); 
 // // 'avascriptJay siay unfay'
 
-console.log(toPigLatin('Thank you !')); 
-// 'hankTay ouyay !'
+// console.log(toPigLatin('Thank you !')); 
+// // 'hankTay ouyay !'
 
 
 
