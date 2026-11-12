@@ -26,7 +26,7 @@ function calculateTime(number1, number2) {
 }
 
 function convertNumberToString(time) {
-  let wholeNum = Math.floor(time);
+  const wholeNum = Math.floor(time);
 
   return time < FIRST_TWO_DIGIT_NUMBER
     ? `0${wholeNum}`
@@ -37,7 +37,7 @@ function convertTime(seconds) {
   // Calculate hours:
   let hours = calculateTime(seconds, SECONDS_PER_HOUR);
 
-  let remaainedSeconds = getRemainder(seconds, SECONDS_PER_HOUR);
+  const remaainedSeconds = getRemainder(seconds, SECONDS_PER_HOUR);
 
   // Calculate minutes:
   let minutes = calculateTime(remaainedSeconds, MINUTES_PER_HOUR);
