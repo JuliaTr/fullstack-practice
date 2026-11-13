@@ -28,6 +28,10 @@ function getCardIssuer(number) {
     return 'VISA';
   }
 
+  if (str.length === 16 && str.startsWith('6011')) {
+    return 'Discover';
+  }
+
   return 'Unknown';
 }
 
