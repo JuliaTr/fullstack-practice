@@ -32,6 +32,12 @@ function getCardIssuer(number) {
     return 'Discover';
   }
 
+  if (str.length === 16 
+      && (str.startsWith('51') || str.startsWith('52') || str.startsWith('53') || str.startsWith('54') || str.startsWith('55'))
+  ) {
+    return 'Mastercard';
+  }
+
   return 'Unknown';
 }
 
