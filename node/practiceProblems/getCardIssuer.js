@@ -38,6 +38,12 @@ function getCardIssuer(number) {
     return 'Mastercard';
   }
 
+  if (str.length === 15 
+      && (str.startsWith('34') || str.startsWith('37'))
+  ) {
+    return 'AMEX';
+  }
+
   return 'Unknown';
 }
 
