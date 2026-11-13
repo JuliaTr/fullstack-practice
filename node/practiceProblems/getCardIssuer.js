@@ -20,6 +20,10 @@ Here are a few examples:
  * @returns {string}
  */
 function getCardIssuer(number) {
+  if (number === undefined) {
+    return 'Unknown';
+  }
+
   const str = number.toString();
 
   if ((str.length === 13 || str.length === 16) 
