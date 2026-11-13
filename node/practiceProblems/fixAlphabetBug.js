@@ -9,8 +9,6 @@ Create a function `fixAlphabet` that:
 3. Returns the fixed `str`, or if the input isn't a string — returns the message `'Input is not a string'`.
 */
 
-const ALPHA = 'abcdefghijklmnopqrstuvwzyz';
-
 function fixAlphabet(str) {
   if (str !== String(str)) {
     return 'Input is not a string';
@@ -19,10 +17,24 @@ function fixAlphabet(str) {
   let result = '';
 
   for (const char of str) {
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~')
-    
-    const asciiValue = char.charCodeAt(0);
-    console.log(asciiValue);
+    if (char.match(/[^a-zA-Z]/)) {
+      result += char;
+      continue;
+    }
+
+    let asciiValue = char.charCodeAt(0);
+
+    if (char === 'a') {
+      asciiValue = 'Z'.charCodeAt(0);
+      result += String.fromCharCode(asciiValue);
+      continue;
+    }
+
+    if (char === 'A') {
+      asciiValue = 'z'.charCodeAt(0);
+      result += String.fromCharCode(asciiValue);
+      continue;
+    }
 
     result += String.fromCharCode(asciiValue - 1);
   }
@@ -31,5 +43,7 @@ function fixAlphabet(str) {
 }
 
 console.log(fixAlphabet('abA')); // 'Zaz'
-// console.log(fixAlphabet('Ifmmp xpsme!')); // 'Hello world!'
-// console.log(fixAlphabet(12)); // 'Input is not a string'
+console.log(fixAlphabet('Ifmmp xpsme!')); 
+// 'Hello world!'
+console.log(fixAlphabet(12)); 
+// 'Input is not a string'
