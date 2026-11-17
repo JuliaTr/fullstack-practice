@@ -1,19 +1,10 @@
 import { Transaction } from './Transaction';
+import { TransactionStatistics } from './TransactionStatistics';
 
 export class ReportGenerator {
   constructor(
     private transactions: Transaction[],
   ) {}
-
-  getTotalIncome() {
-    let total = 0;
-
-    for (const transaction of this.transactions) {
-      total += transaction.amount;
-    }
-
-    return total;
-  }
 
   getMonthName(date: Date) {
     return date.toLocaleString('default', { month: 'long' });
@@ -21,7 +12,8 @@ export class ReportGenerator {
 
   getMonthly(date = new Date()) {
     const month = this.getMonthName(date);
-    const income = this.getTotalIncome();
+    const stats = new TransactionStatistics(this.transactions);
+    const income = stats.getTotalIncome();
 
     return `${month} report. Income: ${income}`;
   }
