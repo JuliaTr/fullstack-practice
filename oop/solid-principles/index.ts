@@ -6,6 +6,7 @@ SRP - Single Responsibility Principle:
 
 import { ReportGenerator } from './ReportGenerator';
 import { Transaction } from './Transaction';
+import { TransactionStatistics } from './TransactionStatistics';
 
 function printAccountingReport() {
   const transactions: Transaction[] = []; // read them from DB
@@ -17,8 +18,8 @@ function printAccountingReport() {
 
 function getNextMonthPlan() {
   const transactions: Transaction[] = []; // read them from DB
-  const reportGenerator = new ReportGenerator(transactions);
-  const currentIncome = reportGenerator.getTotalIncome();
+  const stats = new TransactionStatistics(transactions);
+  const currentIncome = stats.getTotalIncome();
 
   console.log('Goal: ', 1.2 * currentIncome);
 }
