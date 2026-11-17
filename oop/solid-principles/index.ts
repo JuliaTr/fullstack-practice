@@ -23,3 +23,11 @@ function getNextMonthPlan() {
 
   console.log('Goal: ', 1.2 * currentIncome);
 }
+
+function printInvestorsReport() {
+  const transactions: Transaction[] = []; // read them from DB
+  const reportGenerator = new ReportGenerator(transactions);
+
+  console.log('\n-- Investors --');
+  console.log(reportGenerator.getMonthly());
+}
