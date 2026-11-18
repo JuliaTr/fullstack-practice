@@ -14,9 +14,11 @@ export class ReportGenerator {
     return `${month} report. Income: ${income}.`;
   }
 
-  getQuarterly(date = new Date()): string {
-    return `${this.getQuarterly(date)} quarter report`;
-  }
+  // We shouldn't print quarter report.
+  // `getQuarterly` should be deleted according to LSP. Another ancestor can have this method.
+  // getQuarterly(date = new Date()): string {
+  //   return `${this.getQuarterly(date)} quarter report`;
+  // }
 
   getAnnual(date = new Date()): string {
     return `${date.getFullYear()} report`;
