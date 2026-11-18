@@ -1,10 +1,16 @@
 /*
 ISP - Interface Segregation Principle
-  - classes or modules don't have to implements methods, which they don't use
+  - classes or modules don't have to implement methods, which they don't use
   - we should break interface down into smaller parts
 */
 
 import { Transaction } from './Transaction';
+
+// Each class is responsible for a specific method
+export interface MonthlyReportGenerator {
+  getQuarterly(date?: Date): string;
+}
+
 
 export abstract class ReportGenerator {
   constructor(
@@ -15,7 +21,8 @@ export abstract class ReportGenerator {
     return date.toLocaleString('default', { month: 'long'});
   }
 
-  abstract getMonthly(date?: Date): string;
-  abstract getQuarterly(date?: Date): string;
-  abstract getAnnual(date?: Date): string;
+  // We need to reorganise interface according to ISP
+//   abstract getMonthly(date?: Date): string;
+//   abstract getQuarterly(date?: Date): string;
+//   abstract getAnnual(date?: Date): string;
 }
