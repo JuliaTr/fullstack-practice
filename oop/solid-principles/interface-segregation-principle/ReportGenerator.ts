@@ -1,7 +1,9 @@
 /*
 ISP - Interface Segregation Principle
   - classes or modules don't have to implement methods, which they don't use
-  - we should break interface down into smaller parts
+  - we should break interface down into smaller interfaces
+  - if we have methods which should be implemented together at the same time, we combine them into one interface
+  - if methods are independent, we should extact them into separate interfaces
 */
 
 import { Transaction } from './Transaction';
