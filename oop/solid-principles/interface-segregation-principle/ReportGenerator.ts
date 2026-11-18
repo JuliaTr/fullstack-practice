@@ -8,10 +8,12 @@ import { Transaction } from './Transaction';
 
 // Each class is responsible for a specific method
 export interface MonthlyReportGenerator {
-  getQuarterly(date?: Date): string;
+  getMonthly(date?: Date): string;
 }
 
-
+export interface QuarterlyReportGenerator {
+  getQuarterly(date?: Date): string;
+}
 export abstract class ReportGenerator {
   constructor(
     protected transactions: Transaction[],
