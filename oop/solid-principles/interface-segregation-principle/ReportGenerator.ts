@@ -14,6 +14,10 @@ export interface MonthlyReportGenerator {
 export interface QuarterlyReportGenerator {
   getQuarterly(date?: Date): string;
 }
+
+export interface AnnualReportGenerator {
+  getAnnual(date?: Date): string;
+}
 export abstract class ReportGenerator {
   constructor(
     protected transactions: Transaction[],
