@@ -14,9 +14,10 @@ export class AccountingReportGenerator extends ReportGenerator {
     `;
   }
 
-  getQuarterly(date = new Date()): string {
-    throw new Error("Can't create accounting quarterly report");
-  }
+  // // We shouldn't print quarter report. `getQuarterly` should be deleted according to LSP. (see more comments in `ReportGenerator`).
+  // getQuarterly(date = new Date()): string {
+  //   throw new Error("Can't create accounting quarterly report");
+  // }
 
   getAnnual(date = new Date()): string {
     return `Accounting report for ${date.getFullYear()}`;
