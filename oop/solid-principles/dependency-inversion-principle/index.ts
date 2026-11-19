@@ -17,6 +17,14 @@ class JSONFileStorage {
   }
 }
 
+class CSVFileStorage {
+  constructor(fileName: string) {}
+
+  readFromCSV() {
+    return [];
+  }
+}
+
 // High-level module (application or its page):
 // Now `App` depends on `JSONFileStorage` and `AccountingReportGenerator`. Violation of DIP.
 class App {
