@@ -10,6 +10,9 @@ import { AccountingReportGenerator } from './AccountingReportGenerator';
 import { Transaction } from './Transaction';
 
 // If we save data in DB instead of files
+interface TransactionStorage {
+  getAll(): Transaction[];
+} 
 class DBStorage {
   constructor(tableName: string) {}
 
