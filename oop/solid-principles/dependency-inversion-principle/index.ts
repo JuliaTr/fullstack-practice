@@ -4,6 +4,9 @@ DIP - Dependency Inversion Principle:
   - all dependencies in a system should be built on abstraction basis
   - abstraction should NOT depend on details of implementation
   - details of implementation should depend on abstraction
+  - allows us to structure connections inside the system
+  - we rely on interfaces and abstract classes
+  - first we need to create abstractions and understand which relashionship will be inside the system. Only after create classes which will use our abstractions
 */
 
 import { AccountingReportGenerator } from './AccountingReportGenerator';
