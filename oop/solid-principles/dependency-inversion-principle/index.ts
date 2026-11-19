@@ -7,30 +7,31 @@ DIP - Dependency Inversion Principle:
 */
 
 import { AccountingReportGenerator } from './AccountingReportGenerator';
+import { MonthlyReportGenerator } from './ReportGenerator';
 import { Transaction } from './Transaction';
 
 // If we save data in DB instead of files
 interface TransactionStorage {
   getAll(): Transaction[];
 } 
-class DBStorage {
+class DBStorage implements TransactionStorage {
   constructor(tableName: string) {}
 
-  select(): Transaction[] {
+  getAll(): Transaction[] {
     return [];
   }
 }
 
 // Here, we save data in files:
-abstract class FileStorage {
-  abstract read(): Transaction[];
+abstract class FileStorage implements TransactionStorage {
+  abstract getAll(): Transaction[];
 }
 class JSONFileStorage extends FileStorage {
   constructor(filename: string) {
     super();
   }
 
-  read(): Transaction[] {
+  getAll(): Transaction[] {
     return [];
   }
 }
@@ -40,22 +41,24 @@ class CSVFileStorage extends FileStorage {
     super();
   }
 
-  read(): Transaction[] {
+  getAll(): Transaction[] {
     return [];
   }
 }
 
 // High-level module (application or its page):
-// Now `App` depends on `JSONFileStorage` and `AccountingReportGenerator`. Violation of DIP.
 class App {
-  printReport(storage: FileStorage) {
+  printReport(storage: TransactionStorage, reportGenerator: MonthlyReportGenerator) {
+    // Now `App` depends on `JSONFileStorage` and `AccountingReportGenerator`. Violation of DIP.
     // We don't need them anymore
     // const storage = new JSONFileStorage('transaction.json');
     // const transactions = storage.readFromJSON();
 
-    const transactions = storage.read();
+    const transactions = storage.getAll();
 
-    const reportGenerator = new AccountingReportGenerator(transactions);
+    // We don't need it anymore
+    // const reportGenerator = new AccountingReportGenerator(transactions);
+
     const report = reportGenerator.getMonthly();
 
     console.log(report);
