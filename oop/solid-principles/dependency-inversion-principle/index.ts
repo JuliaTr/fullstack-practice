@@ -9,18 +9,31 @@ DIP - Dependency Inversion Principle:
 import { AccountingReportGenerator } from './AccountingReportGenerator';
 import { Transaction } from './Transaction';
 
-class JSONFileStorage {
-  constructor(filename: string) {}
+// If we save data in DB instead of files
+class DBStorage {
+  
+}
 
-  readFromJSON(): Transaction[] {
+// Here, we save data in files:
+abstract class FileStorage {
+  abstract read(): Transaction[];
+}
+class JSONFileStorage extends FileStorage {
+  constructor(filename: string) {
+    super();
+  }
+
+  read(): Transaction[] {
     return [];
   }
 }
 
-class CSVFileStorage {
-  constructor(fileName: string) {}
+class CSVFileStorage extends FileStorage {
+  constructor(fileName: string) {
+    super();
+  }
 
-  readFromCSV() {
+  read(): Transaction[] {
     return [];
   }
 }
@@ -28,9 +41,12 @@ class CSVFileStorage {
 // High-level module (application or its page):
 // Now `App` depends on `JSONFileStorage` and `AccountingReportGenerator`. Violation of DIP.
 class App {
-  printReport() {
-    const storage = new JSONFileStorage('transaction.json');
-    const transactions = storage.readFromJSON();
+  printReport(storage: FileStorage) {
+    // We don't need them anymore
+    // const storage = new JSONFileStorage('transaction.json');
+    // const transactions = storage.readFromJSON();
+
+    const transactions = storage.read();
 
     const reportGenerator = new AccountingReportGenerator(transactions);
     const report = reportGenerator.getMonthly();
