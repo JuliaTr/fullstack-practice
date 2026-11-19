@@ -1,8 +1,8 @@
-import { Transaction } from "../Transaction";
+import { Transaction } from "./Transaction";
 
 export class TransactionStatistics {
   constructor(
-    private transactions: Transaction[];
+    private transactions: Transaction[],
   ) {}
 
   getTotalIncome() {
