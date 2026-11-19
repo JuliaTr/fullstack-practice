@@ -11,7 +11,11 @@ import { Transaction } from './Transaction';
 
 // If we save data in DB instead of files
 class DBStorage {
-  
+  constructor(tableName: string) {}
+
+  select(): Transaction[] {
+    return [];
+  }
 }
 
 // Here, we save data in files:
