@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export const App = () => {
   const [history, setHistory] = useState<number[]>([]);
@@ -10,6 +10,10 @@ export const App = () => {
     setHistory(currentHistory => [...currentHistory, value]);
   }
 
+  const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value);
+  };
+
   return (
     <div className="App">
       <h1>Mate academy {count} </h1>
@@ -17,9 +21,7 @@ export const App = () => {
       <div className="box">
         <input
           type="text"
-          onChange={event => {
-            setQuery(event.target.value)
-          }}
+          onChange={handleQueryChange}
         ></input>
 
         {query}
