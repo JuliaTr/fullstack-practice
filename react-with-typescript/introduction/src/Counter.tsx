@@ -1,13 +1,16 @@
 import React from "react";
 
+// Option 1
 type Props = {
   value: number;
-  onChange: (vslue: number) => void;
+  onChange?: (vslue: number) => void;
 }
+
+// 
 
 export const Counter: React.FC<Props> = ({
   value,
-  onChange
+  onChange = () => {}, // if parameter is optional
 }) => (
   <div className="box">
     <button onClick={() => onChange(value - 1)}>-</button>
