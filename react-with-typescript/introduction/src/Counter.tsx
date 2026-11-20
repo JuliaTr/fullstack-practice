@@ -1,12 +1,16 @@
 import React from "react";
 
-// Option 1
+// Option 1:
 type Props = {
   value: number;
   onChange?: (vslue: number) => void;
 }
 
-// 
+// // Option 2:
+// interface Props {
+//   value: number;
+//   onChange?: (value: number) => void;
+// }
 
 export const Counter: React.FC<Props> = ({
   value,
