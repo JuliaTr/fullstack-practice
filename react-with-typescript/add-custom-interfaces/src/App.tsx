@@ -5,6 +5,17 @@ import './App.scss';
 // import commentsFromServer from './api/comments.json';
 // import usersFromServer from './api/users.json';
 
+// interface User {
+//   id: number;
+//   name: string;
+//   username: string;
+//   email: string;
+// }
+
+// function getUserById(userId: number): User | null {
+//   return usersFromServer.find(user => user.id === userId) || null;
+// }
+
 export const App = () => (
   <section className="App">
     <h1 className="App__title">Static list of posts</h1>
