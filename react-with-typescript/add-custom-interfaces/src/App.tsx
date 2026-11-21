@@ -12,8 +12,20 @@ import './App.scss';
 //   email: string;
 // }
 
+// interface Comment {
+//   postId: number;
+//   id: number;
+//   name: string;
+//   email: string;
+//   body: string;
+// }
+
 // function getUserById(userId: number): User | null {
 //   return usersFromServer.find(user => user.id === userId) || null;
+// }
+
+// function getPostComments(postId: number): Comment[] {
+//   return commentsFromServer.filter(comment => comment.postId === postId);
 // }
 
 export const App = () => (
