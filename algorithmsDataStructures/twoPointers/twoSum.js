@@ -2,6 +2,7 @@
 Find indexes of two elements, which sum is qual to `target`.
 */
 
+// Solution (two pointers for linear time):
 function twoSum(array, target) {
   let left = 0;
   let right = array.length - 1;
@@ -24,4 +25,7 @@ function twoSum(array, target) {
 }
 
 let array = [1, 2, 3, 4, 10, 20, 44];
-console.log(twoSum(array, 24));
+console.log(twoSum(array, 24)); // [ 3, 5 ]
+
+array = [-10, 2, 3, 10, 23, 77];
+console.log(twoSum(array, 0)); // [ 0, 3 ]
