@@ -27,3 +27,9 @@ function longestSubarray(array, s) {
 
   return length;
 }
+
+let array = [21, 14, 4, 5, 13, 12, 15, 9, 5];
+console.log(longestSubarray(array, 35)); // 4
+
+array = [100, 100, 100];
+console.log(longestSubarray(array, 35)); // 0
