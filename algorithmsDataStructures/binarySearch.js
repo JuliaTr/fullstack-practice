@@ -5,7 +5,7 @@ function binarySearch(array, target) {
   while (left <= right) {
     let middle = Math.floor((left + right) / 2);
 
-    if (arrray[middle] === target) {
+    if (array[middle] === target) {
       return middle;
     }
 
@@ -18,3 +18,19 @@ function binarySearch(array, target) {
 
   return -1;
 }
+
+const array = [-10, -7, -4, 0, 2, 8, 11, 123];
+
+let target = -4;
+console.log(binarySearch(array, target)); 
+// 2 (index)
+
+
+target = 11;
+console.log(binarySearch(array, target)); 
+// 6 (index)
+
+
+target = 1;
+console.log(binarySearch(array, target));
+// -1
