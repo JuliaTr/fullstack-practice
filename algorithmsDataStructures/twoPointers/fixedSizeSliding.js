@@ -2,7 +2,7 @@
 Find max sum of subarrays.
 */
 
-// Solution (sliding window):
+// Solution (fixed size sliding window):
 function largestSubarraySum(array, k) {
   let left = 0;
   let right = k - 1;
@@ -31,3 +31,6 @@ function largestSubarraySum(array, k) {
 
   return maxSum;
 }
+
+let array = [12, 9, 22, 18, 19, 7, 33, 1, 1, 14];
+console.log(largestSubarraySum(array, 4)); // 77
