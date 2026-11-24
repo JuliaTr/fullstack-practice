@@ -34,7 +34,7 @@ class LinkedList {
     this.tail.next = newNode;
     this.tail = newNode;
 
-    this.tail++;
+    this.length++;
   }
 
   prepend(value) {
@@ -47,7 +47,7 @@ class LinkedList {
     newNode.next = this.head;
     this.head = newNode;
 
-    this.tail++;
+    this.length++;
   }
 
   // `position` - index before which we insert value
@@ -88,6 +88,7 @@ class LinkedList {
 // list -> [123, 145, 45, 344]
 
 const list = new LinkedList();
+
 list.append('list');
 // console.log(list);
 // /*
@@ -103,30 +104,37 @@ console.log(JSON.stringify(list));
 {"head":{"value":"list","next":null},"tail":{"value":"list","next":null},"length":1}
 */
 
-
 list.append('is');
 console.log(JSON.stringify(list));
 /*
-{"head":{"value":"list","next":{"value":"is","next":null}},"tail":null,"length":1}
+{"head":{"value":"list","next":{"value":"is","next":null}},"tail":{"value":"is","next":null},"length":2}
 */
 
 list.prepend('Linked');
 console.log(JSON.stringify(list));
 /*
-{"head":{"value":"Linked","next":{"value":"list","next":{"value":"is","next":null}}},"tail":null,"length":1}
+{"head":{"value":"Linked","next":{"value":"list","next":{"value":"is","next":null}}},"tail":{"value":"is","next":null},"length":3}
 */
 
 list.insertBefore(3, 'nice');
 console.log(JSON.stringify(list));
 /*
-{"head":{"value":"Linked","next":{"value":"list","next":{"value":"is","next":{"value":"nice","next":null}}}},"tail":{"value":"nice","next":null},"length":2}
+{"head":{"value":"Linked","next":{"value":"list","next":{"value":"is","next":{"value":"nice","next":null}}}},"tail":{"value":"nice","next":null},"length":4}
 */
 
 list.insertBefore(3, 'very');
 console.log(JSON.stringify(list));
 /*
-{"head":{"value":"Linked","next":{"value":"list","next":{"value":"is","next":{"value":"very","next":{"value":"nice","next":null}}}}},"tail":{"value":"nice","next":null},"length":3}
+{"head":{"value":"Linked","next":{"value":"list","next":{"value":"is","next":{"value":"very","next":{"value":"nice","next":null}}}}},"tail":{"value":"nice","next":null},"length":5}
 */
+
+list.insertBefore(100, '!');
+console.log(JSON.stringify(list));
+/*
+{"head":{"value":"Linked","next":{"value":"list","next":{"value":"is","next":{"value":"very","next":{"value":"nice","next":{"value":"!","next":null}}}}}},"tail":{"value":"!","next":null},"length":6}
+*/
+
+
 
 
 
