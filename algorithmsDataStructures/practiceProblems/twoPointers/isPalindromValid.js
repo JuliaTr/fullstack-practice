@@ -37,3 +37,6 @@ console.log(isPalindromValid(
 console.log(isPalindromValid(
   'A brown fox jumping over'
 )); // false 
+
+
+// It's better not to convert string into lower case at the beginning as it will increase auxiliary space complexity. More memory will be used.
