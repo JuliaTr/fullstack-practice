@@ -90,6 +90,39 @@ class LinkedList {
 
     return currentNode;
   }
+
+  delete(value) {
+    if (this.isEmpty()) {
+      return;
+    }
+
+    let currentNode = this.head;
+    let previousNode = null;
+
+    if (currentNode.value === value) {
+      // Works only for programming languages with garbage collectors. Other languages will require to empty memory manually.
+      this.head = currentNode.next;
+      return;
+    }
+
+    while (
+      currentNode !== null 
+      && currentNode.value !== value
+    ) {
+      previousNode = currentNode;
+      currentNode = currentNode.next;
+    }
+
+    if (currentNode === null) {
+      return;
+    }
+
+    previousNode.next = currentNode.next;
+
+    if (previousNode.next === null) {
+      this.tail = previousNode;
+    }
+  }
 }
 
 const list = new LinkedList();
@@ -104,7 +137,10 @@ list.insertBefore(100, '!');
 console.log(list.find('nice'));
 // Node { value: 'nice', next: Node { value: '!', next: null } }
 
-console.log(list.find('!'));
-// Node { value: '!', next: null }
+list.delete('nice');
+console.log(list.find('nice')); // null
 
-console.log(list.find('nice!')); // null
+console.log(JSON.stringify(list));
+/*
+{"head":{"value":"Linked","next":{"value":"list","next":{"value":"is","next":{"value":"very","next":{"value":"!","next":null}}}}},"tail":{"value":"!","next":null},"length":6}
+*/
