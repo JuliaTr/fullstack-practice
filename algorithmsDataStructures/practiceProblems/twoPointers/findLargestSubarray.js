@@ -19,9 +19,9 @@ function findLargestSubarray(nums, k) {
   let currentSum = calculateSum(nums, right);
   let maxSum = currentSum;
 
-  while (right < nums.length - 1) {
+  while (right + 1 < nums.length) {
     currentSum -= nums[left];
-    currentSum += nums[right];
+    currentSum += nums[right + 1];
 
     left++;
     right++;
