@@ -49,6 +49,20 @@ LinkedList {
 }
 */
 
+list.append('is');
+console.log(list);
+/*
+LinkedList {
+  head: Node { value: 'list', next: Node { value: 'is', next: null } },
+  tail: NaN,
+  length: 1
+}
+*/
+
+console.log(JSON.stringify(list));
+/*
+{"head":{"value":"list","next":{"value":"is","next":null}},"tail":null,"length":1}
+*/
 
 
 
