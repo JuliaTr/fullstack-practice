@@ -12,8 +12,12 @@ class LinkedList {
     this.length = 0;
   }
 
+  isEmpty() {
+    return this.head === null;
+  }
+
   append(value) {
-    if (this.head === null) {
+    if (this.isEmpty()) {
       this.head = new Node(value);
       this.tail = this.head;
       this.length = 1;
