@@ -36,6 +36,19 @@ class LinkedList {
 
     this.tail++;
   }
+
+  prepend(value) {
+    if(this.isEmpty()) {
+      return this._addFirstElement(value);
+    }
+
+    const newNode = new Node(value);
+
+    newNode.next = this.head;
+    this.head = newNode;
+
+    this.tail++;
+  }
 }
 
 const list = new LinkedList();
