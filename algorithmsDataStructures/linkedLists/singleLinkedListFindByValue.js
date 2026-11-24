@@ -78,43 +78,33 @@ class LinkedList {
     this.length++;
   }
 
-  // find
+  find(value) {
+    let currentNode = this.head;
+
+    while (
+      currentNode !== null 
+      && currentNode.value !== value
+    ) {
+      currentNode = currentNode.next;
+    }
+
+    return currentNode;
+  }
 }
 
 const list = new LinkedList();
 
 list.append('list');
-console.log(JSON.stringify(list));
-/*
-{"head":{"value":"list","next":null},"tail":{"value":"list","next":null},"length":1}
-*/
-
 list.append('is');
-console.log(JSON.stringify(list));
-/*
-{"head":{"value":"list","next":{"value":"is","next":null}},"tail":{"value":"is","next":null},"length":2}
-*/
-
 list.prepend('Linked');
-console.log(JSON.stringify(list));
-/*
-{"head":{"value":"Linked","next":{"value":"list","next":{"value":"is","next":null}}},"tail":{"value":"is","next":null},"length":3}
-*/
-
 list.insertBefore(3, 'nice');
-console.log(JSON.stringify(list));
-/*
-{"head":{"value":"Linked","next":{"value":"list","next":{"value":"is","next":{"value":"nice","next":null}}}},"tail":{"value":"nice","next":null},"length":4}
-*/
-
 list.insertBefore(3, 'very');
-console.log(JSON.stringify(list));
-/*
-{"head":{"value":"Linked","next":{"value":"list","next":{"value":"is","next":{"value":"very","next":{"value":"nice","next":null}}}}},"tail":{"value":"nice","next":null},"length":5}
-*/
-
 list.insertBefore(100, '!');
-console.log(JSON.stringify(list));
-/*
-{"head":{"value":"Linked","next":{"value":"list","next":{"value":"is","next":{"value":"very","next":{"value":"nice","next":{"value":"!","next":null}}}}}},"tail":{"value":"!","next":null},"length":6}
-*/
+
+console.log(list.find('nice'));
+// Node { value: 'nice', next: Node { value: '!', next: null } }
+
+console.log(list.find('!'));
+// Node { value: '!', next: null }
+
+console.log(list.find('nice!')); // null
