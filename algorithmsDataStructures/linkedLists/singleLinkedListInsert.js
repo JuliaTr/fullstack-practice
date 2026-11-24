@@ -5,6 +5,16 @@ class Node {
   }
 }
 
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  
+}
+
 const firstNode = new Node(5);
 console.log(firstNode)
 // Node { value: 5, next: null }
