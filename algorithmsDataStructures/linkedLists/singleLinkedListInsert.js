@@ -27,6 +27,13 @@ class LinkedList {
     if (this.isEmpty()) {
       return this._addFirstElement(value);
     }
+
+    const newNode = new Node(value);
+
+    this.tail.next = newNode;
+    this.tail = newNode;
+
+    this.tail++;
   }
 }
 
@@ -39,3 +46,7 @@ firstNode.next = secondNode;
 
 console.log(firstNode);
 // Node { value: 5, next: Node { value: 10, next: null } }
+
+
+
+// Step 
