@@ -14,6 +14,13 @@ function isPalindromValid(str) {
       right--;
       continue;
     }
+
+    if (str[left].toLowerCase() !== str[right].toLowerCase()) {
+      return false;
+    }
+
+    left++;
+    right--;
   }
 
   return true;
