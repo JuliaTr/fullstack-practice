@@ -16,11 +16,16 @@ class LinkedList {
     return this.head === null;
   }
 
+  // This method is intended for internal use only. `_` is a naming convention. Accessing inside parent, subclasses and outside the class.
+  _addFirstElement(value) {
+    this.head = new Node(value);
+    this.tail = this.head;
+    this.length = 1;
+  }
+
   append(value) {
     if (this.isEmpty()) {
-      this.head = new Node(value);
-      this.tail = this.head;
-      this.length = 1;
+      return this._addFirstElement(value);
     }
   }
 }
