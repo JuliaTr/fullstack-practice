@@ -12,7 +12,13 @@ class LinkedList {
     this.length = 0;
   }
 
-  
+  append(value) {
+    if (this.head === null) {
+      this.head = new Node(value);
+      this.tail = this.head;
+      this.length = 1;
+    }
+  }
 }
 
 const firstNode = new Node(5);
