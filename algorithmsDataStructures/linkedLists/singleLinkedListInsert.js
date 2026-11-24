@@ -49,7 +49,17 @@ class LinkedList {
 
     this.tail++;
   }
+
+  // `position` - index before which we insert value
+  insertBefore(position, value) {
+
+  }
 }
+
+// notes (expected behaviour):
+// list -> [123, 45, 344]
+// list.inserBefore(1, 145)
+// list -> [123, 145, 45, 344]
 
 const list = new LinkedList();
 list.append('list');
@@ -75,6 +85,12 @@ LinkedList {
 console.log(JSON.stringify(list));
 /*
 {"head":{"value":"list","next":{"value":"is","next":null}},"tail":null,"length":1}
+*/
+
+list.prepend('Linked');
+console.log(JSON.stringify(list));
+/*
+{"head":{"value":"Linked","next":{"value":"list","next":{"value":"is","next":null}}},"tail":null,"length":1}
 */
 
 
