@@ -14,12 +14,22 @@ function calculateSum(nums, right) {
 
 function findLargestSubarray(nums, k) {
   let left = 0;
-  let right = nums.length - 1;
+  let right = k - 1;
 
   let currentSum = calculateSum(nums, right);
   let maxSum = currentSum;
 
+  while (right < nums.length - 1) {
+    currentSum -= nums[left];
+    currentSum += nums[right];
 
+    left++;
+    right++;
+
+    if (currentSum > maxSum) {
+      maxSum = currentSum;
+    }
+  }
 
   return maxSum;
 }
