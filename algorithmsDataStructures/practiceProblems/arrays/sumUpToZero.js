@@ -22,43 +22,29 @@ Constraints:
  * @returns {number[]}
  */
 
-const EXPECTED_SUM = 0;
-
-function runningSum(array) {
-  const runningTotal = [];
-  let idx = 0;
-  let total = nums[idx];
-
-  while (idx < nums.length) {
-    if (idx > 0) {
-      total += nums[idx];
-    }
-
-    runningTotal[runningTotal.length] = total;
-
-    idx++;
-  }
-
-  return runningTotal;
-}
-
 function sumZero(n) {
   const result = [];
+  let number = n;
 
-  if (n === 1) {
-    result[result.length] = EXPECTED_SUM;
+  while (result.length !== n) {
+    if (result.length === n - 1 || n === 1) {
+      result[result.length] = 0;
 
-    return result;
-  }
+      return result;
+    }
 
-  const sum = runningSum(result);
+    result[result.length] = number;
+    result[result.length] = -number;
 
-  while (sum !== EXPECTED_SUM) {
-    
+    number--;
   }
 
   return result;
 }
 
-let n = 5;
-console.log(sumZero(n)); // array's sum is 0
+let n = 1;
+console.log(sumZero(n)); // [0]
+
+n = 5;
+console.log(sumZero(n)); 
+// array's sum is 0
