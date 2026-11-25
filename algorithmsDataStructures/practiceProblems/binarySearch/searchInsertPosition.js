@@ -5,11 +5,15 @@ Note: if the array contains several elements equal to `target`, return the index
 */
 
 function searchInsert(nums, target) {
-  if (nums.length === 0) {
-    return 0;
+  let left = 0;
+
+  if (nums.length === left 
+      || nums[left] > target
+      || nums[left] === target
+    ) {
+    return left;
   }
 
-  let left = 0;
   let right = nums.length - 1;
 
   while (left <= right) {
@@ -26,14 +30,15 @@ function searchInsert(nums, target) {
       return middle;
     }
 
-    if (left === right) {
-      if (nums[middle] < target) {
-        // console.log('print + 1 index')
-        return middle + 1;
-      } else if (nums[middle] > target) {
-        return middle;
-      }
-    }
+    // if (left === right) {
+    //   if (nums[middle] < target) {
+    //     // console.log('print + 1 index')
+    //     return middle + 1;
+    //   }
+      // } else if (nums[middle] > target) {
+      //   return middle;
+      // }
+    // }
 
     if (nums[middle] < target) {
       // console.log('print1')
@@ -43,24 +48,77 @@ function searchInsert(nums, target) {
       right = middle - 1;
     }
   }
+
+  return left;
 }
 
 console.log(searchInsert([1, 3, 5, 6], 5)); // 2 
 // 5 has an index 2
 
-console.log('++++++++++++++++++++++++++++++++++++++++++++++++')
+// console.log('++++++++++++++++++++++++++++++++++++++++++++++++')
 console.log(searchInsert([1, 3, 5, 6], 2)); // 1 
 // 2 would have an index 1
 
-console.log('++++++++++++++++++++++++++++++++++++++++++++++++')
+// console.log('++++++++++++++++++++++++++++++++++++++++++++++++')
 console.log(searchInsert([1, 3, 5, 6], 0)); // 0 
 // 0 would have an index 0
 
-console.log('++++++++++++++++++++++++++++++++++++++++++++++++')
+// console.log('++++++++++++++++++++++++++++++++++++++++++++++++')
 console.log(searchInsert([1, 5, 5, 5, 7], 6)); // 4 
 // 6 would have an index 4
 
-console.log('++++++++++++++++++++++++++++++++++++++++++++++++')
+// console.log('++++++++++++++++++++++++++++++++++++++++++++++++')
 console.log(searchInsert([1], 3)); 
 // 1 
 // 1 would have an index 1
+
+
+
+// `should return 0 if the target is less than the first element`
+console.log(searchInsert([3, 4, 5, 7, 12], 2)); // 0
+
+// `should work with the array where all elements are equal`
+console.log(searchInsert([9, 9, 9, 9], 9)); // 0
+
+// `should work with an empty array`
+console.log(searchInsert([], 12));  // 0
+
+
+
+// Solution
+function searchInsert(nums, target) {
+  let left = 0;
+
+  if (nums.length === left
+      || nums[left] > target
+      || nums[left] === target
+  ) {
+    return left;
+  }
+
+  let right = nums.length - 1;
+
+  while (left <= right) {
+    const middle = Math.floor((left + right) / 2);
+
+    if (nums[middle] === target) {
+      return middle;
+    }
+
+    if (left === right) {
+      if (nums[middle] < target) {
+        return middle + 1;
+      } else if (nums[middle] > target) {
+        return middle;
+      }
+    }
+
+    if (nums[middle] < target) {
+      left = middle + 1;
+    } else {
+      right = middle - 1;
+    }
+  }
+
+  return left;
+}
