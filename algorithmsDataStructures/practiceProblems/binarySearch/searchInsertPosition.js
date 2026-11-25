@@ -7,25 +7,37 @@ Note: if the array contains several elements equal to `target`, return the index
 function searchInsert(nums, target) {
   let left = 0;
   let right = nums.length - 1;
+  let isInArrayRight = true;
+  let isInArrayLeft = true;
 
   while (left <= right) {
     let middle = Math.floor((left + right) / 2);
-    // console.log(middle)
+
+    console.log(middle);
 
     if (nums[middle] === target) {
       return middle;
     }
-    // break;
-  }
 
-  return -1;
+    if (isInArrayLeft === false && isInArrayRight === false) {
+      return middle + 1;
+    }
+
+    if (nums[middle] < target) {
+      left = middle + 1;
+      isInArrayLeft = false;
+    } else {
+      right = middle - 1;
+      isInArrayRight = false;
+    }
+  }
 }
 
-console.log(searchInsert([1, 3, 5, 6], 5)); // 2 
-// 5 has an index 2
+// console.log(searchInsert([1, 3, 5, 6], 5)); // 2 
+// // 5 has an index 2
 
-// console.log(searchInsert([1, 3, 5, 6], 2)); // 1 
-// // 2 would have an index 1
+console.log(searchInsert([1, 3, 5, 6], 2)); // 1 
+// 2 would have an index 1
 
 // console.log(searchInsert([1, 3, 5, 6], 0)); // 0 
 // // 0 would have an index 0
