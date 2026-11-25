@@ -4,50 +4,33 @@ Write a function `searchInsert` that accepts a sorted array of integers `nums` a
 Note: if the array contains several elements equal to `target`, return the index of the first one.
 */
 
+// Refactored
 function searchInsert(nums, target) {
   let left = 0;
 
   if (nums.length === left 
       || nums[left] > target
       || nums[left] === target
-    ) {
+  ) {
     return left;
   }
 
   let right = nums.length - 1;
 
   while (left <= right) {
-    // console.log('~~~~~~~~~~~~~~~~~')
-    // console.log(nums)
-
     const middle = Math.floor((left + right) / 2);
-
-    // console.log('left:', left);
-    // console.log('right:', right);
-    // console.log('middle:', middle);
 
     if (nums[middle] === target) {
       return middle;
     }
 
-    // if (left === right) {
-    //   if (nums[middle] < target) {
-    //     // console.log('print + 1 index')
-    //     return middle + 1;
-    //   }
-      // } else if (nums[middle] > target) {
-      //   return middle;
-      // }
-    // }
-
     if (nums[middle] < target) {
-      // console.log('print1')
       left = middle + 1;
     } else {
-      // console.log('print2')
       right = middle - 1;
     }
   }
+
 
   return left;
 }
@@ -55,23 +38,18 @@ function searchInsert(nums, target) {
 console.log(searchInsert([1, 3, 5, 6], 5)); // 2 
 // 5 has an index 2
 
-// console.log('++++++++++++++++++++++++++++++++++++++++++++++++')
 console.log(searchInsert([1, 3, 5, 6], 2)); // 1 
 // 2 would have an index 1
 
-// console.log('++++++++++++++++++++++++++++++++++++++++++++++++')
 console.log(searchInsert([1, 3, 5, 6], 0)); // 0 
 // 0 would have an index 0
 
-// console.log('++++++++++++++++++++++++++++++++++++++++++++++++')
 console.log(searchInsert([1, 5, 5, 5, 7], 6)); // 4 
 // 6 would have an index 4
 
-// console.log('++++++++++++++++++++++++++++++++++++++++++++++++')
 console.log(searchInsert([1], 3)); 
 // 1 
 // 1 would have an index 1
-
 
 
 // `should return 0 if the target is less than the first element`
@@ -138,7 +116,6 @@ console.log(searchInsert([1, 5, 5, 5, 7], 6)); // 4
 console.log(searchInsert([1], 3)); 
 // 1 
 // 1 would have an index 1
-
 
 
 // `should return 0 if the target is less than the first element`
