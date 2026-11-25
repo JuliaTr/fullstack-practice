@@ -44,21 +44,26 @@ function countNegatives(grid) {
 
   for (let i = 0; i < grid.length; i++) {
     let left = 0;
-    const right = grid[i].length - 1;
+    let right = grid[i].length - 1;
     
     while (left <= right) {
       const middle = Math.floor((left + right) / 2);
 
       if (grid[i][left] < 0
       ) {
-        count += (right - left) + 1;
+        count += grid[i].length - left;
+        break;
+      }
+
+      if (left === right) {
+        count += (grid[i].length - 1) - left;
         break;
       }
 
       if (grid[i][middle] >= 0) {
         left = middle + 1;
       } else {
-        left = middle - 1;
+        right = middle - 1;
       }
     }
   }
@@ -88,3 +93,13 @@ console.log(countNegatives(grid)); // 3
 
 grid = [ [-1] ]
 console.log(countNegatives(grid)); // 1
+
+
+// `Should count negatives in a matrix`
+grid = [
+  [3, 2, 1, 0],
+  [2, 1, 0, -1],
+  [1, 0, -1, -2],
+  [0, -1, -2, -3],
+];
+console.log(countNegatives(grid)); // 6
