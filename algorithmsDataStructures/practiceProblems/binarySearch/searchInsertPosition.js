@@ -5,6 +5,10 @@ Note: if the array contains several elements equal to `target`, return the index
 */
 
 function searchInsert(nums, target) {
+  if (nums.length === 0) {
+    return 0;
+  }
+
   let left = 0;
   let right = nums.length - 1;
 
@@ -12,7 +16,7 @@ function searchInsert(nums, target) {
     // console.log('~~~~~~~~~~~~~~~~~')
     // console.log(nums)
 
-    let middle = Math.floor((left + right) / 2);
+    const middle = Math.floor((left + right) / 2);
 
     // console.log('left:', left);
     // console.log('right:', right);
