@@ -43,53 +43,42 @@ function countNegatives(grid) {
   let count = 0;
 
   for (let i = 0; i < grid.length; i++) {
-    console.log('~~~~~~~~~~~~~~~~~~~~')
-    console.log(grid[i])
-
     let left = 0;
-    let right = grid[i].length - 1;
-    const middle = Math.floor((left + right) / 2);
-
-    console.log('left:', left)
-    console.log('right:', right)
-    console.log('middle:', middle)
-
-    // break
+    const right = grid[i].length - 1;
+    
     while (left <= right) {
-      if (
-        grid[i][middle] < 0
-        || grid[i][left] < 0
+      const middle = Math.floor((left + right) / 2);
+
+      if (grid[i][left] < 0
       ) {
-        console.log('print 1')
-        count++;
-        console.log(count)
+        count += (right - left) + 1;
+        break;
       }
 
-      if (grid[i][middle] > 0) {
-        left++;
+      if (grid[i][middle] >= 0) {
+        left = middle + 1;
+      } else {
+        left = middle - 1;
       }
     }
-
-    console.log(count)
-    // break
   }
 
   return count;
 }
 
-// let grid = [
-//   [4, 3, 2, -1],
-//   [3, 2, 1, -1],
-//   [1, 1, -1, -2],
-//   [-1, -1, -2, -3]
-// ]
-// console.log(countNegatives(grid)); // 8
+let grid = [
+  [4, 3, 2, -1],
+  [3, 2, 1, -1],
+  [1, 1, -1, -2],
+  [-1, -1, -2, -3]
+]
+console.log(countNegatives(grid)); // 8
 
-// grid = [
-//   [3, 2],
-//   [1, 0]
-// ]
-// console.log(countNegatives(grid)); // 0
+grid = [
+  [3, 2],
+  [1, 0]
+]
+console.log(countNegatives(grid)); // 0
 
 grid = [
   [1, -1],
@@ -97,5 +86,5 @@ grid = [
 ]
 console.log(countNegatives(grid)); // 3
 
-// grid = [ [-1] ]
-// console.log(countNegatives(grid)); // 1
+grid = [ [-1] ]
+console.log(countNegatives(grid)); // 1
