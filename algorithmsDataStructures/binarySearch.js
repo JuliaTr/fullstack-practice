@@ -3,7 +3,7 @@ function binarySearch(array, target) {
   let right = array.length - 1;
 
   while (left <= right) {
-    let middle = Math.floor((left + right) / 2);
+    const middle = Math.floor((left + right) / 2);
 
     if (array[middle] === target) {
       return middle;
