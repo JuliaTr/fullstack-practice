@@ -36,31 +36,24 @@ Constraints:
 
 function peakIndexInMountainArray(arr) {
   let left = 0;
-  let right = arr.length;
-  let searchValue = arr[0];
-  let searchIdx = 0;
+  let right = arr.length - 1;
+  let middle = 0;
 
   while (left <= right) {
-    // console.log('~~~~~~~~~~~~~~~~~~~~~~')
+    middle = Math.floor((left + right) / 2);
 
-    const middle = Math.floor((left + right) / 2);
+    if (arr[middle - 1] < arr[middle] && arr[middle + 1] < arr[middle]) {
+      return middle;
+    }
 
-    // console.log('left:', left)
-    // console.log('right:', right)
-    // console.log('middle:', middle)
-
-    if (arr[middle] < searchValue) {
+    if (arr[middle] < arr[middle + 1]) {
       left = middle + 1;
     } else {
       right = middle - 1;
-      searchValue = arr[middle];
-      searchIdx = middle;
     }
-
-    // console.log('searchValue:', searchValue)
   }
 
-  return searchIdx;
+  return middle;
 }
 
 let arr = [0, 1, 0];
@@ -77,3 +70,11 @@ console.log(peakIndexInMountainArray(arr)); // 2
 
 arr = [24, 69, 100, 99, 79, 78, 67, 36, 26, 19];
 console.log(peakIndexInMountainArray(arr)); // 2
+
+
+// `Should return a peak index from the right part of array`
+console.log(
+  peakIndexInMountainArray(
+    [19, 26, 36, 67, 78, 79, 99, 100, 69, 24]
+  )
+); // 7
