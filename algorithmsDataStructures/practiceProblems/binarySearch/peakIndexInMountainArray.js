@@ -37,10 +37,9 @@ Constraints:
 function peakIndexInMountainArray(arr) {
   let left = 0;
   let right = arr.length - 1;
-  let middle = 0;
 
   while (left <= right) {
-    middle = Math.floor((left + right) / 2);
+    const middle = Math.floor((left + right) / 2);
 
     if (arr[middle - 1] < arr[middle] && arr[middle + 1] < arr[middle]) {
       return middle;
@@ -53,7 +52,7 @@ function peakIndexInMountainArray(arr) {
     }
   }
 
-  return middle;
+  return -1;
 }
 
 let arr = [0, 1, 0];
