@@ -36,44 +36,44 @@ Constraints:
 
 function peakIndexInMountainArray(arr) {
   let left = 0;
-  let right = arr.length - 1;
+  let right = arr.length;
   let searchValue = arr[0];
   let searchIdx = 0;
 
   while (left <= right) {
-    console.log('~~~~~~~~~~~~~~~~~~~~~~')
+    // console.log('~~~~~~~~~~~~~~~~~~~~~~')
 
     const middle = Math.floor((left + right) / 2);
 
-    console.log('left:', left)
-    console.log('right:', right)
-    console.log('middle:', middle)
+    // console.log('left:', left)
+    // console.log('right:', right)
+    // console.log('middle:', middle)
 
-    if (arr[middle] > searchValue) {
+    if (arr[middle] < searchValue) {
       left = middle + 1;
-      searchValue = arr[middle];
-      searchIdx = middle;
     } else {
       right = middle - 1;
+      searchValue = arr[middle];
+      searchIdx = middle;
     }
 
-    console.log('searchValue:', searchValue)
+    // console.log('searchValue:', searchValue)
   }
 
   return searchIdx;
 }
 
-// let arr = [0, 1, 0];
-// console.log(peakIndexInMountainArray(arr)); // 1
+let arr = [0, 1, 0];
+console.log(peakIndexInMountainArray(arr)); // 1
 
-// arr = [0, 2, 1, 0];
-// console.log(peakIndexInMountainArray(arr)); // 1
+arr = [0, 2, 1, 0];
+console.log(peakIndexInMountainArray(arr)); // 1
 
-// arr = [0, 10, 5, 2];
-// console.log(peakIndexInMountainArray(arr)); // 1
+arr = [0, 10, 5, 2];
+console.log(peakIndexInMountainArray(arr)); // 1
 
-// arr = [3, 4, 5, 1];
-// console.log(peakIndexInMountainArray(arr)); // 2
+arr = [3, 4, 5, 1];
+console.log(peakIndexInMountainArray(arr)); // 2
 
 arr = [24, 69, 100, 99, 79, 78, 67, 36, 26, 19];
 console.log(peakIndexInMountainArray(arr)); // 2
